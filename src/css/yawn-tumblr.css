@@ -4,11 +4,6 @@ body {
   background-color: #ddd;
 }
 
-ul {
-  margin: 0;
-  padding: 0;
-}
-
 h1, h2, h3, h4, h5, h6 {
   display: block;
   margin-block-start: 0.5em;
@@ -44,7 +39,7 @@ h1, h2, h3, h4, h5, h6 {
   padding-bottom: calc(128px / 2);
 }
 
-.blog-title-wrapper .avater-wrapper {
+.blog-title-wrapper .avatar-wrapper {
   position: absolute;
   left: 50%;
   margin-left: calc(-128px / 2);
@@ -52,7 +47,7 @@ h1, h2, h3, h4, h5, h6 {
   top: calc(-128px / 2);
 }
 
-.blog-title-wrapper .avater-image {
+.blog-title-wrapper .avatar-image {
   width: 128px;
   height: 128px;
   border-radius: 50%;
@@ -75,6 +70,7 @@ h1, h2, h3, h4, h5, h6 {
   list-style: none;
   text-align: center;
   margin: 1rem;
+  padding: 0;
 }
 
 .navigation-wrapper .nav-list li {
@@ -149,6 +145,8 @@ article .date::before {
 
 .post-wrapper .post-extra .tag-list {
   list-style: none;
+  padding: 0;
+  margin: 0;
 }
 
 .post-wrapper .post-extra .tag-list li {

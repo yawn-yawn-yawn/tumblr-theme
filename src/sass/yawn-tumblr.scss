@@ -20,7 +20,7 @@ $font-sub-color: $sub-color;
 
 $position-title-up: -80px;
 
-$size-avater: 128px;
+$size-avatar: 128px;
 
 
 body {
@@ -31,10 +31,10 @@ body {
     background-color: $layout-base-color;
 }
 
-ul {
-    margin: 0;
-    padding: 0;
-}
+// ul {
+//     margin: 0;
+//     padding: 0;
+// }
 
 h1, h2, h3, h4, h5, h6 {
     display: block;
@@ -70,24 +70,24 @@ h1, h2, h3, h4, h5, h6 {
     width: 70%;
     margin: auto;
     border-radius: 5px;
-    padding-bottom: calc(#{$size-avater} / 2 );
-    .avater-wrapper {
+    padding-bottom: calc(#{$size-avatar} / 2 );
+    .avatar-wrapper {
         position: absolute;
         left: 50%;
-        margin-left: calc(-#{$size-avater} / 2);
+        margin-left: calc(-#{$size-avatar} / 2);
         display: block;
-        top: calc(-#{$size-avater} / 2);
+        top: calc(-#{$size-avatar} / 2);
     }
-    .avater-image {
-        width: $size-avater;
-        height: $size-avater;
+    .avatar-image {
+        width: $size-avatar;
+        height: $size-avatar;
         border-radius: 50%;
         border: 6px solid #fff;
     }
     .title-group {
         position: relative;
         display: block;
-        top: calc(#{$size-avater} / 2);
+        top: calc(#{$size-avatar} / 2);
         padding: 1rem 3rem 2rem;
     }
 }
@@ -105,6 +105,7 @@ h1, h2, h3, h4, h5, h6 {
         list-style: none;
         text-align: center;
         margin: 1rem;
+        padding: 0;
         li {
             display: inline-block;
         }
@@ -180,6 +181,8 @@ article {
             margin: 1rem 2rem 0;
             .tag-list {
                 list-style: none;
+                padding: 0;
+                margin: 0;
                 li {
                     display: inline-block;
                     margin-right: 3px;

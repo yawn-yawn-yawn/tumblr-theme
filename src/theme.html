@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="{Favicon}">
+
+    <!-- static files -->
+    <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://static.tumblr.com/t5kjukw/DKxq96qlj/yawn-tumblr.css">
+    <link rel="stylesheet" href="https://static.tumblr.com/t5kjukw/DwQq96q08/markdown.css">
+
+    <!--highlight js-->
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.0/styles/atom-one-dark.min.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.0/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+
+    <!-- TODO: tumblerタイトル -->
+    <title>{Title}</title>
+
+    <!--TODO: cssとかに入れhばなおよい-->
+    <style>
+        .page-description {
+            display: flex;
+            justify-content: center;
+            background-color: #fff;
+            padding: .5rem 1.2rem;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+
+        .page-description .tag-link {
+            text-decoration: none;
+            color: #2E86AB;
+        }
+
+        .page-description .tag-link:hover {
+            color: #1C5677;
+        }
+
+        .page-description .tag-link::before {
+            content: "#";
+        }
+
+        article .title {
+            margin-top: 0;
+
+        }
+
+        article .title a {
+            color: #2E86AB;
+            text-decoration: none;
+        }
+
+        article .date {
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        article .date::before {
+            content: "";
+        }
+
+        .post-wrapper .panel {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 1.2rem 2rem;
+        }
+
+        .notes-notify-wrapper {}
+
+        .notes-notify-wrapper .notes-link {
+            text-decoration: none;
+            color: #aaa;
+            border-bottom: 1px solid transportant;
+
+        }
+
+        .notes-notify-wrapper .notes-link:hover {
+
+            border-bottom: 1px solid #aaa;
+        }
+
+        .post-wrapper .panel .post-controls {
+            padding: 0;
+        }
+
+        .note-wrapper {
+            margin-top: 30px;
+        }
+
+        .note-wrapper .notes {
+            list-style: none;
+            background-color: #fff;
+            padding: 1.2rem 2rem;
+            border-radius: 5px;
+        }
+
+        .note-wrapper .note {
+            display: flex;
+            align-content: center;
+            margin-bottom: .7rem;
+        }
+
+        .note-wrapper .note:last-child {
+            margin-bottom: 0;
+        }
+
+        .note-wrapper .note .avatar {
+            width: 24px;
+            height: 24px;
+        }
+
+        .note-wrapper .action {
+            margin-left: 8px;
+        }
+
+        .note-wrapper .action a {
+            text-decoration: none;
+            color: #2E86AB;
+        }
+
+        .note-wrapper .action a:hover {
+            color: #1C5677;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="header-wrapper">
+        <div class="header"></div>
+    </div>
+
+    <div class="blog-title-wrapper">
+        <div class="avatar-wrapper">
+            <a href="/">
+                <img src="{PortraitURL-128}" class="avatar-image">
+            </a>
+        </div>
+        <div class="title-group">
+            <h1>{Title}</h1>
+            {block:Description}
+            <div>{Description}</div>
+            {/block:Description}
+        </div>
+    </div>
+
+    <div class="content-wrapper">
+        <!--navigation-->
+        <div class="navigation-wrapper">
+            <ul class="nav-list">
+                <li><a href="{BlogURL}" class="nav-item">Posts</a></li>
+                <!--TODO; pages-->
+                {block:HasPages}
+                {block:Pages}
+                <li><a href="{URL}" class="nav-item">{Label}</a></li>
+                {/block:Pages}
+                {/block:HasPages}
+                <li><a href="{BlogURL}archive" class="nav-item">Archives</a></li>
+            </ul>
+        </div>
+
+        <div class="blog-content-wrapper">
+            <div class="container">
+                <div class="main">
+                    <!-- tagページ -->
+                    {block:TagPage}
+                    <div class="page-description">
+                        <span>Posts tagged <a href="{TagURL}" class="tag-link"><b>{Tag}</b></a></span>
+                    </div>
+                    {/block:TagPage}
+
+                    <!-- 日付ページ -->
+                    {block:DayPage}
+                    <div class="page-description">
+                        <span>Posted on <b>{Year}/{MonthNumber}/{DayOfMonth}</b></span>
+                    </div>
+                    {/block:DayPage}
+
+                    <!-- TODO: 検索ページ -->
+                    {block:SearchPage}
+                    {/block:SearchPage}
+
+                    {block:Posts}
+                    <article class="{PostType}">
+                        <div class="post-wrapper">
+
+                            <!--text post-->
+                            {block:Text}
+                            <div class="post">
+                                <div class="post-content">
+                                    <h5 class="date">{TimeAgo}</h5>
+                                    {block:Title}
+                                    <h1 class="title"><a href="{Permalink}">{Title}</a></h1>
+                                    {/block:Title}
+                                    <div class="body post-body">{Body}</div>
+                                </div> <!-- post-content -->
+                                {block:HasTags}
+                                <div class="post-extra">
+                                    <ul class="tag-list">
+                                        {block:Tags}
+                                        <li><a href="{TagURL}" class="tag-item">{Tag}</a></li>
+                                        {/block:Tags}
+                                    </ul>
+                                </div>
+                                {/block:HasTags}
+
+                            </div>
+                            <!--post-->
+                            {/block:Text}
+
+                            <!--TODO: photo-->
+                            {block:Photo}
+                            {/block:Photo}
+
+                            <!--TODO: quote-->
+                            {block:Quote}
+                            {/block:Quote}
+
+                            <!--TODO: link-->
+                            {block:Link}
+                            {/block:Link}
+
+                            <!--TODO: chat-->
+                            {block:Chat}
+                            {/block:Chat}
+
+                            <!--TODO: voice-->
+
+                            <!--TODO: movie-->
+
+
+                            <div class="panel">
+                                <div class="notes-notify-wrapper">
+                                    {block:NoteCount}
+                                    <a href="{Permalink}#notes" class="notes-link">{NoteCountWithLabel}</a>
+                                    {/block:NoteCount}
+                                </div>
+                                <div class="post-controls-wrapper">
+                                    <div class="post-controls">
+                                        <div class="control">{ReblogButton size="20" color="gray"}</div>
+                                        <div class="control">{LikeButton size="20" color="gray"}</div>
+                                        <!--TODO share-->
+                                    </div>
+                                </div>
+
+                            </div>
+                            <!--panel-->
+                        </div>
+                        <!--post-wrapper-->
+
+                        <!--reactions-->
+                        {block:PermalinkPage}
+                        {block:NoteCount}
+                        <div class="note-wrapper">
+                            {block:PostNotes}
+                            <div id="notes">
+                                {PostNotes-64}
+                            </div>
+                            {/block:PostNotes}
+                        </div>
+                        {/block:NoteCount}
+                        {/block:PermalinkPage}
+                    </article>
+                    {/block:Posts}
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer-wrapper">
+        <div class="footer">
+            <span>©️ Yawn</span>
+        </div>
+    </div>
+</body>
+
+</html>
