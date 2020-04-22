@@ -62,6 +62,26 @@
             content: "";
         }
 
+        article.quote blockquote {
+            margin: 0;
+            font-size: 2rem;
+            font-style: italic;
+            /*TODO: font famiry*/
+
+        }
+
+        article.quote blockquote::before {
+            content: "\"";
+        }
+
+        article.quote blockquote::after {
+            content: "\"";
+        }
+
+        /*article.quote .source::before {*/
+        /*    content: "- ";*/
+        /*}*/
+
         .post-wrapper .panel {
             display: flex;
             justify-content: space-between;
@@ -124,6 +144,55 @@
 
         .note-wrapper .action a:hover {
             color: #1C5677;
+        }
+
+        .img-responsive {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .photoset-wrapper {
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+        }
+
+        .link-wrapper {
+            background-color: #E7F6FF;
+            padding: .5rem .8rem;
+            border-radius: 5px;
+        }
+
+        .link-wrapper:hover {
+            background-color: #DCEDFF;
+        }
+
+        .link-wrapper .link {
+            text-decoration: none;
+            color: #2E86AB;
+        }
+
+        .link-wrapper .link:hover {
+            color: #1C5677;
+        }
+
+        .link-wrapper .link-host {
+            font-size: 1rem;
+        }
+
+        .link-wrapper .link-excerpt {
+            font-size: .8rem;
+        }
+
+        article.chat .conversation {
+            list-style: none;
+            padding: 0;
+            font-family: Lucida Console, Courier, monospace;
+            line-height: 1.5rem;
+        }
+
+        article.chat .label {
+            font-weight: 600;
         }
     </style>
 </head>
@@ -188,16 +257,152 @@
                     <article class="{PostType}">
                         <div class="post-wrapper">
 
-                            <!--text post-->
-                            {block:Text}
                             <div class="post">
+                                <!-- text -->
+                                {block:Text}
                                 <div class="post-content">
                                     <h5 class="date">{TimeAgo}</h5>
                                     {block:Title}
                                     <h1 class="title"><a href="{Permalink}">{Title}</a></h1>
                                     {/block:Title}
                                     <div class="body post-body">{Body}</div>
-                                </div> <!-- post-content -->
+                                </div>
+                                <!-- post-content -->
+                                {/block:Text}
+
+                                <!--photo-->
+                                {block:Photo}
+                                <div class="post-content">
+                                    <h5 class="date">{TimeAgo}</h5>
+                                    <div>
+                                        {block:IndexPage}
+                                        <a href="{PhotoURL-HighRes}">
+                                            <img class="img-responsive radius" src="{PhotoURL-HighRes}"
+                                                data-at2x="{PhotoURL-HighRes}" alt="{PhotoAlt}" />
+                                        </a>
+                                        {/block:IndexPage}
+                                        {block:PermalinkPage}
+                                        {LinkOpenTag}
+                                        <img class="img-responsive radius" src="{PhotoURL-HighRes}"
+                                            data-at2x="{PhotoURL-HighRes}" alt="{PhotoAlt}" />
+                                        {LinkCloseTag}
+                                        {/block:PermalinkPage}
+                                    </div>
+                                    {block:Caption}
+                                    <div class="body post-body">
+                                        {Caption}
+                                    </div>
+                                    {/block:Caption}
+                                </div>
+
+                                {/block:Photo}
+
+                                <!-- TODO: panorama -->
+                                <!--{block:Panorama}-->
+                                <!--    <header>-->
+                                <!--        {LinkOpenTag}-->
+                                <!--        <img class="img-responsive" src="{PhotoURL-HighRes}" data-at2x="{PhotoURL-HighRes}" alt="{PhotoAlt}" />-->
+                                <!--        {LinkCloseTag}-->
+                                <!--    </header>-->
+                                <!--    {block:Caption}-->
+                                <!--    <div class="post-content">-->
+                                <!--        <div class="body post-body">-->
+                                <!--            {Caption}-->
+                                <!--        </div>-->
+                                <!--    </div>-->
+                                <!--    {/block:Caption}-->
+                                <!--{/block:Panorama}-->
+
+                                <!-- Photoset -->
+                                {block:Photoset}
+                                <div class="post-content">
+                                    <h5 class="date">{TimeAgo}</h5>
+                                    <div class="photoset-wrapper">
+                                        {block:Photos}
+                                        <img class="img-responsive" src="{PhotoURL-HighRes}"
+                                            data-at2x="{PhotoURL-HighRes}" data-highres="{PhotoURL-HighRes}"
+                                            alt="{PhotoAlt}" />
+                                        {/block:Photos}
+                                    </div>
+                                    {block:Caption}
+                                    <div class="body post-body">
+                                        {Caption}
+                                    </div>
+                                    {/block:Caption}
+                                </div>
+                                {/block:Photoset}
+
+                                <!--quote-->
+                                {block:Quote}
+                                <div class="post-content">
+                                    <h5 class="date">{TimeAgo}</h5>
+
+                                    <blockquote class="{Length}">
+                                        {Quote}
+                                    </blockquote>
+                                    {block:Source}
+                                    <div class="source body post-body">{Source}</div>
+                                    {/block:Source}
+                                </div>
+                                {/block:Quote}
+
+                                <!--link-->
+                                {block:Link}
+                                <div class="post-content">
+                                    <h5 class="date">{TimeAgo}</h5>
+
+                                    <div class="link-wrapper">
+                                        <a target="_blank" href="{URL}" class="link">
+                                            {block:Thumbnail}
+                                            <div class="link-thumbnail"><img src="{Thumbnail-HighRes}" alt="" /></div>
+                                            {/block:Thumbnail}
+                                            <div class="link-text-wrapper clearfix">
+                                                <div class="link-text">
+                                                    {block:Host}
+                                                    <div class="link-host">{Host}</div>
+                                                    {/block:Host}
+                                                    <h2 class="link-title">{Name}</h2>
+                                                    {block:Excerpt}
+                                                    <div class="link-excerpt">{Excerpt}</div>
+                                                    {/block:Excerpt}
+                                                    {block:Author}
+                                                    <div class="link-author">{Author}</div>
+                                                    {/block:Author}
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                    {block:Description}
+                                    <div class="body post-body">
+                                        {Description}
+                                    </div>
+                                    {/block:Description}
+                                </div>
+                                {/block:Link}
+
+                                <!--chat-->
+                                {block:Chat}
+                                <div class="post-content">
+                                    <h5 class="date">{TimeAgo}</h5>
+                                    {block:Title}<h2 class="title"><a href="{Permalink}">{Title}</a></h2>{/block:Title}
+                                    <ul class="conversation">
+                                        {block:Lines}
+                                        <li>
+                                            {block:Label}
+                                            <span class="label">{Label}</span>
+                                            {/block:Label}
+                                            {Line}
+                                        </li>
+                                        {/block:Lines}
+                                    </ul>
+                                </div>
+                                {/block:Chat}
+
+                                <!--TODO: audio-->
+
+                                <!--TODO: video-->
+
+                                <!--tags-->
                                 {block:HasTags}
                                 <div class="post-extra">
                                     <ul class="tag-list">
@@ -207,31 +412,8 @@
                                     </ul>
                                 </div>
                                 {/block:HasTags}
-
                             </div>
                             <!--post-->
-                            {/block:Text}
-
-                            <!--TODO: photo-->
-                            {block:Photo}
-                            {/block:Photo}
-
-                            <!--TODO: quote-->
-                            {block:Quote}
-                            {/block:Quote}
-
-                            <!--TODO: link-->
-                            {block:Link}
-                            {/block:Link}
-
-                            <!--TODO: chat-->
-                            {block:Chat}
-                            {/block:Chat}
-
-                            <!--TODO: voice-->
-
-                            <!--TODO: movie-->
-
 
                             <div class="panel">
                                 <div class="notes-notify-wrapper">
