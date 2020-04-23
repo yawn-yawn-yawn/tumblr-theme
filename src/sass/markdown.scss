@@ -64,14 +64,18 @@ $quote-bar-color: #ddd;
         border-left: 4px solid $quote-bar-color;
         margin-inline-start: 0px;
         margin-inline-end: 0px;
-        padding-inline-start: 40px;
-        padding-inline-end: 40px;
+        padding-inline-start: 16px;
+        // padding-inline-end: 40px;
     }
 
     pre {
         font-size: 16px;
         code {
             padding: 1rem .5rem;
+            border-radius: 5px;
+            font-family: Menlo,Monaco,Consolas,"Courier New",monospace;
+            font-size: .9rem;
+            line-height: 1.3rem;
         }
     }
 

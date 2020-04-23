@@ -8,13 +8,17 @@
 
     <!-- static files -->
     <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://static.tumblr.com/t5kjukw/DKxq96qlj/yawn-tumblr.css">
-    <link rel="stylesheet" href="https://static.tumblr.com/t5kjukw/DwQq96q08/markdown.css">
+    <link rel="stylesheet" href="https://static.tumblr.com/t5kjukw/u8Bq97us3/yawn-tumblr.css">
+    <link rel="stylesheet" href="https://static.tumblr.com/t5kjukw/NoIq97t73/markdown.css">
 
     <!--highlight js-->
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.0/styles/atom-one-dark.min.css">
     <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.0/highlight.min.js"></script>
     <script>hljs.initHighlightingOnLoad();</script>
+
+    <!--meta-->
+    {block:Hidden}
+    {/block:Hidden}
 
     <!-- TODO: tumblerタイトル -->
     <title>{Title}</title>
@@ -61,23 +65,19 @@
         article .date::before {
             content: "";
         }
-
         article.quote blockquote {
             margin: 0;
             font-size: 2rem;
             font-style: italic;
             /*TODO: font famiry*/
-
+            
         }
-
         article.quote blockquote::before {
             content: "\"";
         }
-
         article.quote blockquote::after {
             content: "\"";
         }
-
         /*article.quote .source::before {*/
         /*    content: "- ";*/
         /*}*/
@@ -145,60 +145,64 @@
         .note-wrapper .action a:hover {
             color: #1C5677;
         }
-
+        
         .img-responsive {
             max-width: 100%;
             height: auto;
         }
-
         .photoset-wrapper {
             display: flex;
             justify-content: center;
             align-items: flex-end;
         }
-
         .link-wrapper {
             background-color: #E7F6FF;
             padding: .5rem .8rem;
             border-radius: 5px;
         }
-
         .link-wrapper:hover {
             background-color: #DCEDFF;
         }
-
         .link-wrapper .link {
             text-decoration: none;
             color: #2E86AB;
         }
-
         .link-wrapper .link:hover {
             color: #1C5677;
         }
-
         .link-wrapper .link-host {
             font-size: 1rem;
         }
-
         .link-wrapper .link-excerpt {
             font-size: .8rem;
         }
-
         article.chat .conversation {
             list-style: none;
             padding: 0;
             font-family: Lucida Console, Courier, monospace;
             line-height: 1.5rem;
         }
-
         article.chat .label {
             font-weight: 600;
         }
+        
+        .post-wrapper .panel .control a {
+            text-decoration: none;
+            color: #ccc;
+        }
+        .post-wrapper .panel .control .icon {
+            font-size: 1.34rem;
+            position: relative;
+        }
+        .search_query {
+            font-weight: 600;
+            margin-left: .5rem;
+        }
     </style>
+    
 </head>
 
 <body>
-
     <div class="header-wrapper">
         <div class="header"></div>
     </div>
@@ -251,6 +255,14 @@
 
                     <!-- TODO: 検索ページ -->
                     {block:SearchPage}
+                    <div class="page-description">
+                        {lang:Showing SearchResultCount results for SearchQuery 2}
+            
+                        {block:NoSearchResults}
+                            <div>{lang:Sorry no search results found}</div>
+                        {/block:NoSearchResults}
+                        
+                    </div>
                     {/block:SearchPage}
 
                     {block:Posts}
@@ -269,34 +281,32 @@
                                 </div>
                                 <!-- post-content -->
                                 {/block:Text}
-
+                                
                                 <!--photo-->
                                 {block:Photo}
-                                <div class="post-content">
-                                    <h5 class="date">{TimeAgo}</h5>
-                                    <div>
-                                        {block:IndexPage}
-                                        <a href="{PhotoURL-HighRes}">
-                                            <img class="img-responsive radius" src="{PhotoURL-HighRes}"
-                                                data-at2x="{PhotoURL-HighRes}" alt="{PhotoAlt}" />
-                                        </a>
-                                        {/block:IndexPage}
-                                        {block:PermalinkPage}
-                                        {LinkOpenTag}
-                                        <img class="img-responsive radius" src="{PhotoURL-HighRes}"
-                                            data-at2x="{PhotoURL-HighRes}" alt="{PhotoAlt}" />
-                                        {LinkCloseTag}
-                                        {/block:PermalinkPage}
+                                    <div class="post-content">
+                                        <h5 class="date">{TimeAgo}</h5>
+                                        <div>
+                                            {block:IndexPage}
+                                                <a href="{PhotoURL-HighRes}">
+                                                    <img class="img-responsive radius" src="{PhotoURL-HighRes}" data-at2x="{PhotoURL-HighRes}" alt="{PhotoAlt}" />
+                                                </a>
+                                            {/block:IndexPage}
+                                            {block:PermalinkPage}
+                                                {LinkOpenTag}
+                                                    <img class="img-responsive radius" src="{PhotoURL-HighRes}" data-at2x="{PhotoURL-HighRes}" alt="{PhotoAlt}" />
+                                                {LinkCloseTag}
+                                            {/block:PermalinkPage}
+                                        </div>
+                                        {block:Caption}
+                                        <div class="body post-body">
+                                            {Caption}
+                                        </div>
+                                        {/block:Caption}
                                     </div>
-                                    {block:Caption}
-                                    <div class="body post-body">
-                                        {Caption}
-                                    </div>
-                                    {/block:Caption}
-                                </div>
-
+                                    
                                 {/block:Photo}
-
+                                
                                 <!-- TODO: panorama -->
                                 <!--{block:Panorama}-->
                                 <!--    <header>-->
@@ -312,94 +322,92 @@
                                 <!--    </div>-->
                                 <!--    {/block:Caption}-->
                                 <!--{/block:Panorama}-->
-
+                                
                                 <!-- Photoset -->
                                 {block:Photoset}
-                                <div class="post-content">
-                                    <h5 class="date">{TimeAgo}</h5>
-                                    <div class="photoset-wrapper">
-                                        {block:Photos}
-                                        <img class="img-responsive" src="{PhotoURL-HighRes}"
-                                            data-at2x="{PhotoURL-HighRes}" data-highres="{PhotoURL-HighRes}"
-                                            alt="{PhotoAlt}" />
-                                        {/block:Photos}
+                                    <div class="post-content">
+                                        <h5 class="date">{TimeAgo}</h5>
+                                        <div class="photoset-wrapper">
+                                            {block:Photos}
+                                                <img class="img-responsive" src="{PhotoURL-HighRes}" data-at2x="{PhotoURL-HighRes}" data-highres="{PhotoURL-HighRes}" alt="{PhotoAlt}" />
+                                            {/block:Photos}
+                                        </div>
+                                        {block:Caption}
+                                            <div class="body post-body">
+                                                {Caption}
+                                            </div>
+                                        {/block:Caption}
                                     </div>
-                                    {block:Caption}
-                                    <div class="body post-body">
-                                        {Caption}
-                                    </div>
-                                    {/block:Caption}
-                                </div>
                                 {/block:Photoset}
-
+                                
                                 <!--quote-->
                                 {block:Quote}
                                 <div class="post-content">
                                     <h5 class="date">{TimeAgo}</h5>
-
+                                    
                                     <blockquote class="{Length}">
                                         {Quote}
                                     </blockquote>
                                     {block:Source}
-                                    <div class="source body post-body">{Source}</div>
+                                        <div class="source body post-body">{Source}</div>
                                     {/block:Source}
                                 </div>
                                 {/block:Quote}
-
+                                
                                 <!--link-->
                                 {block:Link}
-                                <div class="post-content">
-                                    <h5 class="date">{TimeAgo}</h5>
-
-                                    <div class="link-wrapper">
-                                        <a target="_blank" href="{URL}" class="link">
-                                            {block:Thumbnail}
-                                            <div class="link-thumbnail"><img src="{Thumbnail-HighRes}" alt="" /></div>
-                                            {/block:Thumbnail}
-                                            <div class="link-text-wrapper clearfix">
-                                                <div class="link-text">
-                                                    {block:Host}
-                                                    <div class="link-host">{Host}</div>
-                                                    {/block:Host}
-                                                    <h2 class="link-title">{Name}</h2>
-                                                    {block:Excerpt}
-                                                    <div class="link-excerpt">{Excerpt}</div>
-                                                    {/block:Excerpt}
-                                                    {block:Author}
-                                                    <div class="link-author">{Author}</div>
-                                                    {/block:Author}
+                                    <div class="post-content">
+                                        <h5 class="date">{TimeAgo}</h5>
+                                        
+                                        <div class="link-wrapper">
+                                            <a target="_blank" href="{URL}" class="link">
+                                                {block:Thumbnail}
+                                                    <div class="link-thumbnail"><img src="{Thumbnail-HighRes}" alt="" /></div>
+                                                {/block:Thumbnail}
+                                                <div class="link-text-wrapper clearfix">
+                                                    <div class="link-text">
+                                                        {block:Host}
+                                                        <div class="link-host">{Host}</div>
+                                                        {/block:Host}
+                                                        <h2 class="link-title">{Name}</h2>
+                                                        {block:Excerpt}
+                                                        <div class="link-excerpt">{Excerpt}</div>
+                                                        {/block:Excerpt}
+                                                        {block:Author}
+                                                        <div class="link-author">{Author}</div>
+                                                        {/block:Author}
+                                                    </div>
                                                 </div>
+                                            </a>
+                                        </div>
+                                        {block:Description}
+                                            <div class="body post-body">
+                                                {Description}
                                             </div>
-                                        </a>
+                                        {/block:Description}
                                     </div>
-                                    {block:Description}
-                                    <div class="body post-body">
-                                        {Description}
-                                    </div>
-                                    {/block:Description}
-                                </div>
                                 {/block:Link}
-
+                                
                                 <!--chat-->
                                 {block:Chat}
-                                <div class="post-content">
-                                    <h5 class="date">{TimeAgo}</h5>
-                                    {block:Title}<h2 class="title"><a href="{Permalink}">{Title}</a></h2>{/block:Title}
-                                    <ul class="conversation">
+                                    <div class="post-content">
+                                        <h5 class="date">{TimeAgo}</h5>
+                                        {block:Title}<h2 class="title"><a href="{Permalink}">{Title}</a></h2>{/block:Title}
+                                        <ul class="conversation">
                                         {block:Lines}
-                                        <li>
-                                            {block:Label}
-                                            <span class="label">{Label}</span>
-                                            {/block:Label}
-                                            {Line}
-                                        </li>
+                                            <li>
+                                                {block:Label}
+                                                    <span class="label">{Label}</span>
+                                                {/block:Label}
+                                                {Line}
+                                            </li>
                                         {/block:Lines}
-                                    </ul>
-                                </div>
+                                        </ul>
+                                    </div>
                                 {/block:Chat}
-
+                                
                                 <!--TODO: audio-->
-
+                                
                                 <!--TODO: video-->
 
                                 <!--tags-->
@@ -423,9 +431,20 @@
                                 </div>
                                 <div class="post-controls-wrapper">
                                     <div class="post-controls">
-                                        <div class="control">{ReblogButton size="20" color="gray"}</div>
-                                        <div class="control">{LikeButton size="20" color="gray"}</div>
+                                        <div class="control">{LikeButton color="gray"}</div>
+                                        <div class="control">{ReblogButton color="gray"}</div>
+                                        
                                         <!--TODO share-->
+                                        
+                                        <div class="control">
+                                        <!--TODO: 別ファイルに切り出し-->
+                                            <script type="text/javascript">
+                                                ShareSummary = "{Title} - {BlogTitle}\r{ShortURL}"
+                                                elem = `<a href="https://twitter.com/intent/tweet?text=` + encodeURI(ShareSummary) + `" class="share-item twitter" target="_blank"><i class="fab fa-twitter icon"></i></a>`
+                                                document.write(elem)
+                                            </script>
+                                        </div>
+                                        
                                     </div>
                                 </div>
 
@@ -459,6 +478,7 @@
             <span>©️ Yawn</span>
         </div>
     </div>
+ 
 </body>
 
 </html>

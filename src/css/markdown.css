@@ -55,8 +55,7 @@
   border-left: 4px solid #ddd;
   margin-inline-start: 0px;
   margin-inline-end: 0px;
-  padding-inline-start: 40px;
-  padding-inline-end: 40px;
+  padding-inline-start: 16px;
 }
 
 .post-body pre {
@@ -65,6 +64,10 @@
 
 .post-body pre code {
   padding: 1rem .5rem;
+  border-radius: 5px;
+  font-family: Menlo,Monaco,Consolas,"Courier New",monospace;
+  font-size: .9rem;
+  line-height: 1.3rem;
 }
 
 .post-body hr {
