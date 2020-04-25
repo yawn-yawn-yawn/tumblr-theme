@@ -6,6 +6,10 @@ body {
   margin: 0;
   color: #565554;
   background-color: #ddd;
+  font-family-font: TextFont;
+  background-image: url("{image:Background Image}");
+  background-size: cover;
+  background-color: #ddd;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -23,12 +27,14 @@ h1, h2, h3, h4, h5, h6 {
 
 .header-wrapper {
   position: relative;
-  background-color: #2E86AB;
 }
 
 .header-wrapper .header {
+  background-color: #2E86AB;
   position: relative;
   min-height: 15rem;
+  background-size: cover;
+  background-image: url("{image:Header Image}");
 }
 
 .blog-title-wrapper {
@@ -162,6 +168,7 @@ article.quote blockquote {
   margin: 0;
   font-size: 2rem;
   font-style: italic;
+  font-famiry-font: QuoteFont;
 }
 
 article.quote blockquote::before, article.quote blockquote::after {
@@ -180,7 +187,7 @@ article.chat .label {
 }
 
 .post-wrapper {
-  border: 1px solid #ccc;
+  /* border: 1px solid #ccc; */
   box-sizing: border-box;
   background-color: #fff;
   border-radius: 5px;
