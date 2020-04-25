@@ -4,38 +4,85 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!--meta-->
+    {block:Hidden}
+    <meta name="image:Header Image" content="{HeaderImage}" />
+    <meta name="image:Background Image" content="" />
+
+    <meta name="color:Header Color" content="#2E86AB" />
+    <meta name="color:Footer Color" content="#565554" />
+    <meta name="color:Container Color" content="#fff" />
+    <meta name="color:Background Color" content="#ddd" />
+    <meta name="color:Text Color" content="#565554" />
+    <meta name="color:Accent Color" content="#2E86AB" />
+    <meta name="color:Sub Color" content="#aaa" />
+
+    <meta name="font:Text Font" content="Helvetica Neue,Arial,sans-serif" />
+    <meta name="font:Chat Font" content="'Lucida Console', Courier, monospace" />
+    <meta name="font:Quote Font" content="" />
+
+    <meta name="select:Highlight Style" content="atom-one-dark.min.css" title="Atom One Dark">
+    <meta name="select:Highlight Style" content="a11y-dark.min.css" title="A 11 Y Dark">
+    <meta name="select:Highlight Style" content="gruvbox-dark.min.css" title="Gruvbox Dark">
+    <meta name="select:Highlight Style" content="atelier-dune-light.min.css" title="Atelier Dune Light">
+    <meta name="select:Highlight Style" content="docco.min.css" title="Docco">
+    <meta name="select:Highlight Style" content="a11y-light.min.css" title="A 11 Y Light">
+
+    <meta name="text:Twitter ID" content="" />
+    {/block:Hidden}
+
     <link rel="shortcut icon" href="{Favicon}">
 
     <!-- static files -->
     <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://static.tumblr.com/t5kjukw/u8Bq97us3/yawn-tumblr.css">
+    <link rel="stylesheet" href="https://static.tumblr.com/t5kjukw/Q7Gq9cglr/yawn-tumblr.css">
     <link rel="stylesheet" href="https://static.tumblr.com/t5kjukw/NoIq97t73/markdown.css">
 
+    <!--jquery-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
     <!--highlight js-->
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.0/styles/atom-one-dark.min.css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.0/styles/{select:Highlight Style}">
     <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.0/highlight.min.js"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-
-    <!--meta-->
-    {block:Hidden}
-    {/block:Hidden}
 
     <!-- TODO: tumblerタイトル -->
     <title>{Title}</title>
 
     <!--TODO: cssとかに入れhばなおよい-->
     <style>
+        /* add custom */
+        html {
+            background-color: #565554;
+        }
+
+        body {
+            font-family: {
+                font: Text Font
+            }
+
+            ;
+            background-image: url('{image:Background Image}');
+            background-size: cover;
+
+            background-color: {
+                color: Background Color
+            }
+
+            ;
+        }
+
+        .header-wrapper .header {
+            background-size: cover;
+            background-image: url('{image:Header Image}');
+        }
+
         .page-description {
-            display: flex;
-            justify-content: center;
             background-color: #fff;
-            padding: .5rem 1.2rem;
-            border-radius: 5px;
-            margin-bottom: 20px;
         }
 
         .page-description .tag-link {
-            text-decoration: none;
             color: #2E86AB;
         }
 
@@ -43,168 +90,88 @@
             color: #1C5677;
         }
 
-        .page-description .tag-link::before {
-            content: "#";
-        }
-
-        article .title {
-            margin-top: 0;
-
-        }
-
         article .title a {
             color: #2E86AB;
-            text-decoration: none;
         }
 
-        article .date {
-            display: flex;
-            justify-content: flex-end;
-        }
-
-        article .date::before {
-            content: "";
-        }
         article.quote blockquote {
-            margin: 0;
-            font-size: 2rem;
-            font-style: italic;
-            /*TODO: font famiry*/
-            
-        }
-        article.quote blockquote::before {
-            content: "\"";
-        }
-        article.quote blockquote::after {
-            content: "\"";
-        }
-        /*article.quote .source::before {*/
-        /*    content: "- ";*/
-        /*}*/
+            font-family: {
+                font: Quote Font
+            }
 
-        .post-wrapper .panel {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin: 1.2rem 2rem;
+            ;
         }
-
-        .notes-notify-wrapper {}
 
         .notes-notify-wrapper .notes-link {
-            text-decoration: none;
             color: #aaa;
-            border-bottom: 1px solid transportant;
-
         }
 
         .notes-notify-wrapper .notes-link:hover {
-
             border-bottom: 1px solid #aaa;
         }
 
-        .post-wrapper .panel .post-controls {
-            padding: 0;
-        }
-
-        .note-wrapper {
-            margin-top: 30px;
-        }
-
         .note-wrapper .notes {
-            list-style: none;
             background-color: #fff;
-            padding: 1.2rem 2rem;
-            border-radius: 5px;
-        }
-
-        .note-wrapper .note {
-            display: flex;
-            align-content: center;
-            margin-bottom: .7rem;
-        }
-
-        .note-wrapper .note:last-child {
-            margin-bottom: 0;
-        }
-
-        .note-wrapper .note .avatar {
-            width: 24px;
-            height: 24px;
-        }
-
-        .note-wrapper .action {
-            margin-left: 8px;
         }
 
         .note-wrapper .action a {
-            text-decoration: none;
             color: #2E86AB;
         }
 
         .note-wrapper .action a:hover {
             color: #1C5677;
         }
-        
-        .img-responsive {
-            max-width: 100%;
-            height: auto;
-        }
-        .photoset-wrapper {
-            display: flex;
-            justify-content: center;
-            align-items: flex-end;
-        }
+
         .link-wrapper {
             background-color: #E7F6FF;
-            padding: .5rem .8rem;
-            border-radius: 5px;
         }
+
         .link-wrapper:hover {
             background-color: #DCEDFF;
         }
+
         .link-wrapper .link {
-            text-decoration: none;
             color: #2E86AB;
         }
+
         .link-wrapper .link:hover {
             color: #1C5677;
         }
-        .link-wrapper .link-host {
-            font-size: 1rem;
-        }
-        .link-wrapper .link-excerpt {
-            font-size: .8rem;
-        }
+
         article.chat .conversation {
-            list-style: none;
-            padding: 0;
-            font-family: Lucida Console, Courier, monospace;
-            line-height: 1.5rem;
+            font-family: {
+                font: Chat Font
+            }
+
+            ;
         }
-        article.chat .label {
-            font-weight: 600;
-        }
-        
+
         .post-wrapper .panel .control a {
-            text-decoration: none;
             color: #ccc;
         }
-        .post-wrapper .panel .control .icon {
-            font-size: 1.34rem;
-            position: relative;
+
+        .dropdown-menu {
+            background-color: #fff;
+            border: 1px solid #aaa;
         }
-        .search_query {
-            font-weight: 600;
-            margin-left: .5rem;
+
+        .dropdown-item {
+            color: #565554;
+        }
+
+        .dropdown-item:hover {
+            background-color: #DCEDFF;
+        }
+
+            {
+            CustomCSS
         }
     </style>
-    
 </head>
 
 <body>
     <div class="header-wrapper">
-        <div class="header"></div>
+        <div class="header" id="header"></div>
     </div>
 
     <div class="blog-title-wrapper">
@@ -225,14 +192,37 @@
         <!--navigation-->
         <div class="navigation-wrapper">
             <ul class="nav-list">
-                <li><a href="{BlogURL}" class="nav-item">Posts</a></li>
-                <!--TODO; pages-->
+                <li><a href="{BlogURL}" class="nav-item">{lang:Home}</a></li>
+                <li><a href="{BlogURL}archive" class="nav-item">{lang:Archive}</a></li>
+                <!--pages-->
                 {block:HasPages}
-                {block:Pages}
-                <li><a href="{URL}" class="nav-item">{Label}</a></li>
-                {/block:Pages}
+                <li>
+                    <a class="nav-item dropdown-toggle">Pages</a>
+                    <ul class="dropdown-menu">
+                        {block:Pages}
+                        <li style="display: block; text-align: left;"><a href="{URL}" class="dropdown-item"
+                                style="display: block">{Label}</a></li>
+                        {/block:Pages}
+                    </ul>
+                </li>
                 {/block:HasPages}
-                <li><a href="{BlogURL}archive" class="nav-item">Archives</a></li>
+                <li>
+                    <a class="nav-item dropdown-toggle">{lang:Search}</a>
+                    <ul class="dropdown-menu">
+                        <li class="dropdown-item">
+                            <form action="/search" method="get">
+                                <input type="text" name="q" value="{SearchQuery}" />
+                                <button type="submit"><i class="fas fa-search"></i></button>
+                            </form>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a class="nav-item dropdown-toggle">Tags</a>
+                    <ul class="dropdown-menu" id="tag-list">
+
+                    </ul>
+                </li>
             </ul>
         </div>
 
@@ -253,15 +243,15 @@
                     </div>
                     {/block:DayPage}
 
-                    <!-- TODO: 検索ページ -->
+                    <!-- 検索ページ -->
                     {block:SearchPage}
                     <div class="page-description">
                         {lang:Showing SearchResultCount results for SearchQuery 2}
-            
+
                         {block:NoSearchResults}
-                            <div>{lang:Sorry no search results found}</div>
+                        <div>{lang:Sorry no search results found}</div>
                         {/block:NoSearchResults}
-                        
+
                     </div>
                     {/block:SearchPage}
 
@@ -273,7 +263,7 @@
                                 <!-- text -->
                                 {block:Text}
                                 <div class="post-content">
-                                    <h5 class="date">{TimeAgo}</h5>
+                                    <h5 class="date">{lang:Posted TimeAgo}</h5>
                                     {block:Title}
                                     <h1 class="title"><a href="{Permalink}">{Title}</a></h1>
                                     {/block:Title}
@@ -281,133 +271,124 @@
                                 </div>
                                 <!-- post-content -->
                                 {/block:Text}
-                                
+
                                 <!--photo-->
                                 {block:Photo}
-                                    <div class="post-content">
-                                        <h5 class="date">{TimeAgo}</h5>
-                                        <div>
-                                            {block:IndexPage}
-                                                <a href="{PhotoURL-HighRes}">
-                                                    <img class="img-responsive radius" src="{PhotoURL-HighRes}" data-at2x="{PhotoURL-HighRes}" alt="{PhotoAlt}" />
-                                                </a>
-                                            {/block:IndexPage}
-                                            {block:PermalinkPage}
-                                                {LinkOpenTag}
-                                                    <img class="img-responsive radius" src="{PhotoURL-HighRes}" data-at2x="{PhotoURL-HighRes}" alt="{PhotoAlt}" />
-                                                {LinkCloseTag}
-                                            {/block:PermalinkPage}
-                                        </div>
-                                        {block:Caption}
-                                        <div class="body post-body">
-                                            {Caption}
-                                        </div>
-                                        {/block:Caption}
+                                <div class="post-content">
+                                    <h5 class="date">{lang:Posted TimeAgo}</h5>
+                                    <div>
+                                        {block:IndexPage}
+                                        <a href="{PhotoURL-HighRes}">
+                                            <img class="img-responsive radius" src="{PhotoURL-HighRes}"
+                                                data-at2x="{PhotoURL-HighRes}" alt="{PhotoAlt}" />
+                                        </a>
+                                        {/block:IndexPage}
+                                        {block:PermalinkPage}
+                                        {LinkOpenTag}
+                                        <img class="img-responsive radius" src="{PhotoURL-HighRes}"
+                                            data-at2x="{PhotoURL-HighRes}" alt="{PhotoAlt}" />
+                                        {LinkCloseTag}
+                                        {/block:PermalinkPage}
                                     </div>
-                                    
+                                    {block:Caption}
+                                    <div class="body post-body">
+                                        {Caption}
+                                    </div>
+                                    {/block:Caption}
+                                </div>
+
                                 {/block:Photo}
-                                
+
                                 <!-- TODO: panorama -->
-                                <!--{block:Panorama}-->
-                                <!--    <header>-->
-                                <!--        {LinkOpenTag}-->
-                                <!--        <img class="img-responsive" src="{PhotoURL-HighRes}" data-at2x="{PhotoURL-HighRes}" alt="{PhotoAlt}" />-->
-                                <!--        {LinkCloseTag}-->
-                                <!--    </header>-->
-                                <!--    {block:Caption}-->
-                                <!--    <div class="post-content">-->
-                                <!--        <div class="body post-body">-->
-                                <!--            {Caption}-->
-                                <!--        </div>-->
-                                <!--    </div>-->
-                                <!--    {/block:Caption}-->
-                                <!--{/block:Panorama}-->
-                                
+
+
                                 <!-- Photoset -->
                                 {block:Photoset}
-                                    <div class="post-content">
-                                        <h5 class="date">{TimeAgo}</h5>
-                                        <div class="photoset-wrapper">
-                                            {block:Photos}
-                                                <img class="img-responsive" src="{PhotoURL-HighRes}" data-at2x="{PhotoURL-HighRes}" data-highres="{PhotoURL-HighRes}" alt="{PhotoAlt}" />
-                                            {/block:Photos}
-                                        </div>
-                                        {block:Caption}
-                                            <div class="body post-body">
-                                                {Caption}
-                                            </div>
-                                        {/block:Caption}
+                                <div class="post-content">
+                                    <h5 class="date">{lang:Posted TimeAgo}</h5>
+                                    <div class="photoset-wrapper">
+                                        {block:Photos}
+                                        <img class="img-responsive" src="{PhotoURL-HighRes}"
+                                            data-at2x="{PhotoURL-HighRes}" data-highres="{PhotoURL-HighRes}"
+                                            alt="{PhotoAlt}" />
+                                        {/block:Photos}
                                     </div>
+                                    {block:Caption}
+                                    <div class="body post-body">
+                                        {Caption}
+                                    </div>
+                                    {/block:Caption}
+                                </div>
                                 {/block:Photoset}
-                                
+
                                 <!--quote-->
                                 {block:Quote}
                                 <div class="post-content">
-                                    <h5 class="date">{TimeAgo}</h5>
-                                    
+                                    <h5 class="date">{lang:Posted TimeAgo}</h5>
+
                                     <blockquote class="{Length}">
                                         {Quote}
                                     </blockquote>
                                     {block:Source}
-                                        <div class="source body post-body">{Source}</div>
+                                    <div class="source body post-body">{Source}</div>
                                     {/block:Source}
                                 </div>
                                 {/block:Quote}
-                                
+
                                 <!--link-->
                                 {block:Link}
-                                    <div class="post-content">
-                                        <h5 class="date">{TimeAgo}</h5>
-                                        
-                                        <div class="link-wrapper">
-                                            <a target="_blank" href="{URL}" class="link">
-                                                {block:Thumbnail}
-                                                    <div class="link-thumbnail"><img src="{Thumbnail-HighRes}" alt="" /></div>
-                                                {/block:Thumbnail}
-                                                <div class="link-text-wrapper clearfix">
-                                                    <div class="link-text">
-                                                        {block:Host}
-                                                        <div class="link-host">{Host}</div>
-                                                        {/block:Host}
-                                                        <h2 class="link-title">{Name}</h2>
-                                                        {block:Excerpt}
-                                                        <div class="link-excerpt">{Excerpt}</div>
-                                                        {/block:Excerpt}
-                                                        {block:Author}
-                                                        <div class="link-author">{Author}</div>
-                                                        {/block:Author}
-                                                    </div>
+                                <div class="post-content">
+                                    <h5 class="date">{lang:Posted TimeAgo}</h5>
+
+                                    <div class="link-wrapper">
+                                        <a target="_blank" href="{URL}" class="link">
+                                            {block:Thumbnail}
+                                            <div class="link-thumbnail"><img src="{Thumbnail-HighRes}" alt="" /></div>
+                                            {/block:Thumbnail}
+                                            <div class="link-text-wrapper clearfix">
+                                                <div class="link-text">
+                                                    {block:Host}
+                                                    <div class="link-host">{Host}</div>
+                                                    {/block:Host}
+                                                    <h2 class="link-title">{Name}</h2>
+                                                    {block:Excerpt}
+                                                    <div class="link-excerpt">{Excerpt}</div>
+                                                    {/block:Excerpt}
+                                                    {block:Author}
+                                                    <div class="link-author">{Author}</div>
+                                                    {/block:Author}
                                                 </div>
-                                            </a>
-                                        </div>
-                                        {block:Description}
-                                            <div class="body post-body">
-                                                {Description}
                                             </div>
-                                        {/block:Description}
+                                        </a>
                                     </div>
+                                    {block:Description}
+                                    <div class="body post-body">
+                                        {Description}
+                                    </div>
+                                    {/block:Description}
+                                </div>
                                 {/block:Link}
-                                
+
                                 <!--chat-->
                                 {block:Chat}
-                                    <div class="post-content">
-                                        <h5 class="date">{TimeAgo}</h5>
-                                        {block:Title}<h2 class="title"><a href="{Permalink}">{Title}</a></h2>{/block:Title}
-                                        <ul class="conversation">
+                                <div class="post-content">
+                                    <h5 class="date">{lang:Posted TimeAgo}</h5>
+                                    {block:Title}<h2 class="title"><a href="{Permalink}">{Title}</a></h2>{/block:Title}
+                                    <ul class="conversation">
                                         {block:Lines}
-                                            <li>
-                                                {block:Label}
-                                                    <span class="label">{Label}</span>
-                                                {/block:Label}
-                                                {Line}
-                                            </li>
+                                        <li>
+                                            {block:Label}
+                                            <span class="label">{Label}</span>
+                                            {/block:Label}
+                                            {Line}
+                                        </li>
                                         {/block:Lines}
-                                        </ul>
-                                    </div>
+                                    </ul>
+                                </div>
                                 {/block:Chat}
-                                
+
                                 <!--TODO: audio-->
-                                
+
                                 <!--TODO: video-->
 
                                 <!--tags-->
@@ -433,18 +414,16 @@
                                     <div class="post-controls">
                                         <div class="control">{LikeButton color="gray"}</div>
                                         <div class="control">{ReblogButton color="gray"}</div>
-                                        
-                                        <!--TODO share-->
-                                        
+
+                                        <!--share-->
                                         <div class="control">
-                                        <!--TODO: 別ファイルに切り出し-->
                                             <script type="text/javascript">
                                                 ShareSummary = "{Title} - {BlogTitle}\r{ShortURL}"
                                                 elem = `<a href="https://twitter.com/intent/tweet?text=` + encodeURI(ShareSummary) + `" class="share-item twitter" target="_blank"><i class="fab fa-twitter icon"></i></a>`
                                                 document.write(elem)
                                             </script>
                                         </div>
-                                        
+
                                     </div>
                                 </div>
 
@@ -475,10 +454,43 @@
 
     <div class="footer-wrapper">
         <div class="footer">
-            <span>©️ Yawn</span>
+            <div><span>{Title} &copy; {CopyrightYears}</span></div>
         </div>
     </div>
- 
+
+    <!--navigationのtags-->
+    <script>
+        var target = document.getElementById("tag-list")
+        var tagList = new Set()
+        { block: Posts }
+        { block: HasTags }
+        { block: Tags }
+        if (!tagList.has("{Tag}")) {
+            item = Object.assign(document.createElement('li'), { style: "display: block; text-align: left;" })
+            item.appendChild(Object.assign(document.createElement('a'), { href: "{TagURL}", innerHTML: "{Tag}", className: "dropdown-item", style: "display: block" }))
+            target.appendChild(item)
+            tagList.add("{Tag}")
+        }
+        {
+            /block:Tags}
+            {
+                /block:HasTags}
+                {
+                    /block:Posts}
+
+    </script>
+    <!--dropdown-->
+    <script>
+                    $(".dropdown-toggle").click(function (e) {
+                        target = $(e.target.nextElementSibling)[0]
+                        if (target.className.indexOf("open") > -1) {
+                            $(target).removeClass("open")
+                        } else {
+                            $(target).addClass("open")
+                        }
+                    })
+    </script>
+
 </body>
 
 </html>
