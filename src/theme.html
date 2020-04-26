@@ -4,42 +4,47 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+    
     <!--meta-->
     {block:Hidden}
-    <meta name="image:Header Image" content="{HeaderImage}" />
-    <meta name="image:Background Image" content="" />
-
-    <meta name="color:Header Color" content="#2E86AB" />
-    <meta name="color:Footer Color" content="#565554" />
-    <meta name="color:Container Color" content="#fff" />
-    <meta name="color:Background Color" content="#ddd" />
-    <meta name="color:Text Color" content="#565554" />
-    <meta name="color:Accent Color" content="#2E86AB" />
-    <meta name="color:Sub Color" content="#aaa" />
-    <meta name="color:Footer Text Color" content="#fff" />
-
-    <meta name="font:Text Font" content="Helvetica Neue,Arial,sans-serif" />
-    <meta name="font:Chat Font" content="'Lucida Console', Courier, monospace" />
-    <meta name="font:Quote Font" content="" />
-
-    <meta name="select:Highlight Style" content="atom-one-dark.min.css" title="Atom One Dark">
-    <meta name="select:Highlight Style" content="a11y-dark.min.css" title="A 11 Y Dark">
-    <meta name="select:Highlight Style" content="gruvbox-dark.min.css" title="Gruvbox Dark">
-    <meta name="select:Highlight Style" content="atelier-dune-light.min.css" title="Atelier Dune Light">
-    <meta name="select:Highlight Style" content="docco.min.css" title="Docco">
-    <meta name="select:Highlight Style" content="a11y-light.min.css" title="A 11 Y Light">
-
-    <meta name="text:Twitter ID" content="" />
+        <meta name="image:Header Image" content="{HeaderImage}"/>
+        <meta name="image:Background Image" content="" />
+    
+        <meta name="color:Header Color" content="#2E86AB"/>
+        <meta name="color:Footer Color" content="#565554"/>
+        <meta name="color:Container Color" content="#fff"/>
+        <meta name="color:Background Color" content="#ddd"/>
+        <meta name="color:Link Background Color" content="#E7F6FF"/>
+        <meta name="color:Text Color" content="#565554"/>
+        <meta name="color:Accent Color" content="#2E86AB"/>
+        <meta name="color:Sub Color" content="#aaa" />
+        <meta name="color:Footer Text Color" content="#fff"/>
+        
+        <meta name="font:Text Font" content="Helvetica Neue,Arial,sans-serif"/>
+        <meta name="font:Chat Font" content="'Lucida Console', Courier, monospace"/>
+        <meta name="font:Quote Font" content=""/>
+        
+        <meta name="select:Highlight Style" content="atom-one-dark.min.css" title="Atom One Dark">
+        <meta name="select:Highlight Style" content="a11y-dark.min.css" title="A 11 Y Dark">
+        <meta name="select:Highlight Style" content="gruvbox-dark.min.css" title="Gruvbox Dark">
+        <meta name="select:Highlight Style" content="atelier-dune-light.min.css" title="Atelier Dune Light">
+        <meta name="select:Highlight Style" content="docco.min.css" title="Docco">
+        <meta name="select:Highlight Style" content="a11y-light.min.css" title="A 11 Y Light">
+        
+        <meta name="text:Twitter Link" content="" />
+        <meta name="text:GitHub Link" content="" />
+        <meta name="text:Facebook Link" content="" />
+        <meta name="text:Blog Link" content="" />
+        <meta name="text:Web Site Link" content="" />
+        
     {/block:Hidden}
-
+    
     <link rel="shortcut icon" href="{Favicon}">
 
     <!-- static files -->
     <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
-    <!--<link rel="stylesheet" href="https://static.tumblr.com/t5kjukw/Q7Gq9cglr/yawn-tumblr.css">-->
     <link rel="stylesheet" href="https://static.tumblr.com/t5kjukw/NoIq97t73/markdown.css">
-
+    
     <!--jquery-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
@@ -51,516 +56,427 @@
     <!-- TODO: tumblerタイトル -->
     <title>{Title}</title>
 
-    <!--TODO: cssとかに入れhばなおよい-->
     <style>
         html {
-            background-color: {
-                color: Footer Color
-            }
-
-            ;
+          background-color: {color:Footer Color};
         }
-
+        
         body {
-            margin: 0;
-
-            color: {
-                color: Text Color
-            }
-
-            ;
-
-            background-color: {
-                color: Background Color
-            }
-
-            ;
-
-            font-family: {
-                font: Text Font
-            }
-
-            ;
-            background-image: url("{image:Background Image}");
-            background-size: cover;
+          margin: 0;
+          color: {color:Text Color};
+          background-color: {color:Background Color};
+          font-family: {font:Text Font};
+          background-image: url("{image:Background Image}");
+          background-size: cover;
         }
-
-        h1,
-        h2,
-        h3,
-        h4,
-        h5,
-        h6 {
-            display: block;
-            margin-block-start: 0.5em;
-            margin-block-end: 0.4em;
-            margin-inline-start: 0px;
-            margin-inline-end: 0px;
-            font-weight: bold;
+        
+        h1, h2, h3, h4, h5, h6 {
+          display: block;
+          margin-block-start: 0.5em;
+          margin-block-end: 0.4em;
+          margin-inline-start: 0px;
+          margin-inline-end: 0px;
+          font-weight: bold;
         }
-
+        
         .invisible {
-            visibility: hidden;
+          visibility: hidden;
         }
-
+        
         .header-wrapper {
-            position: relative;
+          position: relative;
         }
-
+        
         .header-wrapper .header {
-            background-color: {
-                color: Header Color
-            }
-
-            ;
-            position: relative;
-            min-height: 15rem;
-            background-size: cover;
-            background-image: url("{image:Header Image}");
+          background-color: {color:Header Color};
+          position: relative;
+          min-height: 15rem;
+          background-size: cover;
+          background-image: url("{image:Header Image}");
         }
-
+        
         .blog-title-wrapper {
-            position: relative;
-            display: block;
-            text-align: center;
-            top: -80px;
-
-            background-color: {
-                color: Container Color
-            }
-
-            ;
-            width: 70%;
-            margin: auto;
-            border-radius: 5px;
-            padding-bottom: calc(128px / 2);
+          position: relative;
+          display: block;
+          text-align: center;
+          top: -80px;
+          background-color: {color:Container Color};
+          width: 70%;
+          margin: auto;
+          border-radius: 5px;
+          padding-bottom: calc(128px / 2);
         }
-
+        
         .blog-title-wrapper .avatar-wrapper {
-            position: absolute;
-            left: 50%;
-            margin-left: calc(-128px / 2);
-            display: block;
-            top: calc(-128px / 2);
+          position: absolute;
+          left: 50%;
+          margin-left: calc(-128px / 2);
+          display: block;
+          top: calc(-128px / 2);
         }
-
+        
         .blog-title-wrapper .avatar-image {
-            width: 128px;
-            height: 128px;
-            border-radius: 50%;
-
-            border: 6px solid {
-                color: Container Color
-            }
-
-            ;
+          width: 128px;
+          height: 128px;
+          border-radius: 50%;
+          border: 6px solid {color:Container Color};
         }
-
+        
         .blog-title-wrapper .title-group {
-            position: relative;
-            display: block;
-            top: calc(128px / 2);
-            padding: 1rem 3rem 2rem;
+          position: relative;
+          display: block;
+          top: calc(128px / 2);
+          padding: .1rem 2.5rem 1rem;
         }
-
-        .page-description {
-            display: flex;
-            justify-content: center;
-            background-color: #fff;
-            padding: .5rem 1.2rem;
-            border-radius: 5px;
-            margin-bottom: 20px;
-        }
-
-        .page-description .tag-link {
-            text-decoration: none;
-
-            color: {
-                color: Accent Color
-            }
-
-            ;
-        }
-
-        .page-description .tag-link:hover {
-            text-decoration: underline;
-        }
-
-        .page-description .tag-link::before {
-            content: "#";
-        }
-
-        .content-wrapper {
-            position: relative;
-            margin-top: -80px;
-        }
-
-        .navigation-wrapper .nav-list {
-            list-style: none;
-            text-align: center;
-            margin: 1rem;
-            padding: 0;
-        }
-
-        .navigation-wrapper .nav-list li {
-            display: inline-block;
-        }
-
-        .navigation-wrapper .nav-item {
-            margin: 0px 10px;
-            text-decoration: none;
-
-            color: {
-                color: Accent Color
-            }
-
-            ;
-            font-weight: bold;
-            border-bottom: 2px solid transparent;
-        }
-
-        .navigation-wrapper .nav-item:hover {
-            border-bottom: 2px solid {
-                color: Accent Color
-            }
-
-            ;
-        }
-
-        .blog-content-wrapper {
-            margin: 0 50px;
-        }
-
-        .blog-content-wrapper .container {
-            display: flex;
-            margin: auto;
-            justify-content: center;
-        }
-
-        .blog-content-wrapper .main {
-            flex: auto;
-            max-width: 700px;
-        }
-
-        article {
-            display: block;
-            margin-bottom: 50px;
-        }
-
-        article .title {
-            font-weight: 600;
-
-            color: {
-                color: Accent Color
-            }
-
-            ;
-            margin-top: 0;
-        }
-
-        article .title a {
-            color: {
-                color: Accent Color
-            }
-
-            ;
-            text-decoration: none;
-        }
-
-        article .title a:hover {
-            text-decoration: underline;
-        }
-
-        article .body {
-            margin-top: 20px;
-        }
-
-        article .date {
+        
+        .blog-title-wrapper .external-links {
             display: flex;
             justify-content: flex-end;
-            font-weight: 400;
-
-            color: {
-                color: Sub Color
-            }
-
-            ;
-        }
-
-        article.quote blockquote {
-            margin: 0;
-            font-size: 2rem;
-            font-style: italic;
-
-            font-famiry: {
-                font: Quote Font
-            }
-
-            ;
-        }
-
-        article.quote blockquote::before,
-        article.quote blockquote::after {
-            content: "\"";
-        }
-
-        article.chat .conversation {
-            list-style: none;
-            padding: 0;
-
-            font-family: {
-                font: Chat Font
-            }
-
-            ;
-            line-height: 1.5rem;
-        }
-
-        article.chat .label {
-            font-weight: 600;
-        }
-
-        .post-wrapper {
-            box-sizing: border-box;
-
-            background-color: {
-                color: Container Color
-            }
-
-            ;
-            border-radius: 5px;
-        }
-
-        .post-wrapper .post-content {
-            padding: 1rem 2rem;
-        }
-
-        .post-wrapper .post-extra {
-            margin: 1rem 2rem 0;
-        }
-
-        .post-wrapper .post-extra .tag-list {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-
-        .post-wrapper .post-extra .tag-list li {
-            display: inline-block;
-            margin-right: 3px;
-        }
-
-        .post-wrapper .post-extra .tag-item {
-            color: {
-                color: Accent Color
-            }
-
-            ;
-            text-decoration: none;
-        }
-
-        .post-wrapper .post-extra .tag-item::before {
-            content: "#";
-        }
-
-        .post-wrapper .post-extra .tag-item:hover {
-            text-decoration: underline;
-        }
-
-        .post-wrapper .panel {
-            display: flex;
-            justify-content: space-between;
             align-items: center;
-            padding: 1.2rem 2rem;
-        }
-
-        .post-wrapper .panel .post-controls {
-            display: flex;
-            justify-content: flex-end;
-            padding: 0;
-        }
-
-        .post-wrapper .panel .control {
-            margin-left: .8rem;
-        }
-
-        .post-wrapper .panel .control a {
-            text-decoration: none;
-            color: #ccc;
-        }
-
-        .post-wrapper .panel .control .icon {
+            margin-top: 10px;
             font-size: 1.34rem;
-            position: relative;
+            
         }
-
-        .note-wrapper {
-            margin-top: 30px;
-        }
-
-        .note-wrapper .notes {
-            list-style: none;
-
-            background-color: {
-                color: Container Color
-            }
-
-            ;
-            padding: 1.2rem 2rem;
-            border-radius: 5px;
-        }
-
-        .note-wrapper .note {
-            display: flex;
-            align-content: center;
-            margin-bottom: .7rem;
-        }
-
-        .note-wrapper .note:last-child {
-            margin-bottom: 0;
-        }
-
-        .note-wrapper .note .avatar {
-            width: 24px;
-            height: 24px;
-        }
-
-        .note-wrapper .action {
-            margin-left: 8px;
-        }
-
-        .note-wrapper .action a {
-            text-decoration: none;
-
-            color: {
-                color: Accent Color
-            }
-
-            ;
-        }
-
-        .note-wrapper .action a:hover {
-            text-decoration: underline;
-        }
-
-        .notes-notify-wrapper .notes-link {
-            text-decoration: none;
-            color: #aaa;
-            border-bottom: 1px solid transparent;
-        }
-
-        .notes-notify-wrapper .notes-link:hover {
-            border-bottom: 1px solid {
-                color: Sub Color
-            }
-
-            ;
-        }
-
-        .footer-wrapper {
-            font-size: .8rem;
-        }
-
-        .footer-wrapper .footer {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 50px;
-
-            background-color: {
-                color: Footer Color
-            }
-
-            ;
-
-            color: {
-                color: Footer Text Color
-            }
-
-            ;
-        }
-
-        .img-responsive {
-            max-width: 100%;
-            height: auto;
-        }
-
-        .photoset-wrapper {
-            display: flex;
-            justify-content: center;
-            align-items: flex-end;
-        }
-
-        /*TODO: meta*/
-        .link-wrapper {
-            background-color: #E7F6FF;
-            padding: .5rem .8rem;
-            border-radius: 5px;
-        }
-
-        .link-wrapper:hover {
-            background-color: #DCEDFF;
-        }
-
-        .link-wrapper .link {
-            text-decoration: none;
-            color: #2E86AB;
-        }
-
-        .link-wrapper .link:hover {
-            color: #1C5677;
-        }
-
-        .link-wrapper .link-host {
-            font-size: 1rem;
-        }
-
-        .link-wrapper .link-excerpt {
-            font-size: .8rem;
-        }
-
-        .search_query {
-            font-weight: 600;
+        .blog-title-wrapper .external-links a {
             margin-left: .5rem;
-        }
-
-        .dropdown-menu {
-            display: none;
-            position: absolute;
-            background-color: #fff;
-            margin-top: 2px;
-            border-radius: 5px;
-            border: 1px solid #aaa;
-            padding: .1rem;
-            left: 10;
-        }
-
-        .dropdown-menu.open {
-            display: block;
-            max-height: 10rem;
-            overflow-y: scroll;
-        }
-
-        .dropdown-item {
-            font-size: .9rem;
             text-decoration: none;
-
-            color: {
-                color: Text Color
-            }
-
-            ;
-            padding: .3rem .8rem;
-            border-radius: 5px;
+            color: {color:Sub Color};
+            
         }
-
+        .blog-title-wrapper .external-links a:hover {
+            color: {color:Accent Color};
+        }
+        
+        .page-description {
+          display: flex;
+          justify-content: center;
+          background-color: #fff;
+          padding: .5rem 1.2rem;
+          border-radius: 5px;
+          margin-bottom: 20px;
+        }
+        
+        .page-description .tag-link {
+          text-decoration: none;
+          color: {color:Accent Color};
+        }
+        
+        .page-description .tag-link:hover {
+          text-decoration: underline;
+        }
+        
+        .page-description .tag-link::before {
+          content: "#";
+        }
+        
+        .content-wrapper {
+          position: relative;
+          margin-top: -80px;
+        }
+        
+        .navigation-wrapper .nav-list {
+          list-style: none;
+          text-align: center;
+          margin: 1rem;
+          padding: 0;
+        }
+        
+        .navigation-wrapper .nav-list li {
+          display: inline-block;
+        }
+        
+        .navigation-wrapper .nav-item {
+          margin: 0px 10px;
+          text-decoration: none;
+          color: {color:Accent Color};
+          font-weight: bold;
+          border-bottom: 2px solid transparent;
+        }
+        
+        .navigation-wrapper .nav-item:hover {
+          border-bottom: 2px solid {color:Accent Color};
+        }
+        
+        .blog-content-wrapper {
+          margin: 0 50px;
+        }
+        
+        .blog-content-wrapper .container {
+          display: flex;
+          margin: auto;
+          justify-content: center;
+        }
+        
+        .blog-content-wrapper .main {
+          flex: auto;
+          max-width: 700px;
+        }
+        
+        article {
+          display: block;
+          margin-bottom: 50px;
+        }
+        
+        article .title {
+          font-weight: 600;
+          color: {color:Accent Color};
+          margin-top: 0;
+        }
+        
+        article .title a {
+          color: {color:Accent Color};
+          text-decoration: none;
+        }
+        
+        article .title a:hover {
+          text-decoration: underline;
+        }
+        
+        article .body {
+          margin-top: 20px;
+        }
+        
+        article .date {
+          display: flex;
+          justify-content: flex-end;
+          font-weight: 400;
+          color: {color:Sub Color};
+        }
+        
+        article.quote blockquote {
+          margin: 0;
+          font-size: 2rem;
+          font-style: italic;
+          font-famiry: {font:Quote Font};
+        }
+        
+        article.quote blockquote::before, article.quote blockquote::after {
+          content: "\"";
+        }
+        
+        article.chat .conversation {
+          list-style: none;
+          padding: 0;
+          font-family: {font:Chat Font};
+          line-height: 1.5rem;
+        }
+        
+        article.chat .label {
+          font-weight: 600;
+        }
+        
+        .post-wrapper {
+          box-sizing: border-box;
+          background-color: {color:Container Color};
+          border-radius: 5px;
+        }
+        
+        .post-wrapper .post-content {
+          padding: 1rem 2rem;
+        }
+        
+        .post-wrapper .post-extra {
+          margin: 1rem 2rem 0;
+        }
+        
+        .post-wrapper .post-extra .tag-list {
+          list-style: none;
+          padding: 0;
+          margin: 0;
+        }
+        
+        .post-wrapper .post-extra .tag-list li {
+          display: inline-block;
+          margin-right: 3px;
+        }
+        
+        .post-wrapper .post-extra .tag-item {
+          color: {color:Accent Color};
+          text-decoration: none;
+        }
+        
+        .post-wrapper .post-extra .tag-item::before {
+          content: "#";
+        }
+        
+        .post-wrapper .post-extra .tag-item:hover {
+          text-decoration: underline;
+        }
+        
+        .post-wrapper .panel {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          padding: 1.2rem 2rem;
+        }
+        
+        .post-wrapper .panel .post-controls {
+          display: flex;
+          justify-content: flex-end;
+          padding: 0;
+        }
+        
+        .post-wrapper .panel .control {
+          margin-left: .8rem;
+        }
+        
+        .post-wrapper .panel .control a {
+          text-decoration: none;
+          color: #ccc;
+        }
+        
+        .post-wrapper .panel .control .icon {
+          font-size: 1.34rem;
+          position: relative;
+        }
+        
+        .note-wrapper {
+          margin-top: 30px;
+        }
+        
+        .note-wrapper .notes {
+          list-style: none;
+          background-color: {color:Container Color};
+          padding: 1.2rem 2rem;
+          border-radius: 5px;
+        }
+        
+        .note-wrapper .note {
+          display: flex;
+          align-content: center;
+          margin-bottom: .7rem;
+        }
+        
+        .note-wrapper .note:last-child {
+          margin-bottom: 0;
+        }
+        
+        .note-wrapper .note .avatar {
+          width: 24px;
+          height: 24px;
+        }
+        
+        .note-wrapper .action {
+          margin-left: 8px;
+        }
+        
+        .note-wrapper .action a {
+          text-decoration: none;
+          color: {color:Accent Color};
+        }
+        
+        .note-wrapper .action a:hover {
+          text-decoration: underline;
+        }
+        
+        .notes-notify-wrapper .notes-link {
+          text-decoration: none;
+          color: #aaa;
+          border-bottom: 1px solid transparent;
+        }
+        
+        .notes-notify-wrapper .notes-link:hover {
+          border-bottom: 1px solid {color:Sub Color};
+        }
+        
+        .footer-wrapper {
+          font-size: .8rem;
+        }
+        
+        .footer-wrapper .footer {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          min-height: 50px;
+          background-color: {color:Footer Color};
+          color: {color:Footer Text Color};
+        }
+        
+        .img-responsive {
+          max-width: 100%;
+          height: auto;
+        }
+        
+        .photoset-wrapper {
+          display: flex;
+          justify-content: center;
+          align-items: flex-end;
+        }
+        
+        .link-wrapper {
+          background-color: {color:Link Background Color};
+          border-radius: 5px;
+          position: relative;
+          padding: .5rem .8rem;
+          
+        }
+        
+        .link-wrapper .link-thumbnail img {
+            max-width: 100%;
+        }
+        
+        .link-wrapper .link {
+          text-decoration: none;
+          color: {color:Accent Color};
+        }
+        
+        .link-wrapper .link-host {
+          font-size: 1rem;
+        }
+        
+        .link-wrapper .link-excerpt {
+          font-size: .8rem;
+        }
+        
+        .search_query {
+          font-weight: 600;
+          margin-left: .5rem;
+        }
+        
+        .dropdown-menu {
+          display: none;
+          position: absolute;
+          background-color: #fff;
+          margin-top: 2px;
+          border-radius: 5px;
+          border: 1px solid #aaa;
+          padding: .1rem;
+          left: 10;
+        }
+        
+        .dropdown-menu.open {
+          display: block;
+          max-height: 10rem;
+          overflow-y: scroll;
+        }
+        
+        .dropdown-item {
+          font-size: .9rem;
+          text-decoration: none;
+          color: {color:Text Color};
+          padding: .3rem .8rem;
+          border-radius: 5px;
+        }
+        
         .dropdown-item:hover {
-            background-color: #DCEDFF;
+          background-color: #DCEDFF;
+        }
+        
+        .overlay {
+            position: absolute;
+            background-color: {color:Container Color};
+            height: 100%;
+            width: 100%;
+            top: 0;
+            left: 0;
+            border-radius: 5px;
+            opacity: 0;
+        }
+        .overlay:hover {
+            opacity: .3;
         }
 
-            {
-            CustomCSS
-        }
+        {CustomCSS}
     </style>
 </head>
 
@@ -580,6 +496,13 @@
             {block:Description}
             <div>{Description}</div>
             {/block:Description}
+            <div class="external-links">
+                {block:IfTwitterLink}<a href="{text:Twitter Link}"><i class="fab fa-twitter"></i></a>{/block:IfTwitterLink}
+                {block:IfGitHubLink}<a href="{text:GitHub Link}"><i class="fab fa-github"></i></a>{/block:IfGitHubLink}
+                {block:IfFacebookLink}<a href="{text:Facebook Link}"><i class="fab fa-facebook-square"></i></a>{/block:IfFacebookLink}
+                {block:IfBlogLink}<a href="{text:Blog Link}"><i class="fas fa-pen-nib"></i></a>{/block:IfBlogLink}
+                {block:IfWebSiteLink}<a href="{text:Web Site Link}"><i class="fas fa-file-alt"></i></a>{/block:IfWebSiteLink}
+            </div>
         </div>
     </div>
 
@@ -591,32 +514,31 @@
                 <li><a href="{BlogURL}archive" class="nav-item">{lang:Archive}</a></li>
                 <!--pages-->
                 {block:HasPages}
-                <li>
-                    <a class="nav-item dropdown-toggle">Pages</a>
-                    <ul class="dropdown-menu">
-                        {block:Pages}
-                        <li style="display: block; text-align: left;"><a href="{URL}" class="dropdown-item"
-                                style="display: block">{Label}</a></li>
-                        {/block:Pages}
-                    </ul>
-                </li>
+                    <li>
+                        <a class="nav-item dropdown-toggle">Pages</a>
+                        <ul class="dropdown-menu">
+                            {block:Pages}
+                            <li style="display: block; text-align: left;"><a href="{URL}" class="dropdown-item" style="display: block">{Label}</a></li>
+                            {/block:Pages}
+                        </ul>  
+                    </li>
                 {/block:HasPages}
                 <li>
                     <a class="nav-item dropdown-toggle">{lang:Search}</a>
                     <ul class="dropdown-menu">
                         <li style="padding: .3rem .5rem; border-radius: 5px;">
                             <form action="/search" method="get">
-                                <input type="text" name="q" value="{SearchQuery}" />
+                                <input type="text" name="q" value="{SearchQuery}"/>
                                 <button type="submit"><i class="fas fa-search"></i></button>
                             </form>
                         </li>
-                    </ul>
+                    </ul>   
                 </li>
                 <li>
                     <a class="nav-item dropdown-toggle">Tags</a>
                     <ul class="dropdown-menu" id="tag-list">
-
-                    </ul>
+                        
+                    </ul>  
                 </li>
             </ul>
         </div>
@@ -642,11 +564,11 @@
                     {block:SearchPage}
                     <div class="page-description">
                         {lang:Showing SearchResultCount results for SearchQuery 2}
-
+            
                         {block:NoSearchResults}
-                        <div>{lang:Sorry no search results found}</div>
+                            <div>{lang:Sorry no search results found}</div>
                         {/block:NoSearchResults}
-
+                        
                     </div>
                     {/block:SearchPage}
 
@@ -666,124 +588,121 @@
                                 </div>
                                 <!-- post-content -->
                                 {/block:Text}
-
+                                
                                 <!--photo-->
                                 {block:Photo}
-                                <div class="post-content">
-                                    <h5 class="date">{lang:Posted TimeAgo}</h5>
-                                    <div>
-                                        {block:IndexPage}
-                                        <a href="{PhotoURL-HighRes}">
-                                            <img class="img-responsive radius" src="{PhotoURL-HighRes}"
-                                                data-at2x="{PhotoURL-HighRes}" alt="{PhotoAlt}" />
-                                        </a>
-                                        {/block:IndexPage}
-                                        {block:PermalinkPage}
-                                        {LinkOpenTag}
-                                        <img class="img-responsive radius" src="{PhotoURL-HighRes}"
-                                            data-at2x="{PhotoURL-HighRes}" alt="{PhotoAlt}" />
-                                        {LinkCloseTag}
-                                        {/block:PermalinkPage}
+                                    <div class="post-content">
+                                        <h5 class="date">{lang:Posted TimeAgo}</h5>
+                                        <div>
+                                            {block:IndexPage}
+                                                <a href="{PhotoURL-HighRes}">
+                                                    <img class="img-responsive radius" src="{PhotoURL-HighRes}" data-at2x="{PhotoURL-HighRes}" alt="{PhotoAlt}" />
+                                                </a>
+                                            {/block:IndexPage}
+                                            {block:PermalinkPage}
+                                                {LinkOpenTag}
+                                                    <img class="img-responsive radius" src="{PhotoURL-HighRes}" data-at2x="{PhotoURL-HighRes}" alt="{PhotoAlt}" />
+                                                {LinkCloseTag}
+                                            {/block:PermalinkPage}
+                                        </div>
+                                        {block:Caption}
+                                        <div class="body post-body">
+                                            {Caption}
+                                        </div>
+                                        {/block:Caption}
                                     </div>
-                                    {block:Caption}
-                                    <div class="body post-body">
-                                        {Caption}
-                                    </div>
-                                    {/block:Caption}
-                                </div>
-
+                                    
                                 {/block:Photo}
-
+                                
                                 <!-- TODO: panorama -->
-
-
+                            
+                                
                                 <!-- Photoset -->
                                 {block:Photoset}
-                                <div class="post-content">
-                                    <h5 class="date">{lang:Posted TimeAgo}</h5>
-                                    <div class="photoset-wrapper">
-                                        {block:Photos}
-                                        <img class="img-responsive" src="{PhotoURL-HighRes}"
-                                            data-at2x="{PhotoURL-HighRes}" data-highres="{PhotoURL-HighRes}"
-                                            alt="{PhotoAlt}" />
-                                        {/block:Photos}
+                                    <div class="post-content">
+                                        <h5 class="date">{lang:Posted TimeAgo}</h5>
+                                        <div class="photoset-wrapper">
+                                            {block:Photos}
+                                                <img class="img-responsive" src="{PhotoURL-HighRes}" data-at2x="{PhotoURL-HighRes}" data-highres="{PhotoURL-HighRes}" alt="{PhotoAlt}" />
+                                            {/block:Photos}
+                                        </div>
+                                        {block:Caption}
+                                            <div class="body post-body">
+                                                {Caption}
+                                            </div>
+                                        {/block:Caption}
                                     </div>
-                                    {block:Caption}
-                                    <div class="body post-body">
-                                        {Caption}
-                                    </div>
-                                    {/block:Caption}
-                                </div>
                                 {/block:Photoset}
-
+                                
                                 <!--quote-->
                                 {block:Quote}
                                 <div class="post-content">
                                     <h5 class="date">{lang:Posted TimeAgo}</h5>
-
+                                    
                                     <blockquote class="{Length}">
                                         {Quote}
                                     </blockquote>
                                     {block:Source}
-                                    <div class="source body post-body">{Source}</div>
+                                        <div class="source body post-body">{Source}</div>
                                     {/block:Source}
                                 </div>
                                 {/block:Quote}
-
+                                
                                 <!--link-->
                                 {block:Link}
-                                <div class="post-content">
-                                    <h5 class="date">{lang:Posted TimeAgo}</h5>
-
-                                    <div class="link-wrapper">
-                                        <a target="_blank" href="{URL}" class="link">
-                                            {block:Thumbnail}
-                                            <div class="link-thumbnail"><img src="{Thumbnail-HighRes}" alt="" /></div>
-                                            {/block:Thumbnail}
-                                            <div class="link-text-wrapper clearfix">
-                                                <div class="link-text">
-                                                    {block:Host}
-                                                    <div class="link-host">{Host}</div>
-                                                    {/block:Host}
-                                                    <h2 class="link-title">{Name}</h2>
-                                                    {block:Excerpt}
-                                                    <div class="link-excerpt">{Excerpt}</div>
-                                                    {/block:Excerpt}
-                                                    {block:Author}
-                                                    <div class="link-author">{Author}</div>
-                                                    {/block:Author}
+                                    <div class="post-content">
+                                        <h5 class="date">{lang:Posted TimeAgo}</h5>
+                                        <div class="link-wrapper">
+                                            <div class="overlay"></div>
+                                            <a target="_blank" href="{URL}" class="link">
+                                                {block:Thumbnail}
+                                                    <div class="link-thumbnail"><img src="{Thumbnail-HighRes}" alt="" /></div>
+                                                {/block:Thumbnail}
+                                                <div class="link-text-wrapper clearfix">
+                                                    <div class="link-text">
+                                                        {block:Host}
+                                                        <div class="link-host">{Host}</div>
+                                                        {/block:Host}
+                                                        <h2 class="link-title">{Name}</h2>
+                                                        {block:Excerpt}
+                                                        <div class="link-excerpt">{Excerpt}</div>
+                                                        {/block:Excerpt}
+                                                        {block:Author}
+                                                        <div class="link-author">{Author}</div>
+                                                        {/block:Author}
+                                                    </div>
                                                 </div>
+                                            </a>
+                                        </div>
+                
+                                        {block:Description}
+                                            <div class="body post-body">
+                                                {Description}
                                             </div>
-                                        </a>
+                                        {/block:Description}
                                     </div>
-                                    {block:Description}
-                                    <div class="body post-body">
-                                        {Description}
-                                    </div>
-                                    {/block:Description}
-                                </div>
                                 {/block:Link}
-
+                                
                                 <!--chat-->
                                 {block:Chat}
-                                <div class="post-content">
-                                    <h5 class="date">{lang:Posted TimeAgo}</h5>
-                                    {block:Title}<h2 class="title"><a href="{Permalink}">{Title}</a></h2>{/block:Title}
-                                    <ul class="conversation">
+                                    <div class="post-content">
+                                        <h5 class="date">{lang:Posted TimeAgo}</h5>
+                                        {block:Title}<h2 class="title"><a href="{Permalink}">{Title}</a></h2>{/block:Title}
+                                        <ul class="conversation">
                                         {block:Lines}
-                                        <li>
-                                            {block:Label}
-                                            <span class="label">{Label}</span>
-                                            {/block:Label}
-                                            {Line}
-                                        </li>
+                                            <li>
+                                                {block:Label}
+                                                    <span class="label">{Label}</span>
+                                                {/block:Label}
+                                                {Line}
+                                            </li>
                                         {/block:Lines}
-                                    </ul>
-                                </div>
+                                        </ul>
+                                    </div>
                                 {/block:Chat}
-
+                                
                                 <!--TODO: audio-->
-
+                                
                                 <!--TODO: video-->
 
                                 <!--tags-->
@@ -809,7 +728,7 @@
                                     <div class="post-controls">
                                         <div class="control">{LikeButton color="gray"}</div>
                                         <div class="control">{ReblogButton color="gray"}</div>
-
+                                        
                                         <!--share-->
                                         <div class="control">
                                             <script type="text/javascript">
@@ -818,7 +737,7 @@
                                                 document.write(elem)
                                             </script>
                                         </div>
-
+                                        
                                     </div>
                                 </div>
 
@@ -852,40 +771,37 @@
             <div><span>{Title} &copy; {CopyrightYears}</span></div>
         </div>
     </div>
-
+    
     <!--navigationのtags-->
     <script>
         var target = document.getElementById("tag-list")
         var tagList = new Set()
-        { block: Posts }
-        { block: HasTags }
-        { block: Tags }
-        if (!tagList.has("{Tag}")) {
-            item = Object.assign(document.createElement('li'), { style: "display: block; text-align: left;" })
-            item.appendChild(Object.assign(document.createElement('a'), { href: "{TagURL}", innerHTML: "{Tag}", className: "dropdown-item", style: "display: block" }))
-            target.appendChild(item)
-            tagList.add("{Tag}")
-        }
-        {
-            /block:Tags}
-            {
-                /block:HasTags}
-                {
-                    /block:Posts}
-
+        {block:Posts}
+        {block:HasTags}
+        {block:Tags}
+            if (!tagList.has("{Tag}")) {
+                item = Object.assign(document.createElement('li'), {style: "display: block; text-align: left;"})
+                item.appendChild(Object.assign(document.createElement('a'), {href: "{TagURL}", innerHTML: "{Tag}", className: "dropdown-item", style: "display: block" }))
+                target.appendChild(item)
+                tagList.add("{Tag}")
+            }
+        {/block:Tags}
+        {/block:HasTags}
+        {/block:Posts}
+        
     </script>
     <!--dropdown-->
     <script>
-                    $(".dropdown-toggle").click(function (e) {
-                        target = $(e.target.nextElementSibling)[0]
-                        if (target.className.indexOf("open") > -1) {
-                            $(target).removeClass("open")
-                        } else {
-                            $(target).addClass("open")
-                        }
-                    })
+        $(".dropdown-toggle").click(function(e){
+            target = $(e.target.nextElementSibling)[0]
+            if(target.className.indexOf("open") > -1) {
+                $(target).removeClass("open")
+            } else {
+                $(target).addClass("open")
+            }
+        })
     </script>
-
+ 
 </body>
 
 </html>
