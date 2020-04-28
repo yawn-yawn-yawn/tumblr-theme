@@ -1,10 +1,14 @@
 html {
-  background-color: #000;
+  background-color: #2C363F;
 }
 
 body {
   margin: 0;
-  background-color: #aaa;
+  background-color: #F6BD60;
+}
+
+.invisible {
+  display: none;
 }
 
 .container {
@@ -12,49 +16,220 @@ body {
   margin: 0 30px;
 }
 
-.container:first-child {
-  margin-left: 0;
-}
-
-.container:last-child {
-  margin-right: 0;
-}
-
 .sidebar-wrapper {
   position: relative;
   width: 250px;
   min-width: 250px;
-  height: 500px;
-  min-height: 500px;
-  margin: 40px 20px 40px;
+  min-height: 400px;
+  margin: 40px 20px 40px 0px;
   float: left;
 }
 
 .sidebar-wrapper .sidebar {
   position: fixed;
+  text-align: center;
   height: inherit;
   width: inherit;
-  opacity: .7;
-  background-color: #fff;
+  background-color: rgba(255, 255, 255, 0.8);
   box-sizing: border-box;
-  padding: 2rem;
+  padding: 1rem 2rem;
 }
 
 .sidebar-wrapper .sidebar-item {
+  margin-bottom: 15px;
+}
+
+.sidebar-wrapper .avatar {
+  display: inline-block;
   position: relative;
+  width: 64px;
+  height: 64px;
+  background-color: red;
+  border-radius: 50%;
+}
+
+.sidebar-wrapper .title {
+  font-weight: 400;
+  margin: 0;
+}
+
+.sidebar-wrapper .description {
+  font-size: .9rem;
+}
+
+.sidebar-wrapper .search-nav {
+  color: #00916E;
+  display: block;
+}
+
+.sidebar-wrapper .search-nav:hover {
+  opacity: .7;
+}
+
+.sidebar-wrapper .search-form {
+  border-bottom: 1px solid #00916E;
+}
+
+.sidebar-wrapper .search-form .search-input {
+  background-color: transparent;
+  border: none;
+  font-size: .8rem;
+}
+
+.sidebar-wrapper .search-form .search-input:focus {
+  outline: none;
+}
+
+.sidebar-wrapper .search-form .search-submit {
+  background-color: transparent;
+  color: #00916E;
+  border: 0;
+}
+
+.sidebar-wrapper .pages {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  text-align: left;
+}
+
+.sidebar-wrapper .pages .page-item {
+  background-color: #00916E;
+  border-top-right-radius: 50px;
+  border-bottom-right-radius: 50px;
+  margin-bottom: 5px;
+}
+
+.sidebar-wrapper .pages .page-item:hover {
+  opacity: .8;
+}
+
+.sidebar-wrapper .pages .page-link {
+  text-decoration: none;
+  display: block;
+  color: #F6BD60;
+  padding: .1rem 20px;
+  font-weight: 600;
+}
+
+.sidebar-wrapper .links {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  text-align: left;
+  display: flex;
+  justify-content: center;
+}
+
+.sidebar-wrapper .links .link-link {
+  text-decoration: none;
+  display: block;
+  color: #aaa;
+  font-size: 1.4rem;
+}
+
+.sidebar-wrapper .links .link-link:hover {
+  color: #00916E;
 }
 
 .content-wrapper {
-  display: flex;
   width: 100%;
-  padding: 0 20px;
-  background-color: #fff;
-  min-height: 500px;
+  margin: 40px 0;
+  min-height: 400px;
 }
 
-.content-wrapper .content {
+article {
   display: block;
-  height: 500px;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 20px 30px;
+  margin-bottom: 40px;
+  background-color: rgba(255, 255, 255, 0.8);
+  min-width: 400px;
+}
+
+article:last-child {
+  margin-bottom: 0;
+}
+
+article .post-title {
+  color: #00916E;
+  text-decoration: none;
+}
+
+article .post-title:hover {
+  opacity: .7;
+  text-decoration: underline;
+}
+
+article .link {
+  display: block;
+  color: #00916E;
+  text-decoration: none;
+  padding: 15px 20px;
+  background-color: rgba(0, 145, 110, 0.2);
+}
+
+article .link:hover {
+  opacity: .8;
+}
+
+article .link-title {
+  margin: .5rem 0;
+}
+
+article .panel {
+  margin-top: 25px;
+}
+
+article .panel .panel-item {
+  margin-top: 10px;
+}
+
+article .panel .tag-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+article .panel .tag-item {
+  display: inline-block;
+  margin-right: 5px;
+}
+
+article .panel .tag-item:hover {
+  opacity: 0.7;
+}
+
+article .panel .tag-link {
+  display: block;
+  text-decoration: none;
+  color: #00916E;
+}
+
+article .panel .tag-link::before {
+  content: "#";
+}
+
+article .panel .clearfix {
+  display: flex;
+  justify-content: space-between;
+}
+
+article .panel .control-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+article .panel .control-link {
+  text-decoration: none;
+  color: #aaa;
+  font-size: 1.34rem;
+}
+
+article .panel .control-link:hover {
+  color: #00916E;
 }
 
 .footer-wrapper {
@@ -68,7 +243,8 @@ body {
 .footer-wrapper .footer {
   display: flex;
   justify-content: center;
-  color: #fff;
-  background-color: #000;
+  color: #F6BD60;
+  background-color: #2C363F;
   width: 100%;
+  padding: 20px;
 }

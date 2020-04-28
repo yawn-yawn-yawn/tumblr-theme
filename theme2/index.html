@@ -3,26 +3,115 @@
 <html>
     <head>
         <link rel="stylesheet" href="./src/css/main.css" />
+
+        <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     </head>
 
     <body>
         
-        
-
         <div class="container">
             <div class="sidebar-wrapper">
                 <div class="sidebar">
-                    <div class="sidebar-item">avatar</div>
-                    <div class="sidebar-item">titlee</div>
-                    <div class="sidebar-item">description</div>
-                    <div class="sidebar-item">pages</div>
-                    <div class="sidebar-item">search</div>
-                    <div class="sidebar-item">links</div>
+                    <div class="sidebar-item">
+                        <div class="avatar"></div>
+                    </div>
+                    
+                    <div class="sidebar-item">
+                        <h2 class="title">Blog Title</h2>
+                    </div>
+                    
+                    <div class="sidebar-item">
+                        <div class="description">せつめいせつめいせつめいせつめいせつめいせつめい</div>
+                    </div>
+                    
+                    <div class="sidebar-item">
+                        <ul class="pages">
+                            <li class="page-item"><a href="#" class="page-link">Posts</a></li>
+                            <li class="page-item"><a href="#" class="page-link">Archives</a></li>
+                            <li class="page-item"><a href="#" class="page-link">Archives</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="sidebar-item">
+                        <div class="search">
+                            <!-- TODO: focus時にいい感じにcss -->
+                            <label class="search-nav">Search</label>
+                            <form class="search-form">
+                                <input type="text" class="search-input" />
+                                <button type="submit" class="search-submit"><i class="fas fa-search"></i></button>
+                            </form>
+                        </div>
+                    </div>
+                    
+                    <div class="sidebar-item">
+                        <ul class="links">
+                            <li class="link-item"><a href="#" class="link-link"><i class="fab fa-twitter"></i></a></li>
+                        </ul>
+                    </div>
                 </div>
+                <!-- end sidebar -->
             </div>
+            <!-- end sidebar-wrapper -->
             
             <div class="content-wrapper">
-                <div class="content">content</div>
+                <article class="text">
+                    <div class="content">
+                        <h1><a href="#" class="post-title">Title</a></h1>
+                        <div class="post-body">content content ontent</div>
+                    </div>
+                    <div class="panel">
+                        <div class="panel-item">
+                            <ul class="tag-list">
+                                <li class="tag-item"><a href="#" class="tag-link">tag</a></li>
+                                <li class="tag-item"><a href="#" class="tag-link">tag</a></li>
+                                <li class="tag-item"><a href="#" class="tag-link">tag</a></li>
+                            </ul>
+                        </div>
+                        <!-- TODO:  clearfixのクラス名がきしょい -->
+                        <div class="panel-item clearfix">
+                            <div class="info">
+                                <label>Data</label>
+                                <label>Notes</label>
+                            </div>
+                            <ul class="control-list">
+                                <li class="control-item"><a href="#" class="control-link"><i class="fab fa-twitter"></i></a></li>
+
+                            </ul>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="link">
+                    <div class="content">
+                        <a href="a" class="link">
+                            <label class="link-host">Host</label>
+                            <h2 class="link-title">aaaa</h2>
+                            <label class="link-description">description</label>
+                        </a>
+                    </div>
+                    <div class="panel">
+                        <div class="panel-item">
+                            <ul class="tag-list">
+                                <li class="tag-item"><a href="#" class="tag-link">tag</a></li>
+                                <li class="tag-item"><a href="#" class="tag-link">tag</a></li>
+                                <li class="tag-item"><a href="#" class="tag-link">tag</a></li>
+                            </ul>
+                        </div>
+                        <!-- TODO:  clearfixのクラス名がきしょい -->
+                        <div class="panel-item clearfix">
+                            <div class="info">
+                                <label>Data</label>
+                                <label>Notes</label>
+                            </div>
+                            <ul class="control-list">
+                                <li class="control-item"><a href="#" class="control-link"><i class="fab fa-twitter"></i></a></li>
+                
+                            </ul>
+                        </div>
+                    </div>
+                </article>
+                
             </div>
             <!-- end content-wrapper -->
         </div>
@@ -32,6 +121,5 @@
             <div class="footer">footer</div>
         </div>
         <!-- end footer-wrapper -->
-
     </body>
 </html>

@@ -1,16 +1,22 @@
-$main-color: red;
-$accent-color: red;
-$base-color: red;
-$sub-color: gray;
+$main-color: #2C363F;
+$accent-color: #00916E;
+// $base-color: #FEEFE5;
+$base-color: #F6BD60;
+$sub-color: #aaa;
 
 // 場所-用途-値の種類
-$body-bg-color: #aaa;
-$footer-bg-color: #000;
+$body-bg-color: $base-color;
+$footer-bg-color: $main-color;
 $container-bg-color: #fff;
 $sidebar-bg-color: #fff;
 
+$content-bg-alpha: .8;
+
+$body-text-color: $main-color;
+
 $sidebar-width: 250px;
-$sidebar-height: 500px;
+$sidebar-height: 400px;
+$article-min-width: 400px;
 
 html {
     background-color: $footer-bg-color;
@@ -21,62 +27,229 @@ body {
     background-color: $body-bg-color;
 }
 
+.invisible {
+    // visibility: hidden;
+    display: none;
+}
+
 // layout: container wrapper
 .container {
     display: flex;
     margin: 0 30px;
-    &:first-child {
-        margin-left: 0;
-    }
-    &:last-child {
-        margin-right: 0;
-    }
+    // &:first-child {
+    //     margin-left: 0;
+    // }
+    // &:last-child {
+    //     margin-right: 0;
+    // }
 }
-
-// // layout: container
-// .container {
-//     position: relative;
-//     width: 100%;
-// }
 
 // layout: sidebar
 .sidebar-wrapper {
     position: relative;
     width: $sidebar-width;
     min-width: $sidebar-width;
-    height: $sidebar-height;
+    // height: $sidebar-height;
     min-height: $sidebar-height;
-    margin: 40px 20px 40px;
+    margin: 40px 20px 40px 0px;
     float: left;
     .sidebar {
+        // overflow-y: scroll;
         position: fixed;
+        text-align: center;
         height: inherit;
         width: inherit;
-        
-        opacity: .7;
-        background-color: $sidebar-bg-color;
+        // opacity: .7;
+        background-color: rgba($sidebar-bg-color, $content-bg-alpha);
         box-sizing: border-box;
-        padding: 2rem;
+        padding: 1rem 2rem;
     }
     .sidebar-item {
+        // position: relative;
+        // width: 100%;
+        margin-bottom: 15px;
+    }
+    .avatar {
+        display: inline-block;
         position: relative;
+        // top: -50px;
+        width: 64px;
+        height: 64px;
+        background-color: red;
+        border-radius: 50%;
+    }
+    .title {
+        font-weight: 400;
+        margin: 0;
+    }
+    .description {
+        font-size: .9rem;
+    }
+    .search-nav {
+        color: $accent-color;
+        display: block;
+        &:hover{
+            opacity: .7;
+        }
+    }
+    .search-form {
+        border-bottom: 1px solid $accent-color;
+        // padding: .1rem .2rem;
+        .search-input {
+            background-color: transparent;
+            border: none;
+            font-size: .8rem;
+            // box-sizing: border-box;
+            &:focus {
+                outline: none;
+            }
+        }
+        .search-submit {
+            background-color: transparent;
+            color: $accent-color;
+            border: 0;
+        }
+    }
+    .pages {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        text-align: left;
+        .page-item {
+            background-color: $accent-color;
+            border-top-right-radius: 50px;
+            border-bottom-right-radius: 50px;
+            margin-bottom: 5px;
+            &:hover {
+                opacity: .8;
+            }
+        }
+        .page-link {
+            text-decoration: none;
+            display: block;
+            color: $base-color;
+            padding: .1rem 20px;
+            font-weight: 600;
+        }
+    }
+    .links {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        text-align: left;
+        display: flex;
+        justify-content: center;
+        .link-item {
+            // display: inline-flex;
+            // justify-content: center;
+        }
+        .link-link {
+            text-decoration: none;
+            display: block;
+            color: $sub-color;
+            font-size: 1.4rem;
+            &:hover {
+                color: $accent-color;
+            }
+        }
     }
 }
+// end sidebar
 
 // layout: content-wrapper
 .content-wrapper {
-    display: flex;
+    // display: flex;
     width: 100%;
-    // flex: auto;
-    // width: 300px;
-    padding: 0 20px;
-    background-color: $container-bg-color;
+    margin: 40px 0;
+    // padding: 0 20px;
     min-height: $sidebar-height;
-    .content {
-        display: block;
-        height: 500px;
-    }
 }
+
+article {
+    display: block;
+    // height: 500px;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 20px 30px;
+    margin-bottom: 40px;
+    background-color: rgba($container-bg-color, $content-bg-alpha);
+    min-width: $article-min-width;
+    &:last-child {
+        margin-bottom: 0;
+    }
+    .post-title {
+        color: $accent-color;
+        text-decoration: none;
+        &:hover {
+            opacity: .7;
+            text-decoration: underline;
+        }
+    }
+    .link {
+        display: block;
+        color: $accent-color;
+        text-decoration: none;
+        padding: 15px 20px;
+        background-color: rgba($accent-color, .2);
+        &:hover {
+            opacity: .8;
+        }
+        &-title {
+            margin: .5rem 0;
+        }
+        
+    }
+    .panel {
+        margin-top: 25px;
+        .panel-item {
+            margin-top: 10px;
+        }
+        .tag {
+            &-list {
+                margin: 0;
+                padding: 0;
+                list-style: none;
+            }
+            &-item {
+                display: inline-block;
+                margin-right: 5px;
+                &:hover {
+                    opacity: 0.7;
+                }
+            }
+            &-link {
+                display: block;
+                text-decoration: none;
+                color: $accent-color;
+                &::before {
+                    content: "#"
+                }
+            }
+        } // tag
+        .clearfix {
+            display: flex;
+            justify-content: space-between;
+        }
+        .control {
+            &-list {
+                margin: 0;
+                padding: 0;
+                list-style: none;
+            }
+            &-item {
+
+            }
+            &-link {
+                text-decoration: none;
+                color: $sub-color;
+                font-size: 1.34rem;
+                &:hover {
+                    color: $accent-color;
+                }
+            }
+        }
+    } // panel
+} // article
 
 // layout: footer-wrapper
 .footer-wrapper {
@@ -88,8 +261,9 @@ body {
     .footer {
         display: flex;
         justify-content: center;
-        color: #fff;
-        background-color: #000;
+        color: $base-color;
+        background-color: $footer-bg-color;
         width: 100%;
+        padding: 20px;
     }
 }
