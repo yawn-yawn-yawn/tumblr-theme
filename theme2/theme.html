@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <link rel="stylesheet" href="./src/css/main.css" />
+
+        <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        
+        <style>
+            html {
+              background-color: #565554;
+            }
+            
+            body {
+              margin: 0;
+              background-color: #ffe8cc;
+              color: #565554;
+            }
+            
+            .row {
+              max-width: 700px;
+            }
+            
+            .row-1 {
+              width: 100%;
+            }
+            
+            .row-3 {
+              width: calc(100%/3);
+            }
+            
+            .row-2 {
+              width: calc(100%/2);
+            }
+            
+            .container {
+              display: flex;
+            }
+            
+            .sidebar-wrapper {
+              position: relative;
+              width: 250px;
+              min-width: 250px;
+              margin: 40px 20px 40px 20px;
+              float: left;
+            }
+            
+            .sidebar-wrapper .sidebar {
+              border-radius: 5px;
+              overflow: visible;
+              position: fixed;
+              text-align: center;
+              height: inherit;
+              width: inherit;
+              background-color: rgba(255, 255, 255, 0.8);
+              box-sizing: border-box;
+              padding: 1rem 2rem;
+            }
+            
+            .sidebar-wrapper .sidebar-item {
+              margin-bottom: 15px;
+            }
+            
+            .sidebar-wrapper .avatar {
+              display: inline-block;
+              position: relative;
+              width: 64px;
+              height: 64px;
+              /*TODO: color*/
+              background-color: red; 
+              border-radius: 50%;
+            }
+            
+            .sidebar-wrapper .avatar-image {
+                width: inherit;
+                height: inherit;
+                border-radius: 50%;
+            }
+            
+            .sidebar-wrapper .title {
+              font-weight: 400;
+              margin: 0;
+            }
+            
+            .sidebar-wrapper .description {
+              font-size: .9rem;
+            }
+            
+            .sidebar-wrapper .search-nav {
+              color: #339989;
+              display: block;
+            }
+            
+            .sidebar-wrapper .search-nav:hover {
+              opacity: .7;
+            }
+            
+            .sidebar-wrapper .search-form form {
+              display: inline-block;
+              border-bottom: 1px solid #339989;
+            }
+            
+            .sidebar-wrapper .search-form .search-input {
+              background-color: transparent;
+              border: none;
+              font-size: .8rem;
+            }
+            
+            .sidebar-wrapper .search-form .search-input:focus {
+              outline: none;
+            }
+            
+            .sidebar-wrapper .search-form .search-submit {
+              background-color: transparent;
+              color: #339989;
+              border: 0;
+            }
+            
+            .sidebar-wrapper .page-list {
+              margin: 0;
+              padding: 0;
+              list-style: none;
+            }
+            
+            .sidebar-wrapper .page-list .page-item {
+              text-align: right;
+              background-color: #339989;
+              border-top-right-radius: 50px;
+              border-bottom-right-radius: 50px;
+              margin-bottom: 5px;
+              width: 80%;
+            }
+            
+            .sidebar-wrapper .page-list .page-item:hover {
+              transition-duration: 0.2s;
+              width: 100%;
+            }
+            
+            .sidebar-wrapper .page-list .page-link {
+              text-decoration: none;
+              display: block;
+              color: #ffe8cc;
+              padding: .1rem 20px;
+              font-weight: 600;
+            }
+            
+            .sidebar-wrapper .links {
+              margin: 0;
+              padding: 0;
+              list-style: none;
+              text-align: left;
+              display: flex;
+              justify-content: center;
+            }
+            
+            .sidebar-wrapper .links .link-item {
+              margin-left: 5px;
+            }
+            
+            .sidebar-wrapper .links .link-item:first-child {
+              margin-left: 0;
+            }
+            
+            .sidebar-wrapper .links .link-link {
+              text-decoration: none;
+              display: block;
+              color: #aaa;
+              font-size: 1.4rem;
+            }
+            
+            .sidebar-wrapper .links .link-link:hover {
+              color: #339989;
+            }
+            
+            .sidebar-wrapper .nav-label {
+              display: none;
+              margin-bottom: 8px;
+              color: #339989;
+            }
+            
+            .sidebar-wrapper .nav-label:hover {
+              opacity: .7;
+            }
+            
+            .content-wrapper {
+              display: flex;
+              width: 100%;
+              margin: 40px 0;
+              min-height: 400px;
+              justify-content: center;
+            }
+            
+            article {
+              display: block;
+              box-sizing: border-box;
+              padding: 20px 30px;
+              margin-bottom: 40px;
+              margin-right: 20px;
+              background-color: rgba(255, 255, 255, 0.8);
+              min-width: 400px;
+              max-width: 700px;
+              border-radius: 5px;
+            }
+            
+            article:last-child {
+              margin-bottom: 0;
+            }
+            
+            article .post-title {
+              color: #339989;
+              text-decoration: none;
+            }
+            
+            article .post-title:hover {
+              opacity: .7;
+              text-decoration: underline;
+            }
+            
+            article .link {
+              display: block;
+              color: #339989;
+              text-decoration: none;
+              padding: 15px 20px;
+              background-color: rgba(51, 153, 137, 0.2);
+              margin-bottom: 20px;
+            }
+            
+            article .link:hover {
+              opacity: .8;
+            }
+            
+            article .link-title {
+              margin: .5rem 0;
+            }
+            
+            article .link-thumbnail img {
+                max-width: 100%;  
+            }
+            
+            article .panel {
+              margin-top: 25px;
+            }
+            
+            article .panel .panel-item {
+              margin-top: 10px;
+            }
+            
+            article .panel .tag-list {
+              margin: 0;
+              padding: 0;
+              list-style: none;
+            }
+            
+            article .panel .tag-item {
+              display: inline-block;
+              margin-right: 5px;
+            }
+            
+            article .panel .tag-item:hover {
+              opacity: 0.7;
+            }
+            
+            article .panel .tag-link {
+              display: block;
+              text-decoration: none;
+              color: #339989;
+            }
+            
+            article .panel .tag-link::before {
+              content: "#";
+            }
+            
+            article .panel .clearfix {
+              display: flex;
+              justify-content: space-between;
+            }
+            
+            article .panel .info label {
+              color: #aaa;
+              margin-right: 5px;
+            }
+            
+            article .panel .info a {
+              color: #aaa;
+            }
+            
+            article .panel .info a:hover {
+              opacity: .7;
+            }
+            
+            article .panel .control-list {
+              margin: 0;
+              padding: 0;
+              list-style: none;
+            }
+            
+            article .panel .control-item {
+              display: inline-block;
+              margin-left: 4px;
+            }
+            
+            article .panel .control-link {
+              text-decoration: none;
+              color: #aaa;
+              font-size: 1.34rem;
+            }
+            
+            article .panel .control-link:hover {
+              color: #339989;
+            }
+            
+            .footer-wrapper {
+              position: relative;
+              display: flex;
+              justify-content: center;
+              width: 100%;
+              bottom: 0;
+            }
+            
+            .footer-wrapper .footer {
+              display: flex;
+              justify-content: center;
+              color: #ffe8cc;
+              background-color: #565554;
+              width: 100%;
+              padding: 20px;
+            }
+            
+            @media (max-width: 700px) {
+              .invisible {
+                display: none;
+              }
+              .container {
+                display: block;
+              }
+              .sidebar-wrapper {
+                width: 100%;
+                float: none;
+                margin: 0;
+              }
+              .sidebar-wrapper .sidebar {
+                position: relative;
+                display: block;
+              }
+              .sidebar-wrapper .sidebar-item {
+                margin-bottom: 8px;
+              }
+              .sidebar-wrapper .page-list .page-item {
+                width: 100%;
+                text-align: center;
+              }
+              .sidebar-wrapper .page-list .page-item:hover {
+                opacity: 0.7;
+              }
+              .sidebar-wrapper .nav-label {
+                display: inline-block;
+              }
+              .sidebar-wrapper .nav-label::before {
+                content: "+\ ";
+              }
+              article {
+                margin-left: 20px;
+              }
+            }
+            /*TODO: markdown css*/
+
+        </style>
+    </head>
+
+    <body>
+    
+        <div class="container">
+            <div class="sidebar-wrapper">
+                <div class="sidebar">
+                    <div class="sidebar-item">
+                        <div class="avatar">
+                            <img src="{PortraitURL-128}" class="avatar-image">
+                        </div>
+                    </div>
+                    
+                    <div class="sidebar-item">
+                        <h2 class="title">{Title}</h2>
+                    </div>
+                    
+                    {block:Description}
+                    <div class="sidebar-item">
+                        <div class="description">{Description}</div>
+                    </div>
+                    {/block:Description}
+                    
+                    <!--TODO: pages-->
+                    <div class="sidebar-item">
+                        <label class="nav-label dropdown-toggle" data-target="page-list">Pages</label>
+                        <ul id="page-list" class="page-list invisible">
+                            <li class="page-item"><a href="#" class="page-link">Posts</a></li>
+                            <li class="page-item"><a href="#" class="page-link">Archives</a></li>
+                            <li class="page-item"><a href="#" class="page-link">Archives</a></li>
+                        </ul>
+
+                    </div>
+                    
+                    <!--TODO: search-->
+                    <div class="sidebar-item">
+                        <div class="search">
+                            <!-- TODO: focus時にいい感じにcss -->
+                            <label class="search-nav nav-label dropdown-toggle" data-target="search-form">Search</label>
+                            <div id="search-form" class="search-form invisible">
+                                <form style="display: inline-block">
+                                    <input type="text" class="search-input" />
+                                    <button type="submit" class="search-submit"><i class="fas fa-search"></i></button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!--TODO: links-->
+                    <div class="sidebar-item">
+                        <ul class="links">
+                            <li class="link-item"><a href="#" class="link-link"><i class="fab fa-twitter"></i></a></li>
+                            <li class="link-item"><a href="#" class="link-link"><i class="fab fa-twitter"></i></a></li>
+                        </ul>
+                    </div>
+                    
+                </div>
+                <!-- end sidebar -->
+            </div>
+            <!-- end sidebar-wrapper -->
+            
+            <div class="content-wrapper">
+                <!-- line1 -->
+                <div class="row row-1">
+                    {block:Posts}
+                    <article class="{PostType}">
+                        {block:Text}
+                        <div class="content">
+                            {block:Title}
+                                <h1><a href="#" class="post-title">{Title}</a></h1>
+                            {/block:Title}
+                            <div class="post-body">{Body}</div>
+                        </div>
+                        {/block:Text}
+                        
+                        <!--TODO: photo-->
+                        {block:Photo}
+                        {/block:Photo}
+                        
+                        <!--TODO: photoset-->
+                        {block:Photoset}
+                        {/block:Photoset}
+                        
+                        <!--TODO: panorama-->
+                        {block:Panorama}
+                        {/block:Panorama}
+                        
+                        <!--TODO: quote-->
+                        {block:Quote}
+                        {/block:Quote}
+                        
+                        <!--TODO: link-->
+                        {block:Link}
+                        
+                        <div class="content">
+                            <a href="{URL}" target="_blank" class="link">
+                                {block:Thumbnail}<div class="link-thumbnail"><img src="{Thumbnail-HighRes}" alt="" /></div>{/block:Thumbnail}
+                                {block:Host}<label class="link-host">{Host}</label>{/block:Host}
+                                <h2 class="link-title">{Name}</h2>
+                                {block:Excerpt}<div class="link-excerpt">{Excerpt}</div>{block:Excerpt}
+                                {block:Author}<label class="link-author">{Author}</label>{/block:Author}
+                            </a>
+                            {block:Description}
+                            <div class="post-body">{Description}</div>
+                            {/block:Description}
+                        </div>
+                        {/block:Link}
+                        
+                        <!--TODO: chat-->
+                        {block:Chat}
+                        {/block:Chat}
+                        
+                        <!--TODO: Audio-->
+                        {block:Audio}
+                        {/block:Audio}
+                        
+                        <!--TODO: video-->
+                        {block:Video}
+                        {/block:Video}
+                        
+                        <!--TODO: answer-->
+                        {block:Answer}
+                        {/block:Answer}
+                        <div class="panel">
+                            <div class="panel-item">
+                            {block:HasTags}
+                                <ul class="tag-list">
+                                {block:Tags}
+                                    <li class="tag-item"><a href="{TagURL}" class="tag-link">{Tag}</a></li>
+                                {/block:Tags}
+                                </ul>
+                            </div>
+                            {/block:HasTags}
+                            <div class="panel-item clearfix">
+                                <div class="info">
+                                    <label>{TimeAgo}</label>
+                                    {block:NoteCount}
+                                        <label>/ <a href="{PostNotesURL}">{NoteCountWithLabel}</a></label>
+                                    {/block:NoteCount}
+                                </div>
+                                <ul class="control-list">
+                                    <li class="control-item"><a href="#" class="control-link"><i class="fas fa-newspaper"></i></a></li>
+                                    <li class="control-item"><a href="#" class="control-link"><i class="fas fa-share-alt"></i></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </article>
+                    {/block:Posts}
+                   
+                </div>
+                <!--end row-->
+                <!--TODO: pagination-->
+                {block:Pagination}{block:PreviousPage}
+                    <a href="{PreviousPage}">Previous</a>
+                {/block:PreviousPage}{block:JumpPagination length="5"}{block:CurrentPage}
+                        <span class="current_page">{PageNumber}</span>
+                    {/block:CurrentPage}{block:JumpPage}
+                        <a class="jump_page" href="{URL}">{PageNumber}</a>
+                    {/block:JumpPage}{/block:JumpPagination}{block:NextPage}
+                    <a href="{NextPage}">Next</a>
+                {/block:NextPage}{/block:Pagination}
+            </div>
+            <!-- end content-wrapper -->
+        </div>
+        <!-- end container-wrapper -->
+
+        <div class="footer-wrapper">
+            <div class="footer">footer</div>
+        </div>
+        <!-- end footer-wrapper -->
+
+        <script>
+            $(".dropdown-toggle").click(e => {
+                target = $("#" + e.target.dataset["target"])[0]
+                if(target.className.indexOf("invisible") > -1) {
+                    // $(target).css("display", "block")
+                    $(target).removeClass("invisible")
+                } else {
+                    // $(target).css("display", "none")
+                    $(target).addClass("invisible")
+                }
+                
+            })
+        </script>
+
+    </body>
+</html>

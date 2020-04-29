@@ -210,6 +210,7 @@
         .blog-content-wrapper .main {
           flex: auto;
           max-width: 700px;
+          margin-bottom: -30px;
         }
         
         article {
@@ -476,6 +477,41 @@
         .overlay:hover {
             opacity: .3;
         }
+        
+        /*pagination*/
+        .pagination-wrapper {
+            display: flex;
+            justify-content: center;
+        }
+        .pagination-wrapper .page-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            margin-bottom: .5rem;
+            border-radius: 5px;
+            background-color: {color:Container Color};
+        }
+        .pagination-wrapper .page-item {
+            display: inline-block;
+            color: {color:Sub Color};
+            width: 30px;
+            height: 30px;
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .pagination-wrapper .page-link {
+            color: {color:Accent Color};
+            text-decoration: none;
+            width: inherit;
+            height: inherit;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .pagination-wrapper .page-link:hover {
+            opacity: 0.5;
+        }
 
         {CustomCSS}
     </style>
@@ -516,7 +552,7 @@
                 <!--pages-->
                 {block:HasPages}
                     <li>
-                        <a class="nav-item dropdown-toggle">Pages</a>
+                        <label class="nav-item dropdown-toggle">Pages</label>
                         <ul class="dropdown-menu">
                             {block:Pages}
                             <li style="display: block; text-align: left;"><a href="{URL}" class="dropdown-item" style="display: block">{Label}</a></li>
@@ -525,7 +561,7 @@
                     </li>
                 {/block:HasPages}
                 <li>
-                    <a class="nav-item dropdown-toggle">{lang:Search}</a>
+                    <label class="nav-item dropdown-toggle">{lang:Search}</label>
                     <ul class="dropdown-menu">
                         <li style="padding: .3rem .5rem; border-radius: 5px;">
                             <form action="/search" method="get">
@@ -536,13 +572,34 @@
                     </ul>   
                 </li>
                 <li>
-                    <a class="nav-item dropdown-toggle">Tags</a>
+                    <label class="nav-item dropdown-toggle">Tags</label>
                     <ul class="dropdown-menu" id="tag-list">
                         
                     </ul>  
                 </li>
             </ul>
         </div>
+        <!--end navigation-->
+        
+        <!--pagination-->
+        {block:Pagination}
+        <div class="pagination-wrapper">
+            <div class="pagination">
+                <ul class="page-list">
+                    <li class="page-item">{block:PreviousPage}<a class="page-link" href="{PreviousPage}">{/block:PreviousPage}&lt;{block:PreviousPage}</a>{/block:PreviousPage}</li>
+                    {block:JumpPagination length="5"}
+                        {block:CurrentPage}
+                            <li class="page-item">{PageNumber}</li>
+                        {/block:CurrentPage}
+                        {block:JumpPage}
+                            <li class="page-item"><a class="page-link" href="{URL}">{PageNumber}</a></li>
+                        {/block:JumpPage}
+                    {/block:JumpPagination}
+                    <li class="page-item">{block:NextPage}<a class="page-link" href="{NextPage}">{/block:NextPage}&gt;{block:NextPage}</a>{/block:NextPage}</li>
+                </ul>
+            </div>
+        </div>
+        {/block:Pagination}
 
         <div class="blog-content-wrapper">
             <div class="container">
@@ -654,7 +711,7 @@
                                     <div class="post-content">
                                         <h5 class="date">{lang:Posted TimeAgo}</h5>
                                         <div class="link-wrapper">
-                                            <div class="overlay"></div>
+                                            <!--<div class="overlay"></div>-->
                                             <a target="_blank" href="{URL}" class="link">
                                                 {block:Thumbnail}
                                                     <div class="link-thumbnail"><img src="{Thumbnail-HighRes}" alt="" /></div>
@@ -761,10 +818,32 @@
                         {/block:PermalinkPage}
                     </article>
                     {/block:Posts}
-
                 </div>
             </div>
+            <!--end container-->
         </div>
+        <!--end blog content wrapper-->
+        
+        <!--pagination-->
+        {block:Pagination}
+        <div class="pagination-wrapper">
+            <div class="pagination">
+                <ul class="page-list">
+                    <li class="page-item">{block:PreviousPage}<a class="page-link" href="{PreviousPage}">{/block:PreviousPage}&lt;{block:PreviousPage}</a>{/block:PreviousPage}</li>
+                    {block:JumpPagination length="5"}
+                        {block:CurrentPage}
+                            <li class="page-item">{PageNumber}</li>
+                        {/block:CurrentPage}
+                        {block:JumpPage}
+                            <li class="page-item"><a class="page-link" href="{URL}">{PageNumber}</a></li>
+                        {/block:JumpPage}
+                    {/block:JumpPagination}
+                    <li class="page-item">{block:NextPage}<a class="page-link" href="{NextPage}">{/block:NextPage}&gt;{block:NextPage}</a>{/block:NextPage}</li>
+                </ul>
+            </div>
+        </div>
+        {/block:Pagination}
+        
     </div>
 
     <div class="footer-wrapper">

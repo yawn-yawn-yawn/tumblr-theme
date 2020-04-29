@@ -1,8 +1,11 @@
-$main-color: #ECD8BF;
-// $accent-color: #00916E;
+// $main-color: #ECD8BF;
+// $accent-color: #339989;
+// $base-color: #6B4B3E;
+// $sub-color: #aaa;
+
+$main-color: #565554;
 $accent-color: #339989;
-// $base-color: #FEEFE5;
-$base-color: #6B4B3E;
+$base-color: #ffe8cc;
 $sub-color: #aaa;
 
 // 場所-用途-値の種類
@@ -14,6 +17,7 @@ $sidebar-bg-color: #fff;
 $content-bg-alpha: .8;
 
 $body-text-color: $main-color;
+$footer-text-color: $base-color;
 
 $sidebar-width: 250px;
 $sidebar-height: 400px;
@@ -151,7 +155,7 @@ body {
         .page-link {
             text-decoration: none;
             display: block;
-            color: $main-color;
+            color: $base-color;
             padding: .1rem 20px;
             font-weight: 600;
         }
@@ -166,6 +170,10 @@ body {
         .link-item {
             // display: inline-flex;
             // justify-content: center;
+            margin-left: 5px;
+            &:first-child {
+                margin-left: 0;
+            }
         }
         .link-link {
             text-decoration: none;
@@ -271,6 +279,20 @@ article {
             display: flex;
             justify-content: space-between;
         }
+        .info {
+            label {
+                color: $sub-color;
+                margin-right: 5px;
+            }
+            a {
+                color: $sub-color;
+                // text-decoration: none;
+                &:hover {
+                    opacity: .7;
+                    // text-decoration: underline;
+                }
+            }
+        }
         .control {
             &-list {
                 margin: 0;
@@ -280,6 +302,7 @@ article {
             &-item {
                 display: inline-block;
                 margin-left: 4px;
+                // position: relative;
             }
             &-link {
                 text-decoration: none;
@@ -289,7 +312,8 @@ article {
                     color: $accent-color;
                 }
             }
-        }
+
+        } // control
     } // panel
 } // article
 
@@ -303,7 +327,7 @@ article {
     .footer {
         display: flex;
         justify-content: center;
-        color: $base-color;
+        color: $footer-text-color;
         background-color: $footer-bg-color;
         width: 100%;
         padding: 20px;

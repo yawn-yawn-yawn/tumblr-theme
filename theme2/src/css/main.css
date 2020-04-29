@@ -1,10 +1,10 @@
 html {
-  background-color: #ECD8BF;
+  background-color: #565554;
 }
 
 body {
   margin: 0;
-  background-color: #6B4B3E;
+  background-color: #ffe8cc;
 }
 
 .row {
@@ -122,7 +122,7 @@ body {
 .sidebar-wrapper .page-list .page-link {
   text-decoration: none;
   display: block;
-  color: #ECD8BF;
+  color: #ffe8cc;
   padding: .1rem 20px;
   font-weight: 600;
 }
@@ -134,6 +134,14 @@ body {
   text-align: left;
   display: flex;
   justify-content: center;
+}
+
+.sidebar-wrapper .links .link-item {
+  margin-left: 5px;
+}
+
+.sidebar-wrapper .links .link-item:first-child {
+  margin-left: 0;
 }
 
 .sidebar-wrapper .links .link-link {
@@ -246,6 +254,19 @@ article .panel .clearfix {
   justify-content: space-between;
 }
 
+article .panel .info label {
+  color: #aaa;
+  margin-right: 5px;
+}
+
+article .panel .info a {
+  color: #aaa;
+}
+
+article .panel .info a:hover {
+  opacity: .7;
+}
+
 article .panel .control-list {
   margin: 0;
   padding: 0;
@@ -278,8 +299,8 @@ article .panel .control-link:hover {
 .footer-wrapper .footer {
   display: flex;
   justify-content: center;
-  color: #6B4B3E;
-  background-color: #ECD8BF;
+  color: #ffe8cc;
+  background-color: #565554;
   width: 100%;
   padding: 20px;
 }
