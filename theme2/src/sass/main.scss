@@ -1,7 +1,8 @@
-$main-color: #2C363F;
-$accent-color: #00916E;
+$main-color: #ECD8BF;
+// $accent-color: #00916E;
+$accent-color: #339989;
 // $base-color: #FEEFE5;
-$base-color: #F6BD60;
+$base-color: #6B4B3E;
 $sub-color: #aaa;
 
 // 場所-用途-値の種類
@@ -17,6 +18,9 @@ $body-text-color: $main-color;
 $sidebar-width: 250px;
 $sidebar-height: 400px;
 $article-min-width: 400px;
+$article-max-width: 700px;
+
+$border-radius: 5px;
 
 html {
     background-color: $footer-bg-color;
@@ -27,15 +31,28 @@ body {
     background-color: $body-bg-color;
 }
 
-.invisible {
-    // visibility: hidden;
-    display: none;
+// .invisible {
+//     // visibility: hidden;
+//     display: none;
+// }
+
+.row {
+    max-width: $article-max-width;
+    &-1 {
+        width: 100%;
+    }
+    &-3 {
+        width: calc(100%/3);
+    }
+    &-2 {
+        width: calc(100%/2)
+    }
 }
 
 // layout: container wrapper
 .container {
     display: flex;
-    margin: 0 30px;
+    // margin: 0 30px;
     // &:first-child {
     //     margin-left: 0;
     // }
@@ -50,11 +67,12 @@ body {
     width: $sidebar-width;
     min-width: $sidebar-width;
     // height: $sidebar-height;
-    min-height: $sidebar-height;
-    margin: 40px 20px 40px 0px;
+    // min-height: $sidebar-height;
+    margin: 40px 20px 40px 20px;
     float: left;
     .sidebar {
-        // overflow-y: scroll;
+        border-radius: $border-radius;
+        overflow: visible;
         position: fixed;
         text-align: center;
         height: inherit;
@@ -68,6 +86,7 @@ body {
         // position: relative;
         // width: 100%;
         margin-bottom: 15px;
+        // overflow: scroll;
     }
     .avatar {
         display: inline-block;
@@ -93,8 +112,10 @@ body {
         }
     }
     .search-form {
-        border-bottom: 1px solid $accent-color;
-        // padding: .1rem .2rem;
+        form {
+            display: inline-block;
+            border-bottom: 1px solid $accent-color;
+        }
         .search-input {
             background-color: transparent;
             border: none;
@@ -110,24 +131,27 @@ body {
             border: 0;
         }
     }
-    .pages {
+    .page-list {
         margin: 0;
         padding: 0;
         list-style: none;
-        text-align: left;
         .page-item {
+            text-align: right;
             background-color: $accent-color;
             border-top-right-radius: 50px;
             border-bottom-right-radius: 50px;
             margin-bottom: 5px;
+            width: 80%;
             &:hover {
-                opacity: .8;
+                // opacity: .8;
+                transition-duration: 0.2s;
+                width: 100%;
             }
         }
         .page-link {
             text-decoration: none;
             display: block;
-            color: $base-color;
+            color: $main-color;
             padding: .1rem 20px;
             font-weight: 600;
         }
@@ -152,28 +176,44 @@ body {
                 color: $accent-color;
             }
         }
+    } // links
+    .nav-label {
+        display: none;
+        margin-bottom: 8px;
+        color: $accent-color;
+        &:hover {
+            opacity: .7;
+        }
     }
 }
 // end sidebar
 
 // layout: content-wrapper
 .content-wrapper {
-    // display: flex;
+    display: flex;
     width: 100%;
     margin: 40px 0;
     // padding: 0 20px;
     min-height: $sidebar-height;
+    // flex-wrap: wrap;
+    // align-items: stretch;
+    // justify-content: space-around;
+    justify-content: center;
 }
 
 article {
     display: block;
+    // float: left;
     // height: 500px;
-    width: 100%;
+    // width: 100%;
     box-sizing: border-box;
     padding: 20px 30px;
     margin-bottom: 40px;
+    margin-right: 20px;
     background-color: rgba($container-bg-color, $content-bg-alpha);
     min-width: $article-min-width;
+    max-width: $article-max-width;
+    border-radius: $border-radius;
     &:last-child {
         margin-bottom: 0;
     }
@@ -191,6 +231,7 @@ article {
         text-decoration: none;
         padding: 15px 20px;
         background-color: rgba($accent-color, .2);
+        margin-bottom: 20px;
         &:hover {
             opacity: .8;
         }
@@ -237,7 +278,8 @@ article {
                 list-style: none;
             }
             &-item {
-
+                display: inline-block;
+                margin-left: 4px;
             }
             &-link {
                 text-decoration: none;
@@ -265,5 +307,49 @@ article {
         background-color: $footer-bg-color;
         width: 100%;
         padding: 20px;
+    }
+}
+
+
+@media (max-width: 700px) {
+    .invisible {
+        display: none;
+    }
+    .container {
+        display: block;
+    }
+    .sidebar-wrapper {
+        width: 100%;
+        float: none;
+        margin: 0;
+        .sidebar {
+            position: relative;
+            display: block;
+        }
+        .sidebar-item {
+            margin-bottom: 8px;
+        }
+        .page-list {
+            // display: none;
+            .page-item {
+                width: 100%;
+                text-align: center;
+                &:hover {
+                    opacity: 0.7;
+                }
+            }
+        }
+        .search-form {
+            // display: none;
+        }
+        .nav-label {
+            display: inline-block;
+            &::before {
+                content: "+\ "
+            }
+        }
+    }
+    article {
+        margin-left: 20px;
     }
 }
