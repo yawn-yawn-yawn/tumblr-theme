@@ -1,0 +1,321 @@
+$main-color: #45261f;
+$accent-color: #339989;
+$base-color: #FFE8CC;
+$sub-color: #999;
+
+// 場所-用途-値の種類
+$body-bg-color: $base-color;
+$footer-bg-color: $main-color;
+$container-bg-color: #fff;
+$sidebar-bg-color: #fff;
+
+$content-bg-alpha: .8;
+
+$content-border-color: rgba($main-color, .3);
+
+$body-text-color: $main-color;
+$footer-text-color: $base-color;
+
+$container-min-width: 500px;
+$container-max-width: 980px;
+$sidebar-width: 300px;
+
+$border-radius: 5px;
+
+// universal
+html {
+    background-color: $footer-bg-color;
+}
+
+body {
+    margin: 0;
+    background-color: $body-bg-color;
+    color: $body-text-color;
+}
+
+// container
+.container-wrapper {
+    display: flex;
+    justify-content: center;
+}
+
+.container {
+    // background-color: $base-color;
+    display: flex;
+    justify-content: center;
+    // background-color: gray;
+    width: 80%;
+    max-width: $container-max-width;
+    margin: 50px 0;
+}
+
+// sidebar
+.sidebar-wrapper {
+    width: $sidebar-width;
+    // background-color: $container-bg-color;
+}
+.sidebar {
+    border-radius: $border-radius;
+    display: flex;
+    background-color: $container-bg-color;
+    margin: 0 2rem;
+    padding: 20px;
+    flex-wrap: wrap;
+    box-sizing: border-box;
+    .sidebar-item {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        box-sizing: border-box;
+        margin-bottom: 10px;
+    }
+    .avatar {
+        width: 100px;
+        img {
+            border-radius: 50%;
+            width: inherit;
+        }
+    }
+    .title {
+        font-weight: 400;
+        margin: 0;
+    }
+    .page-list {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        width: inherit;
+        .page-item {
+            box-sizing: border-box;
+            margin-bottom: 5px;
+            background-color: rgba($accent-color, 0.4);
+            position: relative;
+            width: 80%;
+            &:last-child{
+                margin: 0;
+            }
+            &:hover {
+                width: 100%;
+                transition-duration: .2s;
+            }
+        }
+        .page-link {
+            color: $main-color;
+            text-decoration: none;
+            display: block;
+            padding: 2px 20px;
+            &::after {
+                content: "";
+                position:absolute;
+                top:0;
+                right:0;
+                width:0;
+                height:0;
+                border-style: solid;
+                border-color: transparent #fff transparent transparent;
+                border-width: .8rem 1rem 1rem 0rem;
+            }
+        }
+    }
+    .search-form {
+        display: flex;
+        border-bottom: 1px solid $accent-color;
+        input[type=text] {
+            border: none;
+            font-size: .8rem;
+            &:focus {
+                outline: none;
+            }
+        }
+        button {
+            border: none;
+            background-color: transparent;
+            &:focus {
+                outline: none;
+            }
+        }
+    }
+    .control-list {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        .control-item {
+            display: inline-block;
+            margin-left: 5px;
+            font-size: 1.33rem;
+            &:first-child {
+                margin: 0;
+            }
+        }
+        .control-link {
+            color: $sub-color;
+            &:hover{
+                color: $accent-color;
+            }
+        }
+    }
+}
+
+// content
+.content-wrapper {
+    // width: 500px;
+    width: calc(100% - #{$sidebar-width});
+    // background-color: $container-bg-color;
+}
+
+// article
+article {
+    background-color: $container-bg-color;
+    // margin: 10px;
+    padding: 1rem 1.5rem;
+    border-radius: $border-radius;
+    margin-bottom: 45px;
+    .header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+        border-bottom: 1px solid $content-border-color;
+        padding: .5rem 0;
+        font-size: .85rem;
+        .post-type {
+            background-color: rgba($accent-color, 0.4);
+            padding: .1rem .8rem;
+        }
+        .post-date {
+            color: $sub-color;
+        }
+    } // end header
+    .content {
+        padding: 1rem 0;
+        & > * {
+            margin-bottom: 1rem;
+            &:last-child {
+                margin-bottom: 0;
+            }
+        }
+        .post-title {
+            // margin: 0;
+            margin-top: .4rem;
+            border-bottom: 1px solid $content-border-color;
+        }
+        .post-title-link {
+            text-decoration: none;
+            color: $accent-color;
+            &:hover {
+                opacity: .7;
+            }
+        }
+        .link-wrapper {
+            .link {
+                display: block;
+                background-color: rgba($accent-color, .2);
+                border-radius: $border-radius;
+                padding: .8rem 1.2rem;
+                text-decoration: none;
+                color: $accent-color;
+                &:hover {
+                    opacity: .8;
+                }
+            }
+            .link-title {
+                margin: .6rem 0;
+            }
+            .link-author {
+                &::before {
+                    content: "-"
+                }
+            }
+        }
+    } // end content
+    .panel {
+        border-top: 1px solid $content-border-color;
+        padding: .5rem 0;
+        &> div {
+            margin-bottom: 10px;
+            &:last-child {
+                margin: 0;
+            }
+        }
+        .tag-list {
+            font-size: .9rem;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            .tag-item {
+                display: inline-block;
+                background-color: $main-color;
+                border-top-left-radius: $border-radius;
+                    border-bottom-left-radius: $border-radius;
+                position: relative;
+                margin-left: .8rem;
+                &:hover {
+                    opacity: .7;
+                }
+                &:first-child {
+                    margin: 0;
+                }
+                &::after {
+                    content: "";
+                    position: absolute;
+                    top: 0;
+                    right: -1.5rem;
+                    width: 0px;
+                    height: 0px;
+                    margin: auto;
+                    border-style: solid;
+                    border-color: transparent transparent transparent $main-color;
+                    border-width: .78rem .78rem .78rem .78rem;
+                }
+            }
+            .tag-link {
+                display: block;
+                text-decoration: none;
+                color: $container-bg-color;
+                padding: .1rem .5rem;
+            }
+        } //end tag list
+        .controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            .note-link {
+                text-decoration: none;
+                color: $sub-color;
+                font-size: .9rem;
+                &:hover {
+                    color: $accent-color;
+                }
+            }
+            .control-list {
+                list-style: none;
+                margin: 0;
+                padding: 0;
+                .control-item {
+                    display: inline-block;
+                    margin-left: .2rem;
+                }
+                .control-link {
+                    text-decoration: none;
+                    color: $sub-color;
+                    font-size: 1.2rem;
+                    &:hover {
+                        color: $accent-color;
+                    }
+                }
+            }
+        }
+    } // end panel
+}
+
+// footer
+.footer-wrapper {
+    // background-color: $footer-bg-color;
+    // display: flex;
+    .footer {
+        display: flex;
+        justify-content: center;
+        background-color: $footer-bg-color;
+        color: $footer-text-color;
+        padding: .3rem 2rem;
+    }
+}

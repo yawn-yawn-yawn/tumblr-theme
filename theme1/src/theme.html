@@ -43,7 +43,6 @@
 
     <!-- static files -->
     <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://static.tumblr.com/t5kjukw/NoIq97t73/markdown.css">
     
     <!--jquery-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -512,6 +511,91 @@
         .pagination-wrapper .page-link:hover {
             opacity: 0.5;
         }
+        
+        /*markdown*/
+        .post-body {
+            word-wrap: break-word;
+        }
+        .post-body > :first-child {
+          margin-top: 0;
+        }
+        
+        .post-body h1, .post-body h2, .post-body h3, .post-body h4, .post-body h5, .post-body h6 {
+          margin-top: 1.5em;
+          margin-bottom: 16px;
+        }
+        
+        .post-body h1, .post-body h2, .post-body h3 {
+          border-bottom: 1px solid #ccc;
+        }
+        
+        .post-body p {
+          line-height: 1.8;
+        }
+        
+        .post-body a {
+          color: #2E86AB;
+        }
+        
+        .post-body a:hover {
+          color: #1C5677;
+        }
+        
+        .post-body table {
+          border: 1px solid #ddd;
+          border-spacing: 0;
+        }
+        
+        .post-body table thead {
+          background-color: #eee;
+        }
+        
+        .post-body table tr:nth-child(2n) {
+          background-color: #eee;
+        }
+        
+        .post-body table th, .post-body table td {
+          padding: .2em .5em;
+          border: 1px solid #ddd;
+        }
+        
+        .post-body blockquote {
+          color: #888;
+          border-left: 4px solid #ddd;
+          margin-inline-start: 0px;
+          margin-inline-end: 0px;
+          padding-inline-start: 16px;
+        }
+        
+        code {
+          padding: .1em .6em;
+          background-color: #eee;
+          color: #c7254e;
+          font: 400 .9rem normal;
+          font-family: Menlo,Consolas,'DejaVu Sans Mono',monospace;
+          border-radius: 5px;
+        }
+        
+        .post-body pre {
+          font-size: 16px;
+        }
+        
+        .post-body pre code {
+          padding: 1rem .5rem;
+          border-radius: 5px;
+          font-family: Menlo,Monaco,Consolas,"Courier New",monospace;
+          font-size: .9rem;
+          line-height: 1.3rem;
+        }
+        
+        .post-body hr {
+          border: 1px solid #ddd;
+        }
+        
+        .post-body ul {
+            line-height: 1.8rem;
+        }
+
 
         {CustomCSS}
     </style>
