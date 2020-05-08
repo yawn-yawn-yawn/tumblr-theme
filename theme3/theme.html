@@ -466,7 +466,7 @@
               content: "";
               position: absolute;
               top: 0;
-              right: -1.57rem;
+              right: -1.55rem;
               width: 0px;
               height: 0px;
               margin: auto;
@@ -591,6 +591,9 @@
             }
 
             /*markdown*/
+            .post-body {
+                word-wrap: break-word;
+            }
             .post-body > :first-child {
               margin-top: 0;
             }
@@ -606,15 +609,6 @@
             
             .post-body p {
               line-height: 1.8;
-            }
-            
-            code {
-              padding: .1em .6em;
-              background-color: #eee;
-              color: #c7254e;
-              font: 400 16px normal;
-              font-family: Menlo,Consolas,'DejaVu Sans Mono',monospace;
-              border-radius: 5px;
             }
             
             .post-body a {
@@ -651,6 +645,15 @@
               padding-inline-start: 16px;
             }
             
+            code {
+              padding: .1em .6em;
+              background-color: #eee;
+              color: #c7254e;
+              font: 400 .9rem normal;
+              font-family: Menlo,Consolas,'DejaVu Sans Mono',monospace;
+              border-radius: 5px;
+            }
+            
             .post-body pre {
               font-size: 16px;
             }
@@ -666,8 +669,16 @@
             .post-body hr {
               border: 1px solid #ddd;
             }
+            
+            .post-body ul {
+                line-height: 1.8rem;
+            }
+            
+            .post-body img {
+                max-width: 100%;
+            }
 
-
+            {CustomCSS}
 
         </style>
     </head>
@@ -1006,10 +1017,10 @@
                             <ul class="control-list">
                                 <!--TODO: meta-->
                                 {block:IfTwitterLink}<li class="control-item"><a href="{text:Twitter Link}" class="control-link"><i class="fab fa-twitter"></i></a></li>{/block:IfTwitterLink}
-                                {block:IfGitHubLink}<li class="control-item"><a href="{text:GitHub Link}" class="control-link"><i class="fab fa-github"></i></a></li>{/block:IfTwitterLink}
-                                {block:IfFacebookLink}<li class="control-item"><a href="{text:Facebook Link}" class="control-link"><i class="fab fa-facebook-square"></i></a></li>{/block:IfTwitterLink}
-                                {block:IfBlogLink}<li class="control-item"><a href="{text:Block Link}" class="control-link"><i class="fas fa-pen-nib"></i></a></li>{/block:IfTwitterLink}
-                                {block:IfWebSiteLink}<li class="control-item"><a href="{text:WebSite Link}" class="control-link"><i class="fas fa-file-alt"></i></a></li>{/block:IfTwitterLink}
+                                {block:IfGitHubLink}<li class="control-item"><a href="{text:GitHub Link}" class="control-link"><i class="fab fa-github"></i></a></li>{/block:IfGitHubLink}
+                                {block:IfFacebookLink}<li class="control-item"><a href="{text:Facebook Link}" class="control-link"><i class="fab fa-facebook-square"></i></a></li>{/block:IfFacebookLink}
+                                {block:IfBlogLink}<li class="control-item"><a href="{text:Block Link}" class="control-link"><i class="fas fa-pen-nib"></i></a></li>{/block:IfBlogLink}
+                                {block:IfWebSiteLink}<li class="control-item"><a href="{text:WebSite Link}" class="control-link"><i class="fas fa-file-alt"></i></a></li>{/block:IfWebSiteLink}
                             </ul>
                         </div>
                     </div>
