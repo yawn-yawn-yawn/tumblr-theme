@@ -13,12 +13,39 @@
         <script>hljs.initHighlightingOnLoad();</script>
         
         {block:Hidden}
+            <!--image-->
+            <!--<meta name="image:Header Image" content="{HeaderImage}" />-->
+            <!--TODO: apply-->
+            <meta name="image:Background Image" content="" />
+            
+            <!--color-->
+            <meta name="color:Background Color" content="#FFE8CC" />
+            <meta name="color:Footer Color" content="#45261f" />
+            <meta name="color:Container Color" content="#fff"/>
+            <meta name="color:Accent Color" content="#339989"/>
+            <meta name="color:Sub Color" content="#ccc" />
+            <meta name="color:Text Color" content="#45261f" />
+            <meta name="color:Notify Text Color" content="#FFE8CC"/>
+            
+            <!--font-->
+            <meta name="font:Text Font" content="Helvetica Neue,Arial,sans-serif"/>
+            <meta name="font:Chat Font" content="'Lucida Console', Courier, monospace"/>
+            <meta name="font:Quote Font" content=""/>
+            
+            <!--select-->
             <meta name="select:Highlight Style" content="atom-one-dark.min.css" title="Atom One Dark">
             <meta name="select:Highlight Style" content="a11y-dark.min.css" title="A 11 Y Dark">
             <meta name="select:Highlight Style" content="gruvbox-dark.min.css" title="Gruvbox Dark">
             <meta name="select:Highlight Style" content="atelier-dune-light.min.css" title="Atelier Dune Light">
             <meta name="select:Highlight Style" content="docco.min.css" title="Docco">
             <meta name="select:Highlight Style" content="a11y-light.min.css" title="A 11 Y Light">
+            
+            <!--text-->
+            <meta name="text:Twitter Link" content="" />
+            <meta name="text:GitHub Link" content="" />
+            <meta name="text:Facebook Link" content="" />
+            <meta name="text:Blog Link" content="" />
+            <meta name="text:WebSite Link" content="" />
         {/block:Hidden}
 
 
@@ -26,13 +53,17 @@
         
         <style>
             html {
-              background-color: #45261f;
+              background-color: {color:Footer Color};
+              font-family: {font:Text Font};
             }
             
             body {
               margin: 0;
-              background-color: #FFE8CC;
-              color: #45261f;
+              background-color: {color:Background Color};
+              background-image: url("{image:Background Image}");
+              background-size: cover;
+              background-attachment: fixed;
+              color: {color:Text Color};
               padding-top: 50px;
             }
             
@@ -43,15 +74,15 @@
             }
             
             .notify-wrapper {
-              background-color: #FFE8CC;
+              background-color: {color:Background Color};
             }
             
             .notify-wrapper .notify {
               text-align: left;
               width: 40%;
               min-width: 300px;
-              background-color: #339989;
-              color: #FFE8CC;
+              background-color: {color:Accent Color};
+              color: {color:Notify Text Color};
               padding: .5rem 1rem .5rem 2.5rem;
               box-sizing: border-box;
               position: relative;
@@ -65,7 +96,7 @@
               width: 0;
               height: 0;
               border-style: solid;
-              border-color: #FFE8CC #FFE8CC #45261f #45261f;
+              border-color: {color:Background Color} {color:Background Color} {color:Text Color} {color:Text Color};
               border-width: .5rem;
             }
             
@@ -102,13 +133,13 @@
               padding: 5px 15px;
               border-radius: 5px;
               box-sizing: border-box;
-              border: 1px solid #999;
+              border: 1px solid {color:Sub Color};
             }
             
             .sidebar {
               border-radius: 5px;
               display: flex;
-              background-color: #fff;
+              background-color: {color:Container Color};
               padding: 20px;
               flex-wrap: wrap;
               box-sizing: border-box;
@@ -155,6 +186,7 @@
               background-color: rgba(51, 153, 137, 0.4);
               position: relative;
               width: 80%;
+              font-family: "Helvetica Neue",Arial,sans-serif;
             }
             
             .sidebar .page-list .page-item:last-child {
@@ -174,20 +206,20 @@
               width: 0;
               height: 0;
               border-style: solid;
-              border-color: transparent #fff transparent transparent;
+              border-color: transparent {color:Container Color} transparent transparent;
               border-width: .87rem 1rem .87rem 1rem;
             }
             
             .sidebar .page-list .page-link {
-              color: #45261f;
+              color: {color:Text Color};
               text-decoration: none;
               display: block;
-              padding: 2px 20px;
+              padding: 5px 20px;
             }
             
             .sidebar .search-form {
               display: flex;
-              border-bottom: 1px solid #339989;
+              border-bottom: 1px solid {color:Accent Color};
             }
             
             .sidebar .search-form input[type=text] {
@@ -202,7 +234,7 @@
             .sidebar .search-form button {
               border: none;
               background-color: transparent;
-              color: #339989;
+              color: {color:Accent Color};
             }
             
             .sidebar .search-form button:focus {
@@ -226,11 +258,11 @@
             }
             
             .sidebar .control-list .control-link {
-              color: #999;
+              color: {color:Sub Color};
             }
             
             .sidebar .control-list .control-link:hover {
-              color: #339989;
+              color: {color:Accent Color};
             }
             
             .content-wrapper {
@@ -250,14 +282,14 @@
               margin-top: 0;
               list-style: none;
               border-radius: 5px;
-              background-color: #fff;
+              background-color: {color:Container Color};
               padding: 0 .5rem;
             }
             
             .pagination-wrapper .pagination-item {
               display: inline-block;
               margin: 0;
-              color: #999;
+              color: {color:Sub Color};
               padding: .1rem .5rem;
             }
             
@@ -265,19 +297,19 @@
               display: block;
               align-self: center;
               text-decoration: none;
-              color: #45261f;
+              color: {color:Text Color};
             }
             
             .pagination-wrapper .pagination-link:hover {
-              color: #339989;
+              color: {color:Accent Color};
             }
             
             .pagination-wrapper .current {
-              color: #339989;
+              color: {color:Accent Color};
             }
             
             article {
-              background-color: #fff;
+              background-color: {color:Container Color};
               padding: 1rem 1.5rem;
               border-radius: 5px;
               margin-bottom: 45px;
@@ -296,6 +328,7 @@
               margin: 0;
               margin-bottom: 1rem;
               font-style: italic;
+              font-family: {font:Quote Font};
             }
             
             article.quote blockquote::before {
@@ -323,7 +356,7 @@
             }
             
             article .header .post-date {
-              color: #999;
+              color: {color:Sub Color};
             }
             
             article .content {
@@ -345,7 +378,7 @@
             
             article .content .post-title-link {
               text-decoration: none;
-              color: #339989;
+              color: {color:Accent Color};
             }
             
             article .content .post-title-link:hover {
@@ -362,7 +395,7 @@
               border-radius: 5px;
               padding: .8rem 1.2rem;
               text-decoration: none;
-              color: #339989;
+              color: {color:Accent Color};
             }
             
             article .content .link-wrapper .link:hover {
@@ -381,6 +414,7 @@
               margin: 0;
               padding: 0;
               list-style: none;
+              font-family: {font:Chat Font};
             }
             
             article .content .conversation .label {
@@ -406,11 +440,12 @@
               list-style: none;
               margin: 0;
               padding: 0;
+              font-family: "Helvetica Neue",Arial,sans-serif;
             }
             
             article .panel .tag-list .tag-item {
               display: inline-block;
-              background-color: #45261f;
+              background-color: {color:Text Color};
               border-top-left-radius: 5px;
               border-bottom-left-radius: 5px;
               position: relative;
@@ -430,20 +465,21 @@
               content: "";
               position: absolute;
               top: 0;
-              right: -1.5rem;
+              right: -1.57rem;
               width: 0px;
               height: 0px;
               margin: auto;
               border-style: solid;
-              border-color: transparent transparent transparent #45261f;
+              border-color: transparent transparent transparent {color:Text Color};
               border-width: .78rem .78rem .78rem .78rem;
+              
             }
             
             article .panel .tag-list .tag-link {
               display: block;
               text-decoration: none;
-              color: #fff;
-              padding: .1rem .5rem;
+              color: {color:Container Color};
+              padding: 4px 10px;
             }
             
             article .panel .controls {
@@ -454,12 +490,12 @@
             
             article .panel .controls .note-link {
               text-decoration: none;
-              color: #999;
+              color: {color:Sub Color};
               font-size: .9rem;
             }
             
             article .panel .controls .note-link:hover {
-              color: #339989;
+              color: {color:Accent Color};
             }
             
             article .panel .controls .control-list {
@@ -475,12 +511,12 @@
             
             article .panel .controls .control-list .control-link {
               text-decoration: none;
-              color: #999;
+              color: {color:Sub Color};
               font-size: 1.2rem;
             }
             
             article .panel .controls .control-list .control-link:hover {
-              color: #339989;
+              color: {color:Accent Color};
             }
             
             .note-wrapper {
@@ -505,7 +541,7 @@
             }
             
             .note-wrapper .notes .note .action a {
-              color: #339989;
+              color: {color:Accent Color};
               text-decoration: none;
             }
             
@@ -520,8 +556,8 @@
             .footer-wrapper .footer {
               display: flex;
               justify-content: center;
-              background-color: #45261f;
-              color: #FFE8CC;
+              background-color: {color:Footer Color};
+              color: {color:Background Color};
               padding: .3rem 2rem;
             }
             
@@ -530,7 +566,7 @@
                 height: 100%;
                 top: 0;
                 right: 0;
-                background-color: #fff;
+                background-color: {color:Container Color};
                 max-width: 325px;
               }
               .sidebar {
@@ -968,8 +1004,11 @@
                         <div class="sidebar-item">
                             <ul class="control-list">
                                 <!--TODO: meta-->
-                                <li class="control-item"><a href="#" class="control-link"><i class="fab fa-twitter"></i></a></li>
-                                <li class="control-item"><a href="#" class="control-link"><i class="fab fa-github"></i></a></li>
+                                {block:IfTwitterLink}<li class="control-item"><a href="{text:Twitter Link}" class="control-link"><i class="fab fa-twitter"></i></a></li>{/block:IfTwitterLink}
+                                {block:IfGitHubLink}<li class="control-item"><a href="{text:GitHub Link}" class="control-link"><i class="fab fa-github"></i></a></li>{/block:IfTwitterLink}
+                                {block:IfFacebookLink}<li class="control-item"><a href="{text:Facebook Link}" class="control-link"><i class="fab fa-facebook-square"></i></a></li>{/block:IfTwitterLink}
+                                {block:IfBlogLink}<li class="control-item"><a href="{text:Block Link}" class="control-link"><i class="fas fa-pen-nib"></i></a></li>{/block:IfTwitterLink}
+                                {block:IfWebSiteLink}<li class="control-item"><a href="{text:WebSite Link}" class="control-link"><i class="fas fa-file-alt"></i></a></li>{/block:IfTwitterLink}
                             </ul>
                         </div>
                     </div>
