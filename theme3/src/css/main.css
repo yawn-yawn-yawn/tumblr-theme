@@ -207,6 +207,36 @@ body {
   min-width: 400px;
 }
 
+.paging-wrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.paging-wrapper .paging-list {
+  font-size: 1.3rem;
+  padding: 0;
+  margin-top: 0;
+  list-style: none;
+}
+
+.paging-wrapper .paging-item {
+  display: inline-block;
+  margin: 0;
+}
+
+.paging-wrapper .paging-link {
+  display: block;
+  text-decoration: none;
+  color: #45261f;
+  background-color: #fff;
+  padding: .1rem .3rem;
+}
+
+.paging-wrapper .paging-link:hover {
+  background-color: #339989;
+  color: #fff;
+}
+
 article {
   background-color: #fff;
   padding: 1rem 1.5rem;
