@@ -1,577 +1,998 @@
 <!DOCTYPE html>
 
 <html>
-
-<head>
-    <link rel="shortcut icon" href="{Favicon}">
-
-    <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-
-    <title>{BlogTitle}</title>
-
-    <style>
-        html {
-            background-color: #45261f;
-        }
-
-        body {
-            margin: 0;
-            background-color: #FFE8CC;
-            color: #45261f;
-            padding-top: 50px;
-        }
-
-        .container-wrapper {
-            display: flex;
-            justify-content: center;
-        }
-
-        .notify-wrapper {
-            background-color: #FFE8CC;
-        }
-
-        .notify-wrapper .notify {
-            text-align: left;
-            width: 40%;
-            min-width: 300px;
-            background-color: #339989;
-            color: #FFE8CC;
-            padding: .5rem 1rem .5rem 2.5rem;
-            box-sizing: border-box;
-            position: relative;
-        }
-
-        .notify-wrapper .notify::after {
-            content: "";
-            position: absolute;
-            top: 0;
-            right: 0;
-            width: 0;
-            height: 0;
-            border-style: solid;
-            border-color: #FFE8CC #FFE8CC #45261f #45261f;
-            border-width: .5rem;
-        }
-
-        .container {
-            display: flex;
-            /*justify-content: center;*/
-            justify-content: flex-start;
-            width: 80%;
-            max-width: 980px;
-            margin: 30px 0;
-        }
-
-        .container>* {
-            margin-left: 2rem;
-        }
-
-        .container>*:first-child {
-            margin-left: 0;
-        }
-
-        .sidebar-wrapper {
-            max-width: 240px;
-            position: fixed;
-            right: 8%;
-        }
-
-        .sidebar {
-            border-radius: 5px;
-            display: flex;
-            background-color: #fff;
-            padding: 20px;
-            flex-wrap: wrap;
-            box-sizing: border-box;
-
-        }
-
-        .sidebar .sidebar-item {
-            display: flex;
-            justify-content: center;
-            width: 100%;
-            box-sizing: border-box;
-            margin-bottom: 1rem;
-        }
-
-        .sidebar .sidebar-item:last-child {
-            margin-bottom: 0;
-        }
-
-        .sidebar .avatar {
-            width: 80px;
-        }
-
-        .sidebar .avatar img {
-            border-radius: 50%;
-            width: inherit;
-        }
-
-        .sidebar .title {
-            font-weight: 400;
-            margin: 0;
-        }
-
-        .sidebar .page-list {
-            list-style: none;
-            margin: 0;
-            padding: 0;
-            width: inherit;
-        }
-
-        .sidebar .page-list .page-item {
-            box-sizing: border-box;
-            margin-bottom: 5px;
-            background-color: rgba(51, 153, 137, 0.4);
-            position: relative;
-            width: 80%;
-        }
-
-        .sidebar .page-list .page-item:last-child {
-            margin: 0;
-        }
-
-        .sidebar .page-list .page-item:hover {
-            width: 100%;
-            transition-duration: .2s;
-        }
-
-        .sidebar .page-list .page-item::after {
-            content: "";
-            position: absolute;
-            top: 0;
-            right: 0;
-            width: 0;
-            height: 0;
-            border-style: solid;
-            border-color: transparent #fff transparent transparent;
-            border-width: .87rem 1rem .87rem 1rem;
-        }
-
-        .sidebar .page-list .page-link {
-            color: #45261f;
-            text-decoration: none;
-            display: block;
-            padding: 2px 20px;
-        }
-
-        .sidebar .search-form {
-            display: flex;
-            border-bottom: 1px solid #339989;
-        }
-
-        .sidebar .search-form input[type=text] {
-            border: none;
-            font-size: .8rem;
-        }
-
-        .sidebar .search-form input[type=text]:focus {
-            outline: none;
-        }
-
-        .sidebar .search-form button {
-            border: none;
-            background-color: transparent;
-            color: #339989;
-        }
-
-        .sidebar .search-form button:focus {
-            outline: none;
-        }
-
-        .sidebar .control-list {
-            list-style: none;
-            margin: 0;
-            padding: 0;
-        }
-
-        .sidebar .control-list .control-item {
-            display: inline-block;
-            font-size: 1.33rem;
-        }
-
-        .sidebar .control-list .control-item:first-child {
-            margin: 0;
-        }
-
-        .sidebar .control-list .control-link {
-            color: #999;
-        }
-
-        .sidebar .control-list .control-link:hover {
-            color: #339989;
-        }
-
-        .content-wrapper {
-            width: calc(100% - 240px);
-            min-width: 400px;
-        }
-
-        article {
-            background-color: #fff;
-            padding: 1rem 1.5rem;
-            border-radius: 5px;
-            margin-bottom: 45px;
-        }
-
-        article:last-child {
-            margin-bottom: 0;
-        }
-
-        article .header {
-            position: relative;
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-end;
-            border-bottom: 1px solid rgba(69, 38, 31, 0.3);
-            padding: .5rem 0;
-            font-size: .85rem;
-        }
-
-        article .header .post-type {
-            background-color: rgba(51, 153, 137, 0.4);
-            padding: .1rem .8rem;
-            display: block;
-        }
-
-        article .header .post-date {
-            color: #999;
-        }
-
-        article .content {
-            padding: 1rem 0;
-        }
-
-        article .content>* {
-            margin-bottom: 1rem;
-        }
-
-        article .content>*:last-child {
-            margin-bottom: 0;
-        }
-
-        article .content .post-title {
-            margin-top: .4rem;
-            border-bottom: 1px solid rgba(69, 38, 31, 0.3);
-        }
-
-        article .content .post-title-link {
-            text-decoration: none;
-            color: #339989;
-        }
-
-        article .content .post-title-link:hover {
-            opacity: .7;
-        }
-
-        article .content .link-wrapper .link {
-            display: block;
-            background-color: rgba(51, 153, 137, 0.2);
-            border-radius: 5px;
-            padding: .8rem 1.2rem;
-            text-decoration: none;
-            color: #339989;
-        }
-
-        article .content .link-wrapper .link:hover {
-            opacity: .8;
-        }
-
-        article .content .link-wrapper img {
-            width: 100%;
-        }
-
-        article .content .link-wrapper .link-title {
-            margin: .6rem 0;
-        }
-
-        article .content .link-wrapper .link-author::before {
-            content: "-";
-        }
-
-        article .panel {
-            border-top: 1px solid rgba(69, 38, 31, 0.3);
-            padding: .5rem 0;
-        }
-
-        article .panel>div {
-            margin-bottom: 10px;
-        }
-
-        article .panel>div:last-child {
-            margin: 0;
-        }
-
-        article .panel .tag-list {
-            font-size: .9rem;
-            list-style: none;
-            margin: 0;
-            padding: 0;
-        }
-
-        article .panel .tag-list .tag-item {
-            display: inline-block;
-            background-color: #45261f;
-            border-top-left-radius: 5px;
-            border-bottom-left-radius: 5px;
-            position: relative;
-            margin-left: .8rem;
-        }
-
-        article .panel .tag-list .tag-item:hover {
-            opacity: .7;
-        }
-
-        article .panel .tag-list .tag-item:first-child {
-            margin: 0;
-        }
-
-        article .panel .tag-list .tag-item::after {
-            content: "";
-            position: absolute;
-            top: 0;
-            right: -1.5rem;
-            width: 0px;
-            height: 0px;
-            margin: auto;
-            border-style: solid;
-            border-color: transparent transparent transparent #45261f;
-            border-width: .78rem .78rem .78rem .78rem;
-        }
-
-        article .panel .tag-list .tag-link {
-            display: block;
-            text-decoration: none;
-            color: #fff;
-            padding: .1rem .5rem;
-        }
-
-        article .panel .controls {
-            display: flex;
-            justify-content: space-between;
-            align-items: baseline;
-        }
-
-        article .panel .controls .note-link {
-            text-decoration: none;
-            color: #999;
-            font-size: .9rem;
-        }
-
-        article .panel .controls .note-link:hover {
-            color: #339989;
-        }
-
-        article .panel .controls .control-list {
-            list-style: none;
-            margin: 0;
-            padding: 0;
-        }
-
-        article .panel .controls .control-list .control-item {
-            display: inline-block;
-            margin-left: .2rem;
-        }
-
-        article .panel .controls .control-list .control-link {
-            text-decoration: none;
-            color: #999;
-            font-size: 1.2rem;
-        }
-
-        article .panel .controls .control-list .control-link:hover {
-            color: #339989;
-        }
-
-        .footer-wrapper .footer {
-            display: flex;
-            justify-content: center;
-            background-color: #45261f;
-            color: #FFE8CC;
-            padding: .3rem 2rem;
-        }
-    </style>
-</head>
-
-<body>
-    <!--TODO: 日付ページ-->
-    {block:DayPage}
-    <div class="notify-wrapper">
-        <div class="notify">
-            <label>aaaaaaaaaaaaa日の更新は何件です</label>
+    <head>
+        <link rel="shortcut icon" href="{Favicon}">
+
+        <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        
+        <!--highlight js-->
+        <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.0/styles/{select:Highlight Style}">
+        <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.0/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script>
+        
+        {block:Hidden}
+            <meta name="select:Highlight Style" content="atom-one-dark.min.css" title="Atom One Dark">
+            <meta name="select:Highlight Style" content="a11y-dark.min.css" title="A 11 Y Dark">
+            <meta name="select:Highlight Style" content="gruvbox-dark.min.css" title="Gruvbox Dark">
+            <meta name="select:Highlight Style" content="atelier-dune-light.min.css" title="Atelier Dune Light">
+            <meta name="select:Highlight Style" content="docco.min.css" title="Docco">
+            <meta name="select:Highlight Style" content="a11y-light.min.css" title="A 11 Y Light">
+        {/block:Hidden}
+
+
+        <title>{BlogTitle}</title>
+        
+        <style>
+            html {
+              background-color: #45261f;
+            }
+            
+            body {
+              margin: 0;
+              background-color: #FFE8CC;
+              color: #45261f;
+              padding-top: 50px;
+            }
+            
+            .container-wrapper {
+              display: flex;
+              justify-content: center;
+              min-height: 600px;
+            }
+            
+            .notify-wrapper {
+              background-color: #FFE8CC;
+            }
+            
+            .notify-wrapper .notify {
+              text-align: left;
+              width: 40%;
+              min-width: 300px;
+              background-color: #339989;
+              color: #FFE8CC;
+              padding: .5rem 1rem .5rem 2.5rem;
+              box-sizing: border-box;
+              position: relative;
+            }
+            
+            .notify-wrapper .notify::after {
+              content: "";
+              position: absolute;
+              top: 0;
+              right: 0;
+              width: 0;
+              height: 0;
+              border-style: solid;
+              border-color: #FFE8CC #FFE8CC #45261f #45261f;
+              border-width: .5rem;
+            }
+            
+            .container {
+              display: flex;
+              justify-content: flex-start;
+              width: 80%;
+              max-width: 980px;
+              margin: 30px 0;
+            }
+            
+            .container > * {
+              margin-left: 2rem;
+            }
+            
+            .container > *:first-child {
+              margin-left: 0;
+            }
+            
+            .sidebar-wrapper {
+              max-width: 240px;
+              position: fixed;
+              right: 8%;
+            }
+            
+            .sidebar-icon {
+              display: none;
+              position: absolute;
+              right: 0;
+              justify-content: flex-end;
+              margin: 20px;
+              font-size: 1.5rem;
+              background-color: rgba(255, 255, 255, 0.9);
+              padding: 5px 15px;
+              border-radius: 5px;
+              box-sizing: border-box;
+              border: 1px solid #999;
+            }
+            
+            .sidebar {
+              border-radius: 5px;
+              display: flex;
+              background-color: #fff;
+              padding: 20px;
+              flex-wrap: wrap;
+              box-sizing: border-box;
+              max-height: 580px;
+              overflow-y: scroll;
+            }
+            
+            .sidebar .sidebar-item {
+              display: flex;
+              justify-content: center;
+              width: 100%;
+              box-sizing: border-box;
+              margin-bottom: 1rem;
+            }
+            
+            .sidebar .sidebar-item:last-child {
+              margin-bottom: 0;
+            }
+            
+            .sidebar .avatar {
+              width: 80px;
+            }
+            
+            .sidebar .avatar img {
+              border-radius: 50%;
+              width: inherit;
+            }
+            
+            .sidebar .title {
+              font-weight: 400;
+              margin: 0;
+            }
+            
+            .sidebar .page-list {
+              list-style: none;
+              margin: 0;
+              padding: 0;
+              width: inherit;
+            }
+            
+            .sidebar .page-list .page-item {
+              box-sizing: border-box;
+              margin-bottom: 5px;
+              background-color: rgba(51, 153, 137, 0.4);
+              position: relative;
+              width: 80%;
+            }
+            
+            .sidebar .page-list .page-item:last-child {
+              margin: 0;
+            }
+            
+            .sidebar .page-list .page-item:hover {
+              width: 100%;
+              transition-duration: .2s;
+            }
+            
+            .sidebar .page-list .page-item::after {
+              content: "";
+              position: absolute;
+              top: 0;
+              right: 0;
+              width: 0;
+              height: 0;
+              border-style: solid;
+              border-color: transparent #fff transparent transparent;
+              border-width: .87rem 1rem .87rem 1rem;
+            }
+            
+            .sidebar .page-list .page-link {
+              color: #45261f;
+              text-decoration: none;
+              display: block;
+              padding: 2px 20px;
+            }
+            
+            .sidebar .search-form {
+              display: flex;
+              border-bottom: 1px solid #339989;
+            }
+            
+            .sidebar .search-form input[type=text] {
+              border: none;
+              font-size: .8rem;
+            }
+            
+            .sidebar .search-form input[type=text]:focus {
+              outline: none;
+            }
+            
+            .sidebar .search-form button {
+              border: none;
+              background-color: transparent;
+              color: #339989;
+            }
+            
+            .sidebar .search-form button:focus {
+              outline: none;
+            }
+            
+            .sidebar .control-list {
+              list-style: none;
+              margin: 0;
+              padding: 0;
+            }
+            
+            .sidebar .control-list .control-item {
+              display: inline-block;
+              font-size: 1.33rem;
+              margin-left: .5rem;
+            }
+            
+            .sidebar .control-list .control-item:first-child {
+              margin: 0;
+            }
+            
+            .sidebar .control-list .control-link {
+              color: #999;
+            }
+            
+            .sidebar .control-list .control-link:hover {
+              color: #339989;
+            }
+            
+            .content-wrapper {
+              width: calc(100% - 240px);
+              min-width: 400px;
+            }
+            
+            .pagination-wrapper {
+              display: flex;
+              justify-content: center;
+            }
+            
+            .pagination-wrapper .pagination-list {
+              display: flex;
+              font-size: 1.2rem;
+              padding: 0;
+              margin-top: 0;
+              list-style: none;
+              border-radius: 5px;
+              background-color: #fff;
+              padding: 0 .5rem;
+            }
+            
+            .pagination-wrapper .pagination-item {
+              display: inline-block;
+              margin: 0;
+              color: #999;
+              padding: .1rem .5rem;
+            }
+            
+            .pagination-wrapper .pagination-link {
+              display: block;
+              align-self: center;
+              text-decoration: none;
+              color: #45261f;
+            }
+            
+            .pagination-wrapper .pagination-link:hover {
+              color: #339989;
+            }
+            
+            .pagination-wrapper .current {
+              color: #339989;
+            }
+            
+            article {
+              background-color: #fff;
+              padding: 1rem 1.5rem;
+              border-radius: 5px;
+              margin-bottom: 45px;
+            }
+            
+            article:last-child {
+              margin-bottom: 0;
+            }
+            
+            article.photo img {
+              max-width: 100%;
+            }
+            
+            article.quote blockquote {
+              font-size: 1.5rem;
+              margin: 0;
+              margin-bottom: 1rem;
+              font-style: italic;
+            }
+            
+            article.quote blockquote::before {
+              content: "\"";
+            }
+            
+            article.quote blockquote::after {
+              content: "\"";
+            }
+            
+            article .header {
+              position: relative;
+              display: flex;
+              justify-content: space-between;
+              align-items: flex-end;
+              border-bottom: 1px solid rgba(69, 38, 31, 0.3);
+              padding: .5rem 0;
+              font-size: .85rem;
+            }
+            
+            article .header .post-type {
+              background-color: rgba(51, 153, 137, 0.4);
+              padding: .1rem .8rem;
+              display: block;
+            }
+            
+            article .header .post-date {
+              color: #999;
+            }
+            
+            article .content {
+              padding: 1rem 0;
+            }
+            
+            article .content > * {
+              margin-bottom: 1rem;
+            }
+            
+            article .content > *:last-child {
+              margin-bottom: 0;
+            }
+            
+            article .content .post-title {
+              margin-top: .4rem;
+              border-bottom: 1px solid rgba(69, 38, 31, 0.3);
+            }
+            
+            article .content .post-title-link {
+              text-decoration: none;
+              color: #339989;
+            }
+            
+            article .content .post-title-link:hover {
+              opacity: .7;
+            }
+            
+            article .content .link-wrapper img {
+              width: 100%;
+            }
+            
+            article .content .link-wrapper .link {
+              display: block;
+              background-color: rgba(51, 153, 137, 0.2);
+              border-radius: 5px;
+              padding: .8rem 1.2rem;
+              text-decoration: none;
+              color: #339989;
+            }
+            
+            article .content .link-wrapper .link:hover {
+              opacity: .8;
+            }
+            
+            article .content .link-wrapper .link-title {
+              margin: .6rem 0;
+            }
+            
+            article .content .link-wrapper .link-author::before {
+              content: "-";
+            }
+            
+            article .content .conversation {
+              margin: 0;
+              padding: 0;
+              list-style: none;
+            }
+            
+            article .content .conversation .label {
+              font-weight: bold;
+              line-height: 2rem;
+            }
+            
+            article .panel {
+              border-top: 1px solid rgba(69, 38, 31, 0.3);
+              padding: .5rem 0;
+            }
+            
+            article .panel > div {
+              margin-bottom: 10px;
+            }
+            
+            article .panel > div:last-child {
+              margin: 0;
+            }
+            
+            article .panel .tag-list {
+              font-size: .9rem;
+              list-style: none;
+              margin: 0;
+              padding: 0;
+            }
+            
+            article .panel .tag-list .tag-item {
+              display: inline-block;
+              background-color: #45261f;
+              border-top-left-radius: 5px;
+              border-bottom-left-radius: 5px;
+              position: relative;
+              margin-left: 1.2rem;
+              margin-bottom: .5rem;
+            }
+            
+            article .panel .tag-list .tag-item:hover {
+              opacity: .7;
+            }
+            
+            article .panel .tag-list .tag-item:first-child {
+              margin: 0;
+            }
+            
+            article .panel .tag-list .tag-item::after {
+              content: "";
+              position: absolute;
+              top: 0;
+              right: -1.5rem;
+              width: 0px;
+              height: 0px;
+              margin: auto;
+              border-style: solid;
+              border-color: transparent transparent transparent #45261f;
+              border-width: .78rem .78rem .78rem .78rem;
+            }
+            
+            article .panel .tag-list .tag-link {
+              display: block;
+              text-decoration: none;
+              color: #fff;
+              padding: .1rem .5rem;
+            }
+            
+            article .panel .controls {
+              display: flex;
+              justify-content: space-between;
+              align-items: baseline;
+            }
+            
+            article .panel .controls .note-link {
+              text-decoration: none;
+              color: #999;
+              font-size: .9rem;
+            }
+            
+            article .panel .controls .note-link:hover {
+              color: #339989;
+            }
+            
+            article .panel .controls .control-list {
+              list-style: none;
+              margin: 0;
+              padding: 0;
+            }
+            
+            article .panel .controls .control-list .control-item {
+              display: inline-block;
+              margin-left: .5rem;
+            }
+            
+            article .panel .controls .control-list .control-link {
+              text-decoration: none;
+              color: #999;
+              font-size: 1.2rem;
+            }
+            
+            article .panel .controls .control-list .control-link:hover {
+              color: #339989;
+            }
+            
+            .note-wrapper {
+              border-top: 1px solid rgba(69, 38, 31, 0.3);
+              margin-top: .6rem;
+            }
+            
+            .note-wrapper .notes {
+              list-style: none;
+              padding: 0;
+            }
+            
+            .note-wrapper .notes .note {
+              line-height: 32px;
+              display: flex;
+            }
+            
+            .note-wrapper .notes .note .avatar {
+              width: 32px;
+              margin-right: 10px;
+              border-radius: 50%;
+            }
+            
+            .note-wrapper .notes .note .action a {
+              color: #339989;
+              text-decoration: none;
+            }
+            
+            .note-wrapper .notes .note .action a:hover {
+              opacity: .7;
+            }
+            
+            .footer-wrapper {
+                position: relative;
+                z-index: 100;
+            }
+            .footer-wrapper .footer {
+              display: flex;
+              justify-content: center;
+              background-color: #45261f;
+              color: #FFE8CC;
+              padding: .3rem 2rem;
+            }
+            
+            @media (max-width: 800px) {
+              .sidebar-wrapper {
+                height: 100%;
+                top: 0;
+                right: 0;
+                background-color: #fff;
+                max-width: 325px;
+              }
+              .sidebar {
+                background-color: transparent;
+                margin-top: 30px;
+                display: none;
+              }
+              .sidebar-icon {
+                display: block;
+              }
+              .container {
+                justify-content: center;
+              }
+              .content-wrapper {
+                width: 100%;
+              }
+            }
+            
+            .flex-open {
+              display: flex;
+            }
+
+            /*markdown*/
+            .post-body > :first-child {
+              margin-top: 0;
+            }
+            
+            .post-body h1, .post-body h2, .post-body h3, .post-body h4, .post-body h5, .post-body h6 {
+              margin-top: 1.5em;
+              margin-bottom: 16px;
+            }
+            
+            .post-body h1, .post-body h2, .post-body h3 {
+              border-bottom: 1px solid #ccc;
+            }
+            
+            .post-body p {
+              line-height: 1.8;
+            }
+            
+            code {
+              padding: .1em .6em;
+              background-color: #eee;
+              color: #c7254e;
+              font: 400 16px normal;
+              font-family: Menlo,Consolas,'DejaVu Sans Mono',monospace;
+              border-radius: 5px;
+            }
+            
+            .post-body a {
+              color: #2E86AB;
+            }
+            
+            .post-body a:hover {
+              color: #1C5677;
+            }
+            
+            .post-body table {
+              border: 1px solid #ddd;
+              border-spacing: 0;
+            }
+            
+            .post-body table thead {
+              background-color: #eee;
+            }
+            
+            .post-body table tr:nth-child(2n) {
+              background-color: #eee;
+            }
+            
+            .post-body table th, .post-body table td {
+              padding: .2em .5em;
+              border: 1px solid #ddd;
+            }
+            
+            .post-body blockquote {
+              color: #888;
+              border-left: 4px solid #ddd;
+              margin-inline-start: 0px;
+              margin-inline-end: 0px;
+              padding-inline-start: 16px;
+            }
+            
+            .post-body pre {
+              font-size: 16px;
+            }
+            
+            .post-body pre code {
+              padding: 1rem .5rem;
+              border-radius: 5px;
+              font-family: Menlo,Monaco,Consolas,"Courier New",monospace;
+              font-size: .9rem;
+              line-height: 1.3rem;
+            }
+            
+            .post-body hr {
+              border: 1px solid #ddd;
+            }
+
+
+
+        </style>
+    </head>
+
+    <body>
+        <!--日付ページ-->
+        {block:DayPage}
+        <div class="notify-wrapper">
+            <div class="notify">
+                <label>Posted on <b>{Year}/{MonthNumber}/{DayOfMonth}</b></label>
+            </div>
         </div>
-    </div>
-    {/block:DayPage}
-
-    <!--TODO: たぐページ-->
-    {block:TagPage}
-    <div class="notify-wrapper">
-        <div class="notify">
-            <label>aaaaaaaaaaaaa日の更新は何件です</label>
+        {/block:DayPage}
+        
+        <!--たぐページ-->
+        {block:TagPage}
+        <div class="notify-wrapper">
+            <div class="notify">
+                <label>{lang:Posts tagged Tag}</label>
+            </div>
         </div>
-    </div>
-    {/block:TagPage}
-
-    <!--TODO: 検索ページ-->
-    {block:SearchPage}
-    <div class="notify-wrapper">
-        <div class="notify">
-            <label>aaaaaaaaaaaaa日の更新は何件です</label>
+        {/block:TagPage}
+        
+        <!--検索ページ-->
+        {block:SearchPage}
+        <div class="notify-wrapper">
+            <div class="notify">
+                <label>{lang:Search results for SearchQuery}</label>
+            </div>
         </div>
-    </div>
-    {/block:SearchPage}
-
-    <div class="container-wrapper">
-        <div class="container">
-            <div class="content-wrapper">
-                {block:Posts}
-                <article class="{PostType}">
-                    <div class="header">
-                        <label class="post-type">{PostType}</label>
-                        <label class="post-date">{TimeAgo}</label>
-                    </div>
-                    <!-- END header -->
-
-                    <!--text-->
-                    {block:Text}
-                    <div class="content">
-                        {block:Title}
-                        <h1 class="post-title"><a href="#" class="post-title-link">{Title}</a></h1>
-                        {/block:Title}
-                        <div class="post-body">{Body}</div>
-                    </div>
-                    {/block:Text}
-                    <!--TODO: photo-->
-                    {block:Photo}
-                    <div class="content"></div>
-                    {/block:Photo}
-                    <!--TODO: photoset-->
-                    {block:Photoset}
-                    <div class="content"></div>
-                    {/block:Photoset}
-                    <!--TODO: panorama-->
-                    {block:Panorama}
-                    <div class="content"></div>
-                    {/block:Panorama}
-                    <!--TODO: quote-->
-                    {block:Quote}
-                    <div class="content"></div>
-                    {/block:Quote}
-                    <!--TODO: link-->
-                    {block:Link}
-                    <div class="content">
-                        <div class="link-wrapper">
-                            <a href="{URL}" target="_blank" class="link">
-                                {block:Thumbnail}
-                                <img src="{Thumbnail-HighRes}">
-                                {/block:Thumbnail}
-                                {block:Host}<label>{Host}</label>{/block:Host}
-                                <h2 class="link-title">{Name}</h2>
-                                {block:Excerpt}<label>{Excerpt}</label>{/block:Excerpt}
-                                {block:Author}<label class="link-author">{Author}</label>{/block:Author}
-
-                            </a>
+        {/block:SearchPage}
+        
+        <div class="container-wrapper">
+            <div class="container">
+                <div class="content-wrapper">
+                    {block:Posts}
+                    <article class="{PostType}">
+                        <div class="header">
+                            <label class="post-type">{PostType}</label>
+                            <label class="post-date">{TimeAgo}</label>
                         </div>
-                        {block:Description}
-                        <div class="post-body">{Description}</div>
-                        {/block:Description}
-                    </div>
-                    {/block:Link}
+                        <!-- END header -->
+                        
+                        <!--text-->
+                        {block:Text}
+                        <div class="content">
+                            {block:Title}
+                            <h1 class="post-title"><a href="{Permalink}" class="post-title-link">{Title}</a></h1>
+                            {/block:Title}
+                            <div class="post-body">{Body}</div>
+                        </div>
+                        {/block:Text}
+                        
+                        <!--TODO: photo-->
+                        {block:Photo}
+                        <style>
+                            /*article.photo img {*/
+                            /*    max-width: 100%;*/
+                            /*}*/
+                        </style>
+                        <div class="content">
+                            {block:IndexPage}
+                            <a href="{PhotoURL-HighRes}">
+                                <img class="img-responsive radius" src="{PhotoURL-HighRes}"
+                                    data-at2x="{PhotoURL-HighRes}" alt="{PhotoAlt}" />
+                            </a>
+                            {/block:IndexPage}
+                            {block:PermalinkPage}
+                            {LinkOpenTag}
+                            <img class="img-responsive radius" src="{PhotoURL-HighRes}" data-at2x="{PhotoURL-HighRes}"
+                                alt="{PhotoAlt}" />
+                            {LinkCloseTag}
+                            {/block:PermalinkPage}
 
-                    <!--TODO: audio-->
-                    {block:Audio}{/block:Audio}
-                    <!--TODO: video-->
-                    {block:Video}{/block:Video}
-                    <!--TODO: answer-->
-                    {block:Answer}{/block:Answer}
-                    <!-- END content -->
-
-                    <div class="panel">
-                        {block:HasTags}
-                        <div class="tags">
-                            <ul class="tag-list">
-                                {block:Tags}
-                                <li class="tag-item"><a href="{TagURL}" class="tag-link">{Tag}</a></li>
-                                {/block:Tags}
+                            {block:Caption}
+                                <div class="post-body">{Caption}</div>
+                            {/block:Caption}
+                        </div>
+                        {/block:Photo}
+                        
+                        <!--TODO: photoset-->
+                        {block:Photoset}
+                        <div class="content">
+                            <div id="photoset-{PostID}" class="photoset-layout radius invisible"
+                                data-layout="{PhotosetLayout}">
+                                {block:Photos}
+                                <img class="img-responsive" class="img-responsive" src="{PhotoURL-HighRes}"
+                                    data-at2x="{PhotoURL-HighRes}" data-highres="{PhotoURL-HighRes}" alt="{PhotoAlt}" />
+                                {/block:Photos}
+                            </div>
+                            {block:Caption}
+                                <div class="post-body">{Caption}</div>
+                            {/block:Caption}
+                        </div>
+                        {/block:Photoset}
+                        
+                        <!--TODO: panorama-->
+                        {block:Panorama}
+                        <div class="content">
+                            {LinkOpenTag}
+                            <img class="img-responsive" src="{PhotoURL-HighRes}" data-at2x="{PhotoURL-HighRes}"
+                                alt="{PhotoAlt}" />
+                            {LinkCloseTag}
+                         
+                            {block:Caption}
+                                <div class="post-body">{Caption}</div>
+                            {/block:Caption}
+                        </div>
+                        {/block:Panorama}
+                        
+                        <!--TODO: quote-->
+                        {block:Quote}
+                        <style>
+                            /*article.quote blockquote {*/
+                            /*    font-size: 1.5rem;*/
+                            /*    margin: 0;*/
+                            /*    margin-bottom: 1rem;*/
+                            /*    font-style: italic;*/
+                            /*}*/
+                            /*article.quote blockquote::before {*/
+                            /*    content: "\"";*/
+                            /*}*/
+                            /*article.quote blockquote::after {*/
+                            /*    content: "\"";*/
+                            /*}*/
+                        </style>
+                        <div class="content">
+                            <blockquote class="{Length}">
+                                {Quote}
+                            </blockquote>
+                            {block:Source}
+                                <div class="post-body">{Source}</div>
+                            {/block:Source}
+                        </div>
+                        {/block:Quote}
+                        
+                        {block:Chat}
+                        <div class="content">
+                        <style>
+                            /*article .content .conversation {*/
+                            /*    margin: 0;*/
+                            /*    padding: 0;*/
+                            /*    list-style: none;*/
+                            /*}*/
+                            /*article .content .conversation .label {*/
+                            /*    font-weight: bold;*/
+                            /*    line-height: 2rem;*/
+                            /*}*/
+                        </style>
+                            {block:Title}
+                                <h1 class="post-title"><a href="{Permalink}" class="post-title-link">{Title}</a></h1>
+                            {/block:Title}
+                            <ul class="conversation">
+                            {block:Lines}
+                                <li>
+                                    {block:Label}
+                                        <label class="label">{Label}</label>
+                                    {/block:Label}
+                                    {Line}
+                                </li>
+                            {/block:Lines}
                             </ul>
                         </div>
-                        {/block:HasTags}
-                        <div class="controls">
-                            <div>
-                                {block:NoteCount}
-                                <a href="#" class="note-link">{NoteCountWithLabel}</a>
-                                {/block:NoteCount}
+                        {/block:Chat}
+                        
+                        <!--TODO: link-->
+                        {block:Link}
+                        <div class="content">
+                            <div class="link-wrapper">
+                                <a href="{URL}" target="_blank" class="link">
+                                    {block:Thumbnail}
+                                    <img src="{Thumbnail-HighRes}">
+                                    {/block:Thumbnail}
+                                    {block:Host}<label>{Host}</label>{/block:Host}
+                                    <h2 class="link-title">{Name}</h2>
+                                    {block:Excerpt}<label>{Excerpt}</label>{/block:Excerpt}
+                                    {block:Author}<label class="link-author">{Author}</label>{/block:Author}
+                                    
+                                </a>
                             </div>
-                            <div>
-                                <ul class="control-list">
-                                    <!--TODO: share, line, reblog, comment?-->
-                                    <li class="control-item"><a href="#" class="control-link"><i
-                                                class="fab fa-twitter"></i></a></li>
-                                    <li class="control-item"><a href="{Permalink}" class="control-link"><i
-                                                class="fas fa-newspaper"></i></a></li>
-                                </ul>
+                            {block:Description}
+                            <div class="post-body">{Description}</div>
+                            {/block:Description}
+                        </div>
+                        {/block:Link}
+                        
+                        <!--TODO: audio-->
+                        {block:Audio}
+                        <div class="content">
+                            <div class="player">
+                                {AudioPlayer}
+                                {AudioEmbed}
+                            </div>
+                            
+                            {block:Caption}
+                            <div class="post-body">{Caption}</div>
+                            {/block:Caption}
+                        </div>
+                        {/block:Audio}
+                        
+                        <!--TODO: video-->
+                        {block:Video}
+                        <div class="content">
+                            <div class="video">
+                                {Video-700}
+                            </div>
+                            {block:Caption}
+                            <div class="post-body">{Caption}</div>
+                            {/block:Caption}
+                        </div>    
+                        {/block:Video}
+                        
+                        <!--TODO: answer-->
+                        {block:Answer}
+                        <div class="content">
+                            <header>
+                                <div class="question">
+                                    <img class="avatar radius" src="{AskerPortraitURL-128}" alt="Avatar" />
+                                    <div class="text radius">
+                                        <div class="wrapper">
+                                            <span class="user">{Asker}:</span> {Question}
+                                        </div>
+                                    </div>
+                                </div>
+                                {block:Answerer}
+                                <div class="answer">
+                                    <img class="avatar radius" src="{AnswererPortraitURL-128}" alt="Avatar" />
+                                    <div class="text radius">
+                                        <div class="wrapper">
+                                            <span class="user">{Answerer}: </span> {Answer}
+                                        </div>
+                                    </div>
+                                </div>
+                                {/block:Answerer}
+                            </header>
+                            <div class="post-content">
+                                <div class="replies">{Replies}</div>
                             </div>
                         </div>
+                        {/block:Answer}
+                        <!-- END content -->
+                        
+                        <div class="panel">
+                            {block:HasTags}
+                            <div class="tags">
+                                <ul class="tag-list">
+                                    {block:Tags}
+                                    <li class="tag-item"><a href="{TagURL}" class="tag-link">{Tag}</a></li>
+                                    {/block:Tags}
+                                </ul>
+                            </div>
+                            {/block:HasTags}
+                            <div class="controls">
+                                <div>
+                                    {block:NoteCount}
+                                    <a href="#" class="note-link">{NoteCountWithLabel}</a>
+                                    {/block:NoteCount}
+                                </div>
+                                <div>
+                                    <ul class="control-list">
+                                        <!--TODO: custom share, like, reblog, comment?-->
+                                        <li class="control-item"><a class="control-link">{LikeButton color="gray" size=18}</a></li>
+                                        <li class="control-item"><a class="control-link">{ReblogButton color="gray" size=18}</a></li>
+                                        <li class="control-item">
+                                            <script type="text/javascript">
+                                                ShareSummary = "{Title} - {BlogTitle}\r{ShortURL}"
+                                                elem = `<a href="https://twitter.com/intent/tweet?text=` + encodeURI(ShareSummary) + `" class="control-link twitter" target="_blank"><i class="fab fa-twitter icon"></i></a>`
+                                                document.write(elem)
+                                            </script>
+                                        </li>
+                                        <li class="control-item"><a href="{Permalink}" class="control-link"><i class="fas fa-newspaper"></i></a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- END panel -->
+                        
+                        {block:PostNotes}
+                        <div class="note-wrapper">
+                            {PostNotes-64}    
+                        </div>
+                        {/block:PostNotes}
+                    </article>
+                    {/block:Posts}
+                    
+                    {block:IndexPage}
+                    {block:Pagination}
+                    <div class="pagination-wrapper">
+                        <div class="pagination">
+                            <ul class="pagination-list">
+                                <li >
+                                <li class="pagination-item">{block:PreviousPage}<a href="{PreviousPage}" class="pagination-link">{/block:PreviousPage}&lt;{block:PreviousPage}</a>{/block:PreviousPage}</li>
+                                {block:JumpPagination length="5"}
+                                    {block:CurrentPage}<li class="pagination-item current">{PageNumber}</li>{/block:CurrentPage}
+                                    {block:JumpPage}<li class="pagination-item"><a href="{URL}" class="pagination-link">{PageNumber}</a></li>{/block:JumpPage}
+                                {/block:JumpPagination}
+                                <li class="pagination-item">{block:NextPage}<a href="{NextPage}" class="pagination-link">{/block:NextPage}&gt;{block:NextPage}</a>{/block:NextPage}</li>
+                                
+                            </ul>
+                        </div>
                     </div>
-                    <!-- END panel -->
-                </article>
-                {/block:Posts}
-            </div>
-
-            <!-- END content-wrapper -->
-            <div class="sidebar-wrapper">
-                <div class="sidebar">
-                    <div class="sidebar-item">
-                        <div class="avatar"><img src="{PortraitURL-128}"></div>
-                    </div>
-                    <div class="sidebar-item">
-                        <h2 class="title">{BlogTitle}</h2>
-                    </div>
-                    {block:Description}
-                    <div class="sidebar-item"><span>blog description</span></div>
-                    {/block:Description}
-                    <div class="sidebar-item">
-                        <ul class="page-list">
-                            <li class="page-item"><a href="/" class="page-link">Home</a></li>
-                            <li class="page-item"><a href="/archive" class="page-link">Archive</a></li>
-                            {block:HasPages}
-                            {block:Pages}
-                            <li class="page-item"><a href="{URL}" class="page-link">{Label}</a></li>
-                            {/block:Pages}
-                            {/block:HasPages}
-                        </ul>
-                    </div>
-                    <div class="sidebar-item">
-                        <form class="search-form" action="/search" method="get">
-                            <input type="text" name="q" value="{SearchQuery}" />
-                            <button type="submit"><i class="fas fa-search"></i></button>
-                        </form>
-                    </div>
-                    <div class="sidebar-item">
-                        <ul class="control-list">
-                            <!--TODO: meta-->
-                            <li class="control-item"><a href="#" class="control-link"><i class="fab fa-twitter"></i></a>
-                            </li>
-                            <li class="control-item"><a href="#" class="control-link"><i class="fab fa-github"></i></a>
-                            </li>
-                        </ul>
-                    </div>
+                    <!-- END pagination -->
+                    {/block:Pagination}
+                    {/block:IndexPage}
                 </div>
-
+                <!-- END content-wrapper -->
+                
+                <div class="sidebar-wrapper">
+                    <label class="sidebar-icon sidebar-toggle"><i class="fas fa-bars"></i></label>
+                    <div id="sidebar" class="sidebar">
+                        <div class="sidebar-item">
+                            <div class="avatar"><img src="{PortraitURL-128}"></div>
+                        </div>
+                        <div class="sidebar-item"><h2 class="title">{BlogTitle}</h2></div>
+                        {block:Description}
+                        <div class="sidebar-item"><span>{Description}</span></div>
+                        {/block:Description}
+                        <div class="sidebar-item">
+                            <ul class="page-list">
+                                <li class="page-item"><a href="/" class="page-link">Home</a></li>
+                                <li class="page-item"><a href="/archive" class="page-link">Archive</a></li>
+                                {block:HasPages}
+                                {block:Pages}
+                                <li class="page-item"><a href="{URL}" class="page-link">{Label}</a></li>
+                                {/block:Pages}
+                                {/block:HasPages}
+                            </ul>
+                        </div>
+                        <div class="sidebar-item">
+                            <form class="search-form" action="/search" method="get">
+                                <input type="text" name="q" value="{SearchQuery}" />
+                                <button type="submit"><i class="fas fa-search"></i></button>
+                            </form>
+                        </div>
+                        <div class="sidebar-item">
+                            <ul class="control-list">
+                                <!--TODO: meta-->
+                                <li class="control-item"><a href="#" class="control-link"><i class="fab fa-twitter"></i></a></li>
+                                <li class="control-item"><a href="#" class="control-link"><i class="fab fa-github"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                </div>
+                <!-- END sidebar-wrapper -->
             </div>
-            <!-- END sidebar-wrapper -->
+            <!-- END container -->
         </div>
-        <!-- END container -->
-    </div>
-    <!-- END container-wrapper -->
+        <!-- END container-wrapper -->
 
-    <div class="footer-wrapper">
-        <div class="footer">
-            footer
+        <div class="footer-wrapper">
+            <div class="footer">
+                <div><span>{Title} &copy; {CopyrightYears}</span></div>
+            </div>
         </div>
-    </div>
-    <!-- END footer-wrapper -->
-</body>
-
+        <!-- END footer-wrapper -->
+        
+        <!-- toggle sidebar -->
+        <script>
+            $(".sidebar-toggle").click(() => {
+                $("#sidebar").toggleClass("flex-open")
+            })
+        </script>
+    </body>
 </html>

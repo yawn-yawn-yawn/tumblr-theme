@@ -12,6 +12,7 @@ body {
 .container-wrapper {
   display: flex;
   justify-content: center;
+  min-height: 600px;
 }
 
 .notify-wrapper {
@@ -68,7 +69,7 @@ body {
   position: absolute;
   right: 0;
   justify-content: flex-end;
-  margin: 10px 20px;
+  margin: 20px;
   font-size: 1.5rem;
   background-color: rgba(255, 255, 255, 0.9);
   padding: 5px 15px;
@@ -84,6 +85,8 @@ body {
   padding: 20px;
   flex-wrap: wrap;
   box-sizing: border-box;
+  max-height: 580px;
+  overflow-y: scroll;
 }
 
 .sidebar .sidebar-item {
@@ -188,6 +191,7 @@ body {
 .sidebar .control-list .control-item {
   display: inline-block;
   font-size: 1.33rem;
+  margin-left: .5rem;
 }
 
 .sidebar .control-list .control-item:first-child {
@@ -207,34 +211,42 @@ body {
   min-width: 400px;
 }
 
-.paging-wrapper {
+.pagination-wrapper {
   display: flex;
   justify-content: center;
 }
 
-.paging-wrapper .paging-list {
-  font-size: 1.3rem;
+.pagination-wrapper .pagination-list {
+  display: flex;
+  font-size: 1.2rem;
   padding: 0;
   margin-top: 0;
   list-style: none;
+  border-radius: 5px;
+  background-color: #fff;
+  padding: 0 .5rem;
 }
 
-.paging-wrapper .paging-item {
+.pagination-wrapper .pagination-item {
   display: inline-block;
   margin: 0;
+  color: #999;
+  padding: .1rem .5rem;
 }
 
-.paging-wrapper .paging-link {
+.pagination-wrapper .pagination-link {
   display: block;
+  align-self: center;
   text-decoration: none;
   color: #45261f;
-  background-color: #fff;
-  padding: .1rem .3rem;
 }
 
-.paging-wrapper .paging-link:hover {
-  background-color: #339989;
-  color: #fff;
+.pagination-wrapper .pagination-link:hover {
+  color: #339989;
+}
+
+.pagination-wrapper .current {
+  color: #339989;
 }
 
 article {
@@ -246,6 +258,25 @@ article {
 
 article:last-child {
   margin-bottom: 0;
+}
+
+article.photo img {
+  max-width: 100%;
+}
+
+article.quote blockquote {
+  font-size: 1.5rem;
+  margin: 0;
+  margin-bottom: 1rem;
+  font-style: italic;
+}
+
+article.quote blockquote::before {
+  content: "\"";
+}
+
+article.quote blockquote::after {
+  content: "\"";
 }
 
 article .header {
@@ -294,6 +325,10 @@ article .content .post-title-link:hover {
   opacity: .7;
 }
 
+article .content .link-wrapper img {
+  width: 100%;
+}
+
 article .content .link-wrapper .link {
   display: block;
   background-color: rgba(51, 153, 137, 0.2);
@@ -313,6 +348,17 @@ article .content .link-wrapper .link-title {
 
 article .content .link-wrapper .link-author::before {
   content: "-";
+}
+
+article .content .conversation {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+article .content .conversation .label {
+  font-weight: bold;
+  line-height: 2rem;
 }
 
 article .panel {
@@ -341,7 +387,8 @@ article .panel .tag-list .tag-item {
   border-top-left-radius: 5px;
   border-bottom-left-radius: 5px;
   position: relative;
-  margin-left: .8rem;
+  margin-left: 1.2rem;
+  margin-bottom: .5rem;
 }
 
 article .panel .tag-list .tag-item:hover {
@@ -396,7 +443,7 @@ article .panel .controls .control-list {
 
 article .panel .controls .control-list .control-item {
   display: inline-block;
-  margin-left: .2rem;
+  margin-left: .5rem;
 }
 
 article .panel .controls .control-list .control-link {
@@ -407,6 +454,41 @@ article .panel .controls .control-list .control-link {
 
 article .panel .controls .control-list .control-link:hover {
   color: #339989;
+}
+
+.note-wrapper {
+  border-top: 1px solid rgba(69, 38, 31, 0.3);
+  margin-top: .6rem;
+}
+
+.note-wrapper .notes {
+  list-style: none;
+  padding: 0;
+}
+
+.note-wrapper .notes .note {
+  line-height: 32px;
+  display: flex;
+}
+
+.note-wrapper .notes .note .avatar {
+  width: 32px;
+  margin-right: 10px;
+  border-radius: 50%;
+}
+
+.note-wrapper .notes .note .action a {
+  color: #339989;
+  text-decoration: none;
+}
+
+.note-wrapper .notes .note .action a:hover {
+  opacity: .7;
+}
+
+.footer-wrapper {
+  position: relative;
+  z-index: 100;
 }
 
 .footer-wrapper .footer {
@@ -422,7 +504,7 @@ article .panel .controls .control-list .control-link:hover {
     height: 100%;
     top: 0;
     right: 0;
-    background-color: rgba(255, 255, 255, 0.9);
+    background-color: #fff;
     max-width: 325px;
   }
   .sidebar {
