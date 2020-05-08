@@ -75,30 +75,27 @@
             }
             
             .notify-wrapper {
-              background-color: {color:Background Color};
-            }
-            
-            .notify-wrapper .notify {
-              text-align: left;
-              width: 40%;
-              min-width: 300px;
-              background-color: {color:Accent Color};
-              color: {color:Notify Text Color};
-              padding: .5rem 1rem .5rem 2.5rem;
-              box-sizing: border-box;
+              margin-bottom: 30px;
               position: relative;
             }
             
-            .notify-wrapper .notify::after {
+            .notify-wrapper .notify {
+              background-color: {color:Accent Color};
+              color: {color:Background Color};
+              padding: .5rem 1rem .5rem 2.5rem;
+              box-sizing: border-box;
+              border-radius: 2rem;
+            }
+            
+            .notify-wrapper::after {
               content: "";
               position: absolute;
-              top: 0;
-              right: 0;
               width: 0;
               height: 0;
+              left: 33px;
               border-style: solid;
-              border-color: {color:Background Color} {color:Background Color} {color:Text Color} {color:Text Color};
-              border-width: .5rem;
+              border-color: {color:Accent Color} transparent transparent transparent;
+              border-width: 1.5rem 0rem 1rem 1.5rem;
             }
             
             .container {
@@ -184,7 +181,7 @@
             .sidebar .page-list .page-item {
               box-sizing: border-box;
               margin-bottom: 5px;
-              background-color: rgba(51, 153, 137, 0.4);
+              background-color: rgba(45, 154, 201, 0.4);
               position: relative;
               width: 80%;
               font-family: "Helvetica Neue",Arial,sans-serif;
@@ -345,13 +342,13 @@
               display: flex;
               justify-content: space-between;
               align-items: flex-end;
-              border-bottom: 1px solid rgba(69, 38, 31, 0.3);
+              border-bottom: 1px solid {color:Sub Color};
               padding: .5rem 0;
               font-size: .85rem;
             }
             
             article .header .post-type {
-              background-color: rgba(51, 153, 137, 0.4);
+              background-color: rgba(45, 154, 201, 0.4);
               padding: .1rem .8rem;
               display: block;
             }
@@ -374,7 +371,7 @@
             
             article .content .post-title {
               margin-top: .4rem;
-              border-bottom: 1px solid rgba(69, 38, 31, 0.3);
+              border-bottom: 1px solid {color:Sub Color};
             }
             
             article .content .post-title-link {
@@ -392,7 +389,7 @@
             
             article .content .link-wrapper .link {
               display: block;
-              background-color: rgba(51, 153, 137, 0.2);
+              background-color: rgba(45, 154, 201, 0.2);
               border-radius: 5px;
               padding: .8rem 1.2rem;
               text-decoration: none;
@@ -424,7 +421,7 @@
             }
             
             article .panel {
-              border-top: 1px solid rgba(69, 38, 31, 0.3);
+              border-top: 1px solid {color:Sub Color};
               padding: .5rem 0;
             }
             
@@ -521,7 +518,7 @@
             }
             
             .note-wrapper {
-              border-top: 1px solid rgba(69, 38, 31, 0.3);
+              border-top: 1px solid {color:Sub Color};
               margin-top: .6rem;
             }
             
@@ -684,36 +681,36 @@
     </head>
 
     <body>
-        <!--日付ページ-->
-        {block:DayPage}
-        <div class="notify-wrapper">
-            <div class="notify">
-                <label>Posted on <b>{Year}/{MonthNumber}/{DayOfMonth}</b></label>
-            </div>
-        </div>
-        {/block:DayPage}
-        
-        <!--たぐページ-->
-        {block:TagPage}
-        <div class="notify-wrapper">
-            <div class="notify">
-                <label>{lang:Posts tagged Tag}</label>
-            </div>
-        </div>
-        {/block:TagPage}
-        
-        <!--検索ページ-->
-        {block:SearchPage}
-        <div class="notify-wrapper">
-            <div class="notify">
-                <label>{lang:Search results for SearchQuery}</label>
-            </div>
-        </div>
-        {/block:SearchPage}
-        
         <div class="container-wrapper">
             <div class="container">
                 <div class="content-wrapper">
+                    <!--日付ページ-->
+                    {block:DayPage}
+                    <div class="notify-wrapper">
+                        <div class="notify">
+                            <label>Posted on <b>{Year}/{MonthNumber}/{DayOfMonth}</b></label>
+                        </div>
+                    </div>
+                    {/block:DayPage}
+                    
+                    <!--たぐページ-->
+                    {block:TagPage}
+                    <div class="notify-wrapper">
+                        <div class="notify">
+                            <label>{lang:Posts tagged Tag}</label>
+                        </div>
+                    </div>
+                    {/block:TagPage}
+                    
+                    <!--検索ページ-->
+                    {block:SearchPage}
+                    <div class="notify-wrapper">
+                        <div class="notify">
+                            <label>{lang:Search results for SearchQuery}</label>
+                        </div>
+                    </div>
+                    {/block:SearchPage}
+                
                     {block:Posts}
                     <article class="{PostType}">
                         <div class="header">
@@ -934,7 +931,7 @@
                             <div class="controls">
                                 <div>
                                     {block:NoteCount}
-                                    <a href="#" class="note-link">{NoteCountWithLabel}</a>
+                                    <a href="{Permalink}" class="note-link">{NoteCountWithLabel}</a>
                                     {/block:NoteCount}
                                 </div>
                                 <div>
@@ -1016,11 +1013,13 @@
                         <div class="sidebar-item">
                             <ul class="control-list">
                                 <!--TODO: meta-->
+                                <li class="control-item"><a href="/ask" class="control-link"><i class="fas fa-comment"></i></a></li>
                                 {block:IfTwitterLink}<li class="control-item"><a href="{text:Twitter Link}" class="control-link"><i class="fab fa-twitter"></i></a></li>{/block:IfTwitterLink}
                                 {block:IfGitHubLink}<li class="control-item"><a href="{text:GitHub Link}" class="control-link"><i class="fab fa-github"></i></a></li>{/block:IfGitHubLink}
                                 {block:IfFacebookLink}<li class="control-item"><a href="{text:Facebook Link}" class="control-link"><i class="fab fa-facebook-square"></i></a></li>{/block:IfFacebookLink}
                                 {block:IfBlogLink}<li class="control-item"><a href="{text:Block Link}" class="control-link"><i class="fas fa-pen-nib"></i></a></li>{/block:IfBlogLink}
                                 {block:IfWebSiteLink}<li class="control-item"><a href="{text:WebSite Link}" class="control-link"><i class="fas fa-file-alt"></i></a></li>{/block:IfWebSiteLink}
+                                
                             </ul>
                         </div>
                     </div>
