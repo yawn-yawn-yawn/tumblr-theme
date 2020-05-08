@@ -127,7 +127,8 @@
                 </div>
                 <!-- END content-wrapper -->
                 <div class="sidebar-wrapper">
-                    <div class="sidebar">
+                    <label class="sidebar-icon sidebar-toggle"><i class="fas fa-bars"></i></label>
+                    <div id="sidebar" class="sidebar">
                         <div class="sidebar-item">
                             <div class="avatar"><img src="../images/icon_yawn.jpg"></div>
                         </div>
@@ -152,6 +153,7 @@
                             </ul>
                         </div>
                     </div>
+                    <!-- END sidebar -->
                     
                 </div>
                 <!-- END sidebar-wrapper -->
@@ -166,5 +168,12 @@
             </div>
         </div>
         <!-- END footer-wrapper -->
+
+        <!-- toggle sidebar -->
+        <script>
+            $(".sidebar-toggle").click(() => {
+                $("#sidebar").toggleClass("flex-open")
+            })
+        </script>
     </body>
 </html>
