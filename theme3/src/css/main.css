@@ -28,7 +28,7 @@ body {
   color: #FFE8CC;
   padding: .5rem 1rem .5rem 2.5rem;
   box-sizing: border-box;
-  border-radius: 5px;
+  border-radius: 2rem;
 }
 
 .notify-wrapper::after {
@@ -208,7 +208,7 @@ body {
 
 .content-wrapper {
   width: calc(100% - 240px);
-  min-width: 400px;
+  min-width: 320px;
 }
 
 .pagination-wrapper {
@@ -457,6 +457,43 @@ article .panel .controls .control-list .control-link:hover {
   color: #339989;
 }
 
+article.answer .avatar {
+  width: 32px;
+}
+
+article .user-wrapper {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin-bottom: .8rem;
+}
+
+article .user-wrapper div {
+  margin-left: 1rem;
+}
+
+article .user-wrapper div:first-child {
+  margin: 0;
+}
+
+article .question-wrapper .asker {
+  text-decoration: none;
+  color-color: Accent Color;
+}
+
+article .question-wrapper .asker:hover {
+  opacity: .7;
+}
+
+article .question-wrapper, article .answer-wrapper {
+  border-bottom: 1px solid;
+  border-bottom-color: Sub Color;
+}
+
+article .reply-wrapper {
+  padding-top: .8rem;
+}
+
 .note-wrapper {
   border-top: 1px solid rgba(69, 38, 31, 0.3);
   margin-top: .6rem;
@@ -526,4 +563,8 @@ article .panel .controls .control-list .control-link:hover {
 
 .flex-open {
   display: flex;
+}
+
+.radius {
+  border-radius: 50%;
 }

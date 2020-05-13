@@ -3,6 +3,7 @@
 <html>
     <head>
         <link rel="shortcut icon" href="{Favicon}">
+        <meta name="viewport" content="width=device-width,initial-scale=1">
 
         <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -10,7 +11,8 @@
         <!--highlight js-->
         <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.0/styles/{select:Highlight Style}">
         <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.0/highlight.min.js"></script>
-        <script>hljs.initHighlightingOnLoad();</script>
+        <script type="text/javascript">hljs.initHighlightingOnLoad();</script>
+
         
         {block:Hidden}
             <!--image-->
@@ -46,6 +48,7 @@
             <meta name="text:Facebook Link" content="" />
             <meta name="text:Blog Link" content="" />
             <meta name="text:WebSite Link" content="" />
+            <meta name="text:Disqus Shortname" content="">
         {/block:Hidden}
 
 
@@ -265,7 +268,7 @@
             
             .content-wrapper {
               width: calc(100% - 240px);
-              min-width: 400px;
+              min-width: 320px;
             }
             
             .pagination-wrapper {
@@ -516,6 +519,36 @@
             article .panel .controls .control-list .control-link:hover {
               color: {color:Accent Color};
             }
+            article.answer .avatar {
+                width: 32px;
+            }
+            article .user-wrapper {
+                display: flex;
+                justify-content: flex-start;
+                align-items: center;
+                margin-bottom: .8rem;
+            }
+            article .user-wrapper div {
+                margin-left: 1rem;
+            }
+            article .user-wrapper div:first-child {
+                margin: 0;
+            }
+            
+            article .question-wrapper .asker {
+                text-decoration: none;
+                color: {color:Accent Color};
+            }
+            article .question-wrapper .asker:hover {
+                opacity: .7;
+            }
+            article .question-wrapper, article .answer-wrapper {
+                border-bottom: 1px solid {color:Sub Color};
+            }
+
+            article .reply-wrapper {
+                padding-top: .8rem;
+            }
             
             .note-wrapper {
               border-top: 1px solid {color:Sub Color};
@@ -585,6 +618,10 @@
             
             .flex-open {
               display: flex;
+            }
+            
+            .radius {
+                border-radius: 50%;
             }
 
             /*markdown*/
@@ -891,28 +928,25 @@
                         <!--TODO: answer-->
                         {block:Answer}
                         <div class="content">
-                            <header>
-                                <div class="question">
-                                    <img class="avatar radius" src="{AskerPortraitURL-128}" alt="Avatar" />
-                                    <div class="text radius">
-                                        <div class="wrapper">
-                                            <span class="user">{Asker}:</span> {Question}
-                                        </div>
-                                    </div>
+                            <div class="question-wrapper">
+                                <div class="user-wrapper">
+                                    <div><img class="avatar radius" src="{AskerPortraitURL-128}" alt="Avatar" /></div>
+                                    <div>{Asker}</div>
                                 </div>
-                                {block:Answerer}
-                                <div class="answer">
-                                    <img class="avatar radius" src="{AnswererPortraitURL-128}" alt="Avatar" />
-                                    <div class="text radius">
-                                        <div class="wrapper">
-                                            <span class="user">{Answerer}: </span> {Answer}
-                                        </div>
-                                    </div>
+                                <div class="post-body">{Question}</div>    
+                            </div>
+                            {block:Answerer}
+                            <div class="answer-wrapper">
+                                <div class="user-wrapper">
+                                    <div><img class="avatar radius" src="{AnswererPortraitURL-128}" alt="Avatar" /></div>
+                                    <div>{Answerer}</div>
                                 </div>
-                                {/block:Answerer}
-                            </header>
-                            <div class="post-content">
-                                <div class="replies">{Replies}</div>
+                                <div class="post-body">{Answer}</div>
+                            </div>
+                            {/block:Answerer}
+                            
+                            <div class="reply-wrapper">
+                                <div class="post-body">{Replies}</div>    
                             </div>
                         </div>
                         {/block:Answer}
@@ -959,7 +993,32 @@
                         </div>
                         {/block:PostNotes}
                     </article>
+<!--{block:IndexPage}Comments-->
+<!--    <script type="text/javascript">-->
+<!--    var disqus_shortname = '{text:Disqus Shortname}';    (function () {-->
+<!--        var s = document.createElement('script'); s.async = true;-->
+<!--        s.type = 'text/javascript';-->
+<!--        s.src = '//' + disqus_shortname + '.disqus.com/count.js';-->
+<!--        console.log(s)-->
+<!--        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(s);-->
+<!--    }());-->
+<!--    </script>-->
+<!--{/block:IndexPage}-->
                     {/block:Posts}
+{block:IfDisqusShortname} 
+<script type="text/javascript">
+    // /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    // var disqus_shortname = '{text:Disqus Shortname}'; // Required - Enter shortname in Tumblr Theme Options
+    // var disqus_url = '{Permalink}';     /* * * DON'T EDIT BELOW THIS LINE * * */
+    // (function() {
+    //     var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+    //     dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    //     (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    // })();
+</script>
+<!--Please enable JavaScript to view the comments powered by Disqus.-->
+<!--blog comments powered by Disqus-->
+{/block:IfDisqusShortname}
                     
                     {block:IndexPage}
                     {block:Pagination}
@@ -1013,12 +1072,12 @@
                         <div class="sidebar-item">
                             <ul class="control-list">
                                 <!--TODO: meta-->
-                                <li class="control-item"><a href="/ask" class="control-link"><i class="fas fa-comment"></i></a></li>
-                                {block:IfTwitterLink}<li class="control-item"><a href="{text:Twitter Link}" class="control-link"><i class="fab fa-twitter"></i></a></li>{/block:IfTwitterLink}
-                                {block:IfGitHubLink}<li class="control-item"><a href="{text:GitHub Link}" class="control-link"><i class="fab fa-github"></i></a></li>{/block:IfGitHubLink}
-                                {block:IfFacebookLink}<li class="control-item"><a href="{text:Facebook Link}" class="control-link"><i class="fab fa-facebook-square"></i></a></li>{/block:IfFacebookLink}
-                                {block:IfBlogLink}<li class="control-item"><a href="{text:Block Link}" class="control-link"><i class="fas fa-pen-nib"></i></a></li>{/block:IfBlogLink}
-                                {block:IfWebSiteLink}<li class="control-item"><a href="{text:WebSite Link}" class="control-link"><i class="fas fa-file-alt"></i></a></li>{/block:IfWebSiteLink}
+                                <li class="control-item"><a href="/ask" target="_blank" class="control-link"><i class="fas fa-comment"></i></a></li>
+                                {block:IfTwitterLink}<li class="control-item"><a href="{text:Twitter Link}" target="_blank" class="control-link"><i class="fab fa-twitter"></i></a></li>{/block:IfTwitterLink}
+                                {block:IfGitHubLink}<li class="control-item"><a href="{text:GitHub Link}" target="_blank" class="control-link"><i class="fab fa-github"></i></a></li>{/block:IfGitHubLink}
+                                {block:IfFacebookLink}<li class="control-item"><a href="{text:Facebook Link}" target="_blank" class="control-link"><i class="fab fa-facebook-square"></i></a></li>{/block:IfFacebookLink}
+                                {block:IfBlogLink}<li class="control-item"><a href="{text:Block Link}" target="_blank" class="control-link"><i class="fas fa-pen-nib"></i></a></li>{/block:IfBlogLink}
+                                {block:IfWebSiteLink}<li class="control-item"><a href="{text:WebSite Link}" target="_blank" class="control-link"><i class="fas fa-file-alt"></i></a></li>{/block:IfWebSiteLink}
                                 
                             </ul>
                         </div>
@@ -1039,7 +1098,7 @@
         <!-- END footer-wrapper -->
         
         <!-- toggle sidebar -->
-        <script>
+        <script type="text/javascript">
             $(".sidebar-toggle").click(() => {
                 $("#sidebar").toggleClass("flex-open")
             })
