@@ -48,7 +48,7 @@
             <meta name="text:Facebook Link" content="" />
             <meta name="text:Blog Link" content="" />
             <meta name="text:WebSite Link" content="" />
-            <meta name="text:Disqus Shortname" content="">
+            <meta name="text:Disqus Shortname" content="" />
         {/block:Hidden}
 
 
@@ -710,8 +710,8 @@
               border: 1px solid #ddd;
             }
             
-            .post-body ul {
-                line-height: 1.8rem;
+            .post-body ul, .post-body ol {
+                line-height: 1.9rem;
             }
             
             .post-body img {
@@ -998,34 +998,28 @@
                             {PostNotes-64}    
                         </div>
                         {/block:PostNotes}
+
+                        <!--Disqus and Source-->
+                        {block:PermalinkPage}
+                        {block:IfDisqusShortname}<br><br>
+                        <div id="disqus_thread"></div><div id="dsq-content">
+                        <script type="text/javascript">
+                        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+                        var disqus_shortname = '{text:Disqus Shortname}'; // Required - Enter shortname in Tumblr Theme Options
+                        var disqus_url = '{Permalink}';     /* * * DON'T EDIT BELOW THIS LINE * * */
+                        (function() {
+                            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+                        })();
+                        </script>
+                        </div>{/block:IfDisqusShortname}
+                        {/block:PermalinkPage}
+                        <!--Disqus and Source-->
                     </article>
-<!--{block:IndexPage}Comments-->
-<!--    <script type="text/javascript">-->
-<!--    var disqus_shortname = '{text:Disqus Shortname}';    (function () {-->
-<!--        var s = document.createElement('script'); s.async = true;-->
-<!--        s.type = 'text/javascript';-->
-<!--        s.src = '//' + disqus_shortname + '.disqus.com/count.js';-->
-<!--        console.log(s)-->
-<!--        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(s);-->
-<!--    }());-->
-<!--    </script>-->
-<!--{/block:IndexPage}-->
-                    {/block:Posts}
-{block:IfDisqusShortname} 
-<script type="text/javascript">
-    // /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
-    // var disqus_shortname = '{text:Disqus Shortname}'; // Required - Enter shortname in Tumblr Theme Options
-    // var disqus_url = '{Permalink}';     /* * * DON'T EDIT BELOW THIS LINE * * */
-    // (function() {
-    //     var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-    //     dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-    //     (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-    // })();
-</script>
-<!--Please enable JavaScript to view the comments powered by Disqus.-->
-<!--blog comments powered by Disqus-->
-{/block:IfDisqusShortname}
                     
+                    {/block:Posts}
+
                     {block:IndexPage}
                     {block:Pagination}
                     <div class="pagination-wrapper">
