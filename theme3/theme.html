@@ -973,6 +973,9 @@
                                     {block:NoteCount}
                                     <a href="{Permalink}" class="note-link">{NoteCountWithLabel}</a>
                                     {/block:NoteCount}
+                                    {block:IndexPage}
+                                    <a href="{Permalink}#dsq-content" class="note-link">コメントする</a>
+                                    {/block:IndexPage}
                                 </div>
                                 <div>
                                     <ul class="control-list">
@@ -1016,9 +1019,11 @@
                         </div>{/block:IfDisqusShortname}
                         {/block:PermalinkPage}
                         <!--Disqus and Source-->
+                        
                     </article>
                     
                     {/block:Posts}
+                    
 
                     {block:IndexPage}
                     {block:Pagination}
