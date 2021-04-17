@@ -1,0 +1,293 @@
+html {
+  color: #3a3030;
+  background-color: #C6CEC3;
+  background-image: url("../../img/paper.png");
+  background-size: contain;
+  background-attachment: fixed;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  height: inherit;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 0;
+}
+
+.heading {
+  border-top: 2px solid #3a3030;
+  border-bottom: 2px solid #3a3030;
+  padding: 10px 0;
+  width: 100%;
+  text-align: center;
+}
+
+.avatar-128 {
+  width: 128px;
+  height: 128px;
+}
+
+.circle {
+  border-radius: 50%;
+}
+
+.form-text {
+  background-color: transparent;
+  border: 0;
+  font-size: 1rem;
+  padding: 3px 5px;
+  width: 80%;
+}
+
+.form-text:focus {
+  outline: none;
+}
+
+.form-btn {
+  border: none;
+  background-color: transparent;
+}
+
+.form-btn:focus {
+  outline: none;
+}
+
+.form-btn:hover {
+  opacity: .6;
+}
+
+.container {
+  width: 100%;
+  height: inherit;
+  position: relative;
+  box-sizing: border-box;
+}
+
+.header-wrapper {
+  position: relative;
+  background-color: transparent;
+  margin-top: 30px;
+  display: flex;
+  justify-content: center;
+}
+
+.header-wrapper header {
+  margin: 0 20px;
+  width: 100%;
+  text-align: center;
+}
+
+.header-wrapper .description {
+  width: 50%;
+  word-break: break-all;
+  display: inline-block;
+}
+
+.sidemenu-wrapper {
+  height: inherit;
+  position: fixed;
+  width: 220px;
+  display: flex;
+  justify-content: center;
+  top: 0px;
+  left: 0;
+  padding-top: 150px;
+  box-sizing: border-box;
+}
+
+.sidemenu {
+  width: 80%;
+}
+
+.sidemenu-icon {
+  display: none;
+  background-color: #ffffff;
+  position: fixed;
+  top: 0;
+  left: 0;
+  padding: 5px 15px;
+  border-radius: 5px;
+  font-size: 1.2rem;
+}
+
+.sidemenu-item {
+  display: flex;
+  justify-content: center;
+  padding: 8px 0;
+}
+
+.sidemenu-item:first-child {
+  margin-top: 30px;
+}
+
+.sidemenu .external-list {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.sidemenu .external-list .item {
+  display: inline-block;
+  padding: 2px;
+}
+
+.sidemenu .external-list .link {
+  text-decoration: none;
+  color: inherit;
+  font-size: 1.3rem;
+}
+
+.sidemenu .external-list .link:hover {
+  color: #4C9630;
+}
+
+.sidemenu .search-form {
+  display: flex;
+  justify-content: center;
+  border-bottom: 2px solid #3a3030;
+}
+
+.main-wrapper {
+  margin-left: 220px;
+  box-sizing: border-box;
+  position: relative;
+  background-size: cover;
+  height: inherit;
+  padding: 30px 20px;
+  display: flex;
+  justify-content: center;
+}
+
+.main {
+  width: 90%;
+}
+
+.main article {
+  min-width: 450px;
+  padding: 30px 30px;
+  border-radius: 10px;
+  background-color: #ffffff;
+  margin-bottom: 30px;
+  background-color: rgba(255, 255, 255, 0.7);
+  box-sizing: border-box;
+}
+
+.post-header {
+  align-items: baseline;
+  border-bottom: 2px solid #3a3030;
+  padding-bottom: 8px;
+}
+
+.post-header .title {
+  color: #4C9630;
+}
+
+.post-header .post-infomation {
+  display: flex;
+  justify-content: space-between;
+  color: #3a3030;
+  padding: 2px 5px;
+  box-sizing: border-box;
+  font-size: small;
+}
+
+.post-body {
+  margin: 10px 0;
+  padding: 10px 0;
+}
+
+.post-footer {
+  padding-top: 8px;
+  border-top: 2px solid #3a3030;
+}
+
+.post-footer .footer-item {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 5px;
+}
+
+.post-footer .footer-item:last-child {
+  margin: 0;
+}
+
+.post-footer .tag-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: small;
+}
+
+.post-footer .tag-list .item {
+  display: inline-block;
+}
+
+.post-footer .tag-list .link {
+  display: block;
+  padding: 2px 0px;
+  color: #4C9630;
+  text-decoration: none;
+}
+
+.post-footer .tag-list .link::before {
+  content: "#";
+}
+
+.post-footer .tag-list .link:hover {
+  opacity: .7;
+}
+
+.post-footer .control-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: small;
+}
+
+.post-footer .control-list .item {
+  display: inline-block;
+}
+
+.post-footer .control-list .link {
+  color: #3a3030;
+  text-decoration: none;
+}
+
+.post-footer .control-list .link:hover {
+  color: #4C9630;
+}
+
+.footer-wrapper {
+  width: 100%;
+}
+
+.footer-wrapper footer {
+  border-top: 2px solid #3a3030;
+  margin: 0 20px;
+  display: flex;
+  justify-content: center;
+  color: #3a3030;
+  padding: 8px 0;
+}
+
+@media (max-width: 500px) {
+  .sidemenu-wrapper {
+    display: none;
+    background-color: #ffffff;
+  }
+  .sidemenu-open {
+    display: flex;
+  }
+  .sidemenu-icon {
+    display: inline-block;
+    z-index: 1000;
+  }
+  .main-wrapper {
+    margin-left: 0;
+  }
+  .main {
+    width: 100%;
+  }
+}
