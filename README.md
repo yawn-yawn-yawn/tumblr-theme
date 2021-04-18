@@ -28,6 +28,13 @@
 
 ![theme3](./images/theme3.png)
 
+### theme 4
+created at 2021/04/18
+
+新聞をイメージして作ったやつ
+
+![theme4](./images/theme4.png)
+
 
 ## how to develop
 

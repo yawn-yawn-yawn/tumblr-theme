@@ -1,0 +1,792 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <link rel="shortcut icon" href="{Favicon}">
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+
+        <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        
+        <!--highlight js-->
+        <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.0/styles/{select:Highlight Style}">
+        <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.0/highlight.min.js"></script>
+        <script type="text/javascript">hljs.initHighlightingOnLoad();</script>
+
+        
+        {block:Hidden}
+            <!--image-->
+            <!--<meta name="image:Header Image" content="{HeaderImage}" />-->
+            <!--TODO: apply-->
+            <meta name="image:Background Image" content="" />
+            
+            <!--color-->
+            <meta name="color:Background Color" content="#C6CEC3" />
+            <meta name="color:Accent Color" content="#4C9630"/>
+            <meta name="color:Sub Color" content="#AAAAAA" />
+            <meta name="color:Main Color" content="#4B3535" />
+            <meta name="color:White Color" content="#FFFFFF" />
+            <meta name="color:Main Hover Color" content="#e1cfb8" />
+            
+            
+            <!--font-->
+            <meta name="font:Text Font" content="Helvetica Neue,Arial,sans-serif"/>
+            <meta name="font:Chat Font" content="'Lucida Console', Courier, monospace"/>
+            <meta name="font:Quote Font" content=""/>
+            
+            <!--select-->
+            <meta name="select:Highlight Style" content="atom-one-dark.min.css" title="Atom One Dark">
+            <meta name="select:Highlight Style" content="a11y-dark.min.css" title="A 11 Y Dark">
+            <meta name="select:Highlight Style" content="gruvbox-dark.min.css" title="Gruvbox Dark">
+            <meta name="select:Highlight Style" content="atelier-dune-light.min.css" title="Atelier Dune Light">
+            <meta name="select:Highlight Style" content="docco.min.css" title="Docco">
+            <meta name="select:Highlight Style" content="a11y-light.min.css" title="A 11 Y Light">
+            <meta name="select:Highlight Style" content="vs2015.min.css" title="Vs 2015">
+            
+            <!--text-->
+            <meta name="text:Bio" content=""/>
+            <meta name="text:Twitter Link" content="" />
+            <meta name="text:GitHub Link" content="" />
+            <meta name="text:Facebook Link" content="" />
+            <meta name="text:Blog Link" content="" />
+            <meta name="text:WebSite Link" content="" />
+            <meta name="text:Disqus Shortname" content="" />
+        {/block:Hidden}
+
+
+        <title>{BlogTitle}</title>
+        
+        <style>
+            html {
+              color: {color:Main Color};
+              background-color: {color:Background Color};
+              min-height: 100%;
+              background-image: url("{image:Background Image}");
+              background-size: contain;
+              background-attachment: fixed;
+              font-family: {font:Text Font};
+            }
+            
+            body {
+              margin: 0;
+              padding: 0;
+              height: 100vh;
+            }
+            
+            h1, h2, h3, h4, h5, h6 {
+              margin: 0;
+            }
+            
+            .heading {
+              border-top: 2px solid {color:Main Color};
+              border-bottom: 2px solid {color:Main Color};
+              padding: 10px 0;
+              width: 100%;
+              text-align: center;
+            }
+            
+            .heading-title {
+              font-weight: 600;
+            }
+            
+            .avatar-128 {
+              width: 128px;
+              height: 128px;
+            }
+            
+            .circle {
+              border-radius: 50%;
+            }
+            
+            .notify-wrapper {
+              margin-bottom: 20px;
+            }
+            
+            .link-wrapper {
+              box-sizing: border-box;
+            }
+            
+            .link-wrapper .link {
+              display: block;
+              border: 2px solid {color:Main Color};
+              color: {color:Main Color};
+              margin-top: 20px;
+              padding: 10px 20px;
+              background-color: {color:Main Hover Color};
+            }
+            
+            .link-wrapper .link:hover {
+              opacity: .8;
+            }
+            
+            .link-wrapper .link-title {
+              text-align: center;
+            }
+            
+            .link-wrapper .link-description {
+              display: block;
+              text-align: center;
+            }
+            
+            .link-wrapper .link-infomation {
+              text-align: right;
+            }
+            
+            .form-text {
+              background-color: transparent;
+              border: 0;
+              font-size: 1rem;
+              padding: 3px 5px;
+              width: 80%;
+            }
+            
+            .form-text:focus {
+              outline: none;
+            }
+            
+            .form-btn {
+              border: none;
+              background-color: transparent;
+            }
+            
+            .form-btn:focus {
+              outline: none;
+            }
+            
+            .form-btn:hover {
+              opacity: .6;
+            }
+            
+            .container {
+              width: 100%;
+              min-height: 100%;
+              position: relative;
+              box-sizing: border-box;
+            }
+            
+            .header-wrapper {
+              position: relative;
+              background-color: transparent;
+              margin-top: 30px;
+              display: flex;
+              justify-content: center;
+            }
+            
+            .header-wrapper header {
+              margin: 0 20px;
+              width: 100%;
+              text-align: center;
+            }
+            
+            .header-wrapper .description {
+              width: 50%;
+              word-break: break-all;
+              display: inline-block;
+            }
+            
+            .sidemenu-wrapper {
+              height: inherit;
+              position: fixed;
+              width: 220px;
+              display: flex;
+              justify-content: center;
+              top: 0px;
+              left: 0;
+              padding-top: 150px;
+              box-sizing: border-box;
+            }
+            
+            .sidemenu {
+              width: 80%;
+            }
+            
+            .sidemenu-icon {
+              display: none;
+              background-color: {color:White Color};
+              position: fixed;
+              top: 0;
+              left: 0;
+              padding: 5px 15px;
+              border-radius: 5px;
+              font-size: 1.2rem;
+            }
+            
+            .sidemenu-item {
+              display: flex;
+              justify-content: center;
+              padding: 8px 0;
+            }
+            
+            .sidemenu-item:first-child {
+              margin-top: 30px;
+            }
+            
+            .sidemenu .external-list {
+              padding: 0;
+              margin: 0;
+              list-style: none;
+            }
+            
+            .sidemenu .external-list .item {
+              display: inline-block;
+              padding: 2px;
+            }
+            
+            .sidemenu .external-list .link {
+              text-decoration: none;
+              color: inherit;
+              font-size: 1.3rem;
+            }
+            
+            .sidemenu .external-list .link:hover {
+              color: {color:Accent Color};
+            }
+            
+            .sidemenu .search-form {
+              display: flex;
+              justify-content: center;
+              border-bottom: 2px solid {color:Main Color};
+            }
+            .sidemenu .page-list {
+              list-style: none;
+              padding: 0;
+              margin: 0;
+            }
+            
+            .sidemenu .page-list .link {
+              color: {color:Main Color}
+            }
+            
+            .sidemenu .page-list .link:hover {
+              color: {color:Accent Color};
+            }
+            .main-wrapper {
+              min-height: 100vh;
+              margin-left: 220px;
+              box-sizing: border-box;
+              position: relative;
+              background-size: cover;
+              padding: 30px 20px;
+              display: block;
+            }
+            
+            .main {
+              width: 100%;
+            }
+            
+            .main article {
+              min-width: 450px;
+              padding: 30px 30px;
+              border-radius: 10px;
+              background-color: {color:White Color};
+              margin-bottom: 30px;
+              background-color: rgba(255, 255, 255, 0.7);
+              box-sizing: border-box;
+            }
+            
+            .post-header {
+              align-items: baseline;
+              border-bottom: 2px solid {color:Main Color};
+              padding-bottom: 8px;
+            }
+            
+            .post-header .title a {
+              color: {color:Accent Color};
+              text-decoration: none;
+            }
+            
+            .post-header .post-infomation {
+              display: flex;
+              justify-content: space-between;
+              color: {color:Main Color};
+              padding: 2px 5px;
+              box-sizing: border-box;
+              font-size: small;
+            }
+            
+            .post-body {
+              margin: 10px 0;
+              padding: 10px 0;
+            }
+            
+            .post-footer {
+              padding-top: 8px;
+              border-top: 2px solid {color:Main Color};
+            }
+            
+            .post-footer .footer-item {
+              display: flex;
+              justify-content: space-between;
+              margin-bottom: 5px;
+            }
+            
+            .post-footer .footer-item:last-child {
+              margin: 0;
+            }
+            
+            .post-footer .tag-list {
+              margin: 0;
+              padding: 0;
+              list-style: none;
+              font-size: 16px;
+            }
+            
+            .post-footer .tag-list .item {
+              display: inline-block;
+              margin-right: 7px;
+            }
+            
+            .post-footer .tag-list .link {
+              display: block;
+              padding: 2px 0px;
+              color: {color:Accent Color};
+              text-decoration: none;
+            }
+            
+            .post-footer .tag-list .link::before {
+              content: "#";
+            }
+            
+            .post-footer .tag-list .link:hover {
+              opacity: .7;
+            }
+            
+            .post-footer .control-list {
+              margin: 0;
+              padding: 0;
+              list-style: none;
+              font-size: 16px;
+            }
+            
+            .post-footer .control-list .item {
+              display: inline-block;
+              margin-right: 7px;
+            }
+            
+            .post-footer .control-list .link {
+              color: {color:Main Color};
+              text-decoration: none;
+            }
+            
+            .post-footer .control-list .link:hover {
+              color: {color:Accent Color};
+            }
+            
+            .pagenation-wrapper {
+              display: block;
+            }
+            
+            .pagination {
+              display: flex;
+              justify-content: center;
+            }
+            
+            .pagination-list {
+              list-style: none;
+              padding: 0;
+              margin: 0;
+            }
+            
+            .pagination-item {
+              display: inline-block;
+            }
+            
+            .pagination-link {
+              color: {color:Main Color};
+              text-decoration: none;
+              border-radius: 4px;
+              padding: 0 7px;
+              font-weight: 600;
+            }
+            
+            .pagination-link:hover {
+              opacity: .7;
+            }
+            
+            .pagination .active {
+              background-color: {color:Main Color};
+              display: inline-block;
+              color: {color:White Color};
+            }
+            
+            .footer-wrapper {
+              width: 100%;
+            }
+            
+            .footer-wrapper footer {
+              border-top: 2px solid {color:Main Color};
+              margin: 0 20px;
+              display: flex;
+              justify-content: center;
+              color: {color:Main Color};
+              padding: 8px 0;
+            }
+            
+            @media (max-width: 500px) {
+              .sidemenu-wrapper {
+                display: none;
+                background-color: {color:White Color};
+              }
+              .sidemenu-open {
+                display: flex;
+              }
+              .sidemenu-icon {
+                display: inline-block;
+                z-index: 1000;
+              }
+              .main-wrapper {
+                margin-left: 0;
+              }
+              .main {
+                width: 100%;
+              }
+            }
+
+
+
+
+            /*markdown*/
+            .post-body {
+                word-wrap: break-word;
+            }
+            .post-body > :first-child {
+              margin-top: 0;
+            }
+            
+            .post-body h1, .post-body h2, .post-body h3, .post-body h4, .post-body h5, .post-body h6 {
+              margin-top: 1.5em;
+              margin-bottom: 16px;
+            }
+            
+            .post-body h1, .post-body h2, .post-body h3 {
+              border-bottom: 1px solid #ccc;
+            }
+            
+            .post-body p {
+              line-height: 1.8;
+            }
+            
+            .post-body a {
+              color: {color:Accent Color};
+            }
+            
+            .post-body a:hover {
+              opacity: .7;
+            }
+            
+            .post-body table {
+              border: 1px solid #ddd;
+              border-spacing: 0;
+            }
+            
+            .post-body table thead {
+              background-color: #eee;
+            }
+            
+            .post-body table tr:nth-child(2n) {
+              background-color: #eee;
+            }
+            
+            .post-body table th, .post-body table td {
+              padding: .2em .5em;
+              border: 1px solid #ddd;
+            }
+            
+            .post-body blockquote {
+              color: #888;
+              border-left: 4px solid #ddd;
+              margin-inline-start: 0px;
+              margin-inline-end: 0px;
+              padding-inline-start: 16px;
+            }
+            
+            code {
+              padding: .1em .6em;
+              background-color: #eee;
+              color: #c7254e;
+              font: 400 .9rem normal;
+              font-family: Menlo,Consolas,'DejaVu Sans Mono',monospace;
+              border-radius: 5px;
+            }
+            
+            .post-body pre {
+              font-size: 16px;
+            }
+            
+            .post-body pre code {
+              padding: 1rem .5rem;
+              border-radius: 5px;
+              font-family: Menlo,Monaco,Consolas,"Courier New",monospace;
+              font-size: .9rem;
+              line-height: 1.3rem;
+            }
+            
+            .post-body hr {
+              border: 1px solid #ddd;
+            }
+            
+            .post-body ul, .post-body ol {
+                line-height: 1.9rem;
+            }
+            
+            .post-body img {
+                max-width: 100%;
+            }
+
+            {CustomCSS}
+
+        </style>
+    </head>
+
+    <body>
+    <div class="header-wrapper">
+      <header class="header">
+        <div class="heading">
+          <h1>{BlogTitle}</h1>
+          {block:Description}
+            <div class="description">{Description}</div>
+          {/block:Description}
+        </div>
+      </header>
+    </div>
+
+    <div class="container">
+
+      <div class="main-wrapper">
+        {block:DayPage}
+        <div class="notify-wrapper">
+          <div class="heading">
+            <label class="heading-title">Posted on {Year}/{MonthNumber}/{DayOfMonth}</label>
+          </div>
+        </div>
+        {/blocK:DayPage}
+        
+        {block:TagPage}
+        <div class="notify-wrapper">
+          <div class="heading">
+            <label class="heading-title">{lang:Posts tagged Tag}</label>
+          </div>
+        </div>
+        {/blocK:TagPage}
+        
+        {block:SearchPage}
+        <div class="notify-wrapper">
+          <div class="heading">
+            <label class="heading-title">{lang:Posts tagged Tag}</label>
+          </div>
+        </div>
+        {/blocK:SearchPage}
+        
+        <div class="main">
+          
+          {block:Posts}
+          <article class="{PostType}">
+              
+              {block:Text}
+              <div class="post-header">
+                  <div class="post-infomation">
+                    <div>{PostType}</div>
+                    <div>{TimeAgo}</div>
+                  </div>
+                  {block:Title}
+                  <h2 class="title">
+                    <a href="{Permalink}">{Title}</a>
+                  </h2>
+                  {/block:Title}
+              </div>
+              <div class="post-content">
+                  
+                  <div class="post-body">{Body}</div>
+              </div>
+              {/block:Text}
+              
+              {block:Link}
+              <div class="post-header">
+                  <div class="post-infomation">
+                    <div>{PostType}</div>
+                    <div>{TimeAgo}</div>
+                  </div>
+              </div>
+              <div class="post-content">
+                  <div class="link-wrapper">
+                    <a href="{URL}" target="_blank" class="link">
+                      {block:Thumbnail}
+                        <img src="{Thumbnail-HighRes}">
+                      {/block:Thumbnail}
+                      {block:Host}<label>{Host}</label>{/block:Host}
+                      <h2 class="link-title">{Name}</h2>
+                      {block:Excerpt}<label class="link-description">{Excerpt}</label>{/block:Excerpt}
+                      <div class="link-infomation">
+                        {block:Author}<label class="link-author">{Author}</label>{/block:Author}
+                      </div>
+                    </a>
+                  </div>
+                  <div class="post-body">
+                    本文
+                  </div>
+                </div>
+              {/block:Link}
+              
+              <!--TODO: impl-->
+              {block:Answer}
+              {/block:Answer}
+              
+            <div class="post-footer">
+              <div class="footer-item">
+                {block:HasTags}
+                <ul class="tag-list">
+                  {block:Tags}
+                  <li class="item"><a href="{TagURL}" class="link">{Tag}</a></li>
+                  {/block:Tags}
+                </ul>
+                {/block:HasTags}
+              </div>
+              <div class="footer-item">
+                <ul class="control-list">
+                  {block:NoteCount}
+                    <li class="item"><a href="{Permalink}" class="link">{NoteCount}Reactions</a></li>
+                  {/block:NoteCount}
+                  {block:IndexPage}
+                    <li class="item"><a href="{Permalink}#dsq-content" class="link">Comment</a></li>
+                  {/block:IndexPage}
+                </ul>
+                <ul class="control-list">
+                  <li class="item"><a class="link">{LikeButton color="black" size=16}</a></li>
+                  <li class="item"><a class="link">{ReblogButton color="black" size=16}</a></li>
+                  <li class="item">
+                    <script type="text/javascript">
+                        ShareSummary = "{Title} - {BlogTitle}\r{ShortURL}"
+                        elem = `<a href="https://twitter.com/intent/tweet?text=` + encodeURI(ShareSummary) + `" class="link twitter" target="_blank"><i class="fab fa-twitter icon"></i></a>`
+                        document.write(elem)
+                    </script>
+                  </li>
+                  <li class="item"><a href="{Permalink}" class="link"><i class="fas fa-newspaper"></i></a></li>
+                </ul>
+              </div>
+            </div>
+            
+            <!--TODO: impl-->
+            {block:PostNotes}
+            <div class="note-wrapper">
+                {PostNotes-64}    
+            </div>
+            {/block:PostNotes}
+            
+            <!--Disqus and Source-->
+            {block:PermalinkPage}
+            {block:IfDisqusShortname}<br><br>
+            <div id="disqus_thread"></div><div id="dsq-content">
+            <script type="text/javascript">
+            /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+            var disqus_shortname = '{text:Disqus Shortname}'; // Required - Enter shortname in Tumblr Theme Options
+            var disqus_url = '{Permalink}';     /* * * DON'T EDIT BELOW THIS LINE * * */
+            (function() {
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+            </script>
+            </div>{/block:IfDisqusShortname}
+            {/block:PermalinkPage}
+            <!--Disqus and Source-->
+            
+          </article>
+          {/block:Posts}
+        </div>
+        <!-- END main -->
+        
+        {block:IndexPage}
+        {block:Pagination}
+        <div class="pagination-wrapper">
+          <div class="pagination">
+            <ul class="pagination-list">
+              <li class="pagination-item">
+                {block:PreviousPage}<a href="{PreviousPage}" class="pagination-link">&lt;</a>{/block:PreviousPage}
+              </li>
+              {block:JumpPagination length="5"}
+                {block:CurrentPage}<li class="pagination-item"><a href="#" class="pagination-link active">{PageNumber}</a></li>{/block:CurrentPage}
+                {block:JumpPage}<li class="pagination-item"><a href="{URL}" class="pagination-link">{PageNumber}</a></li>{/block:JumpPage}
+              {/block:JumpPagination}
+
+              <li class="pagination-item">{block:NextPage}<a href="{NextPage}" class="pagination-link">&gt;</a>{/block:NextPage}</li>
+            </ul>
+          </div>
+        </div>
+        <!-- END pagination -->
+        {/block:IndexPage}
+        {/block:Pagination}
+        
+      </div>
+      <!-- END main-wrapper -->
+
+
+      <label class="sidemenu-icon sidemenu-toggle"><i class="fas fa-bars"></i></label>
+      <div id="sidemenu" class="sidemenu-wrapper">
+        <div class="sidemenu">
+          <div class="sidemenu-item">
+            <div class="heading">
+              <span class="heading-title">About Me</span>
+            </div>
+          </div>
+          <div class="sidemenu-item">
+            <div class="avatar">
+              <img class="avatar-128 circle" src="{PortraitURL-128}">
+            </div>
+          </div>
+      
+          {block:IfBio}
+          <div class="sidemenu-item">
+            <div class="bio">
+                {text:Bio}
+            </div>
+          </div>
+          {/block:IfBio}
+          
+          <!--TODO: impl-->
+          <div class="sidemenu-item">
+            <ul class="page-list">
+                <li class="item"><a href="/" class="link">Home</a></li>
+                <li class="item"><a href="/archive" class="link">Archive</a></li>
+                {block:HasPages}
+                {block:Pages}
+                <li class="item"><a href="{URL}" class="link">{Label}</a></li>
+                {/block:Pages}
+                {/block:HasPages}
+            </ul>
+          </div>
+          
+          <div class="sidemenu-item">
+            <ul class="external-list">
+              {block:IfGitHubLink}<li class="item"><a href="{text:GitHub Link}" class="link"><i class="fab fa-github"></i></a></li>{block:IfGitHubLink}
+              {block:IfTwitterLink}<li class="item"><a href="{text:Twitter Link}" class="link"><i class="fab fa-twitter"></i></a></li>{block:IfTwitterLink}
+              {block:IfFacebookLink}<li class="item"><a href="{text:Facebook Link}" class="link"><i class="fab fa-facebook"></i></a></li>{block:IfFacebookLink}
+              {block:IfBlogLink}<li class="item"><a href="{text:Blog Link}" class="link"><i class="fas fa-pen-nib"></i></a></li>{block:IfBlogLink}
+            </ul>
+          </div>
+          
+          <div class="sidemenu-item">
+            <form class="search-form" action="/search" method="get">
+              <input type="text" class="form-text" name="q" value="{SearchQuery}" />
+              <button type="submit" class="form-btn"><i class="fas fa-search"></i></button>
+            </form>
+          </div>
+        </div>
+        <!-- END sidemenu -->
+      </div>
+      <!-- END sidemenu-wrapper -->
+      <div class="footer-wrapper">
+        <footer>
+          <div><span>{Title} &copy; {CopyrightYears}</span></div>
+        </footer>
+      </div>
+    </div>
+    <!-- END container
+
+    <!-- END footer -->
+    <script>
+      $(".sidemenu-toggle").click(() => {
+        $("#sidemenu").toggleClass("sidemenu-open")
+      })
+    </script>
+  </body>
+</html>
