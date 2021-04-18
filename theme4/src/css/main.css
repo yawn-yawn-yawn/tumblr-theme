@@ -38,6 +38,10 @@ h1, h2, h3, h4, h5, h6 {
   border-radius: 50%;
 }
 
+.notify-wrapper {
+  margin-bottom: 20px;
+}
+
 .link-wrapper {
   box-sizing: border-box;
 }
@@ -184,6 +188,20 @@ h1, h2, h3, h4, h5, h6 {
   border-bottom: 2px solid #4b3535;
 }
 
+.sidemenu .page-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sidemenu .page-list .link {
+  color: #4b3535;
+}
+
+.sidemenu .page-list .link:hover {
+  color: #4C9630;
+}
+
 .main-wrapper {
   min-height: 100vh;
   margin-left: 220px;
@@ -214,8 +232,9 @@ h1, h2, h3, h4, h5, h6 {
   padding-bottom: 8px;
 }
 
-.post-header .title {
+.post-header .title a {
   color: #4C9630;
+  text-decoration: none;
 }
 
 .post-header .post-infomation {
@@ -251,11 +270,12 @@ h1, h2, h3, h4, h5, h6 {
   margin: 0;
   padding: 0;
   list-style: none;
-  font-size: small;
+  font-size: 16px;
 }
 
 .post-footer .tag-list .item {
   display: inline-block;
+  margin-right: 7px;
 }
 
 .post-footer .tag-list .link {
@@ -277,11 +297,12 @@ h1, h2, h3, h4, h5, h6 {
   margin: 0;
   padding: 0;
   list-style: none;
-  font-size: small;
+  font-size: 16px;
 }
 
 .post-footer .control-list .item {
   display: inline-block;
+  margin-right: 7px;
 }
 
 .post-footer .control-list .link {

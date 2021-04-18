@@ -49,6 +49,10 @@ h1, h2, h3, h4, h5, h6 {
   border-radius: 50%;
 }
 
+.notify-wrapper {
+  margin-bottom: 20px;
+}
+
 .link-wrapper {
   // border: 2px solid $main-color;
   box-sizing: border-box;
@@ -179,6 +183,17 @@ h1, h2, h3, h4, h5, h6 {
     justify-content: center;
     border-bottom: 2px solid $main-color;
   }
+  .page-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    .link {
+      color: $main-color;
+      &:hover {
+        color: $accent-color;
+      }
+    }
+  }
 }
 
 .main-wrapper {
@@ -211,7 +226,10 @@ h1, h2, h3, h4, h5, h6 {
     border-bottom: 2px solid $main-color;
     padding-bottom: 8px;
     .title {
-      color: $accent-color;
+      a {
+        color: $accent-color;
+        text-decoration: none;
+      }
     }
     .post-infomation {
       display: flex;
@@ -241,9 +259,10 @@ h1, h2, h3, h4, h5, h6 {
       margin: 0;
       padding: 0;
       list-style: none;
-      font-size: small;
+      font-size: 16px;
       .item {
         display: inline-block;
+        margin-right: 7px;
       }
       .link {
         display: block;
@@ -262,9 +281,10 @@ h1, h2, h3, h4, h5, h6 {
       margin: 0;
       padding: 0;
       list-style: none;
-      font-size: small;
+      font-size: 16px;
       .item {
         display: inline-block;
+        margin-right: 7px;
       }
       .link {
         color: $main-color;
