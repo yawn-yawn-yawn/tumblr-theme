@@ -1,7 +1,7 @@
 var gulp = require("gulp");
 var sass = require("gulp-sass");
 
-var theme = "theme3"
+var theme = "theme4"
 
 gulp.task("sass", function () {
     return (
