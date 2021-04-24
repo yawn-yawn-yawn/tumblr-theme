@@ -207,7 +207,7 @@ h1, h2, h3, h4, h5, h6 {
   background-size: cover;
   padding: 30px 20px;
   display: block;
-  width: 100%;
+  width: calc(100% - 230px);
 }
 
 .main {
@@ -215,7 +215,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .main article {
-  min-width: 450px;
+  /* min-width: 450px; */
   padding: 30px 30px;
   border-radius: 10px;
   background-color: #ffffff;
@@ -376,6 +376,7 @@ h1, h2, h3, h4, h5, h6 {
   }
   .main-wrapper {
     margin-left: 0;
+    width: 100%;
   }
   .main {
     width: 100%;
