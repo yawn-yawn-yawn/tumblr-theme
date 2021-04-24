@@ -17,7 +17,7 @@ $body-text-color: $main-color;
 $footer-text-color: $base-color;
 
 $container-min-width: 500px;
-$container-max-width: 980px;
+// $container-max-width: 980px;
 $sidebar-max-width: 240px;
 
 $border-radius: 5px;
@@ -99,7 +99,7 @@ body {
     justify-content: flex-start;
     // background-color: gray;
     width: 80%;
-    max-width: $container-max-width;
+    // max-width: $container-max-width;
     margin: 30px 0;
     & > * {
         margin-left: 2rem;
