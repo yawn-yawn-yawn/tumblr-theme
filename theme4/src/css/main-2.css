@@ -128,7 +128,8 @@ h1, h2, h3, h4, h5, h6 {
 .sidemenu-wrapper {
   height: inherit;
   position: relative;
-  width: 280px;
+  width: 230px;
+  min-width: 230px;
   display: flex;
   justify-content: center;
   box-sizing: border-box;
@@ -361,7 +362,7 @@ h1, h2, h3, h4, h5, h6 {
   padding: 8px 0;
 }
 
-@media (max-width: 500px) {
+@media (max-width: 800px) {
   .sidemenu-wrapper {
     display: none;
     background-color: #ffffff;

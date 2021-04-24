@@ -7,7 +7,7 @@ $accent-color: #4C9630;
 $white-color: #ffffff;
 
 $sidemenu-margin-height: 150px;
-$sidemenu-width: 280px;
+$sidemenu-width: 230px;
 $article-min-width: 450px;
 
 html {
@@ -134,6 +134,7 @@ h1, h2, h3, h4, h5, h6 {
   height: inherit;
   position: relative;
   width: $sidemenu-width;
+  min-width: $sidemenu-width;
   display: flex;
   justify-content: center;
   box-sizing: border-box;
@@ -340,7 +341,7 @@ h1, h2, h3, h4, h5, h6 {
 
 }
 
-@media (max-width: 500px) {
+@media (max-width: 800px) {
   .sidemenu-wrapper {
     display: none;
     background-color: $white-color;
