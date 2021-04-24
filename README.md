@@ -31,7 +31,7 @@
 ### theme 4
 created at 2021/04/18
 
-新聞をイメージして作ったやつ
+新聞をイメージして作ったやつ。`theme-2.html`を使うと、サイドメニューの下にGitHubの草が生えます。
 
 ![theme4](./images/theme4.png)
 

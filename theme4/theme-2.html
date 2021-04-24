@@ -50,6 +50,7 @@
             <meta name="text:Facebook Link" content="" />
             <meta name="text:Blog Link" content="" />
             <meta name="text:WebSite Link" content="" />
+            <meta name="text:GitHub ID" content="" />
             <meta name="text:Disqus Shortname" content="" />
         {/block:Hidden}
 
@@ -61,10 +62,9 @@
               color: {color:Main Color};
               background-color: {color:Background Color};
               min-height: 100%;
-              background-image: url("{image:Background Image}");
+              background-image: url("../../img/paper.png");
               background-size: contain;
               background-attachment: fixed;
-              font-family: {font:Text Font};
             }
             
             body {
@@ -162,6 +162,7 @@
               min-height: 100%;
               position: relative;
               box-sizing: border-box;
+              display: flex;
             }
             
             .header-wrapper {
@@ -186,13 +187,11 @@
             
             .sidemenu-wrapper {
               height: inherit;
-              position: fixed;
-              width: 220px;
+              position: relative;
+              width: 230px;
+              min-width: 230px;
               display: flex;
               justify-content: center;
-              top: 0px;
-              left: 0;
-              padding-top: 150px;
               box-sizing: border-box;
             }
             
@@ -218,7 +217,7 @@
             }
             
             .sidemenu-item:first-child {
-              margin-top: 30px;
+              margin-top: 20px;
             }
             
             .sidemenu .external-list {
@@ -247,6 +246,7 @@
               justify-content: center;
               border-bottom: 2px solid {color:Main Color};
             }
+            
             .sidemenu .page-list {
               list-style: none;
               padding: 0;
@@ -254,20 +254,20 @@
             }
             
             .sidemenu .page-list .link {
-              color: {color:Main Color}
+              color: {color:Main Color};
             }
             
             .sidemenu .page-list .link:hover {
               color: {color:Accent Color};
             }
+            
             .main-wrapper {
-              min-height: 100vh;
-              margin-left: 220px;
               box-sizing: border-box;
               position: relative;
               background-size: cover;
               padding: 30px 20px;
               display: block;
+              width: 100%;
             }
             
             .main {
@@ -422,7 +422,7 @@
               padding: 8px 0;
             }
             
-            @media (max-width: 500px) {
+            @media (max-width: 800px) {
               .sidemenu-wrapper {
                 display: none;
                 background-color: {color:White Color};
@@ -441,9 +441,6 @@
                 width: 100%;
               }
             }
-
-
-
 
             /*markdown*/
             .post-body {
@@ -551,6 +548,67 @@
     </div>
 
     <div class="container">
+      <label class="sidemenu-icon sidemenu-toggle"><i class="fas fa-bars"></i></label>
+      <div id="sidemenu" class="sidemenu-wrapper">
+        <div class="sidemenu">
+          <div class="sidemenu-item">
+            <div class="heading">
+              <span class="heading-title">About Me</span>
+            </div>
+          </div>
+          <div class="sidemenu-item">
+            <div class="avatar">
+              <img class="avatar-128 circle" src="{PortraitURL-128}">
+            </div>
+          </div>
+      
+          {block:IfBio}
+          <div class="sidemenu-item">
+            <div class="bio">
+                {text:Bio}
+            </div>
+          </div>
+          {/block:IfBio}
+          
+          <!--TODO: impl-->
+          <div class="sidemenu-item">
+            <ul class="page-list">
+                <li class="item"><a href="/" class="link">Home</a></li>
+                <li class="item"><a href="/archive" class="link">Archive</a></li>
+                {block:HasPages}
+                {block:Pages}
+                <li class="item"><a href="{URL}" class="link">{Label}</a></li>
+                {/block:Pages}
+                {/block:HasPages}
+            </ul>
+          </div>
+          
+          <div class="sidemenu-item">
+            <ul class="external-list">
+              {block:IfGitHubLink}<li class="item"><a href="{text:GitHub Link}" class="link"><i class="fab fa-github"></i></a></li>{block:IfGitHubLink}
+              {block:IfTwitterLink}<li class="item"><a href="{text:Twitter Link}" class="link"><i class="fab fa-twitter"></i></a></li>{block:IfTwitterLink}
+              {block:IfFacebookLink}<li class="item"><a href="{text:Facebook Link}" class="link"><i class="fab fa-facebook"></i></a></li>{block:IfFacebookLink}
+              {block:IfBlogLink}<li class="item"><a href="{text:Blog Link}" class="link"><i class="fas fa-pen-nib"></i></a></li>{block:IfBlogLink}
+            </ul>
+          </div>
+          
+          <div class="sidemenu-item">
+            <form class="search-form" action="/search" method="get">
+              <input type="text" class="form-text" name="q" value="{SearchQuery}" />
+              <button type="submit" class="form-btn"><i class="fas fa-search"></i></button>
+            </form>
+          </div>
+          {block:IfGitHubID}
+          <div class="sidemenu-item">
+              <!--<a href="https://github.com/hmarf" target="_blank">-->
+                <img src="https://grass-graph.moshimo.works/images/{text:Github ID}.png?rotate=90" style="border-radius: 5px; opacity: .8;">
+              <!--</a>-->
+          </div>
+          {block:IfGitHubID}
+        </div>
+        <!-- END sidemenu -->
+      </div>
+      <!-- END sidemenu-wrapper -->
 
       <div class="main-wrapper">
         {block:DayPage}
@@ -572,7 +630,7 @@
         {block:SearchPage}
         <div class="notify-wrapper">
           <div class="heading">
-            <label class="heading-title">{lang:Search results for SearchQuery}</label>
+            <label class="heading-title">{lang:Posts tagged Tag}</label>
           </div>
         </div>
         {/blocK:SearchPage}
@@ -718,69 +776,15 @@
         
       </div>
       <!-- END main-wrapper -->
-
-      <label class="sidemenu-icon sidemenu-toggle"><i class="fas fa-bars"></i></label>
-      <div id="sidemenu" class="sidemenu-wrapper">
-        <div class="sidemenu">
-          <div class="sidemenu-item">
-            <div class="heading">
-              <span class="heading-title">About Me</span>
-            </div>
-          </div>
-          <div class="sidemenu-item">
-            <div class="avatar">
-              <img class="avatar-128 circle" src="{PortraitURL-128}">
-            </div>
-          </div>
       
-          {block:IfBio}
-          <div class="sidemenu-item">
-            <div class="bio">
-                {text:Bio}
-            </div>
-          </div>
-          {/block:IfBio}
-          
-          <!--TODO: impl-->
-          <div class="sidemenu-item">
-            <ul class="page-list">
-                <li class="item"><a href="/" class="link">Home</a></li>
-                <li class="item"><a href="/archive" class="link">Archive</a></li>
-                {block:HasPages}
-                {block:Pages}
-                <li class="item"><a href="{URL}" class="link">{Label}</a></li>
-                {/block:Pages}
-                {/block:HasPages}
-            </ul>
-          </div>
-          
-          <div class="sidemenu-item">
-            <ul class="external-list">
-              {block:IfGitHubLink}<li class="item"><a href="{text:GitHub Link}" class="link"><i class="fab fa-github"></i></a></li>{block:IfGitHubLink}
-              {block:IfTwitterLink}<li class="item"><a href="{text:Twitter Link}" class="link"><i class="fab fa-twitter"></i></a></li>{block:IfTwitterLink}
-              {block:IfFacebookLink}<li class="item"><a href="{text:Facebook Link}" class="link"><i class="fab fa-facebook"></i></a></li>{block:IfFacebookLink}
-              {block:IfBlogLink}<li class="item"><a href="{text:Blog Link}" class="link"><i class="fas fa-pen-nib"></i></a></li>{block:IfBlogLink}
-            </ul>
-          </div>
-          
-          <div class="sidemenu-item">
-            <form class="search-form" action="/search" method="get">
-              <input type="text" class="form-text" name="q" value="{SearchQuery}" />
-              <button type="submit" class="form-btn"><i class="fas fa-search"></i></button>
-            </form>
-          </div>
-        </div>
-        <!-- END sidemenu -->
-      </div>
-      <!-- END sidemenu-wrapper -->
-      <div class="footer-wrapper">
+    </div>
+    <!-- END container -->
+
+    <div class="footer-wrapper">
         <footer>
           <div><span>{Title} &copy; {CopyrightYears}</span></div>
         </footer>
-      </div>
     </div>
-    <!-- END container
-
     <!-- END footer -->
     <script>
       $(".sidemenu-toggle").click(() => {
